@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\stb;$(SolutionDir)\ANSI_Graphics_Engine\common;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -123,8 +123,7 @@
       <AdditionalDependencies>glfw3.lib;glew32s.lib;glu32.lib;opengl32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>MSVCRT;LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,42 +134,63 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\glm;$(SolutionDir)\ANSI_Graphics_Engine\Engine\ExternalLibraries\stb;$(SolutionDir)\ANSI_Graphics_Engine\Engine\ExternalLibraries\imgui;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\GLFW\lib;$(SolutionDir)\dependencies\GLEW\lib\Release\x64;C:\ProgrammingProjects\Visual Leak Detector\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32s.lib;glu32.lib;opengl32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <TurnOffAssemblyGeneration />
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="engine\external_libraries\imgui\imgui.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui_demo.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui_draw.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui_tables.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="engine\external_libraries\stb\stb_image.cpp" />
+    <ClCompile Include="engine\common\ansi_common.cpp" />
+    <ClCompile Include="engine\core\ansi_core.cpp" />
+    <ClCompile Include="engine\core\gui\ansi_gui.cpp" />
+    <ClCompile Include="engine\core\log\ansi_log.cpp" />
+    <ClCompile Include="engine\core\window\ansi_window.cpp" />
+    <ClCompile Include="engine\core\xml\ansi_xml.cpp" />
+    <ClCompile Include="engine\core\xml\config\ansi_config.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_tables.cpp" />
+    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="engine\external_libraries\tinyxml2\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="engine\utility\converter\ansi_converter.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="common\common.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="engine\external_libraries\imgui\imconfig.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui_internal.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imstb_rectpack.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imstb_textedit.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imstb_truetype.h" />
-    <ClInclude Include="common\common.h" />
-    <ClInclude Include="engine\external_libraries\stb\stb_image.h" />
+    <ClInclude Include="engine\ansi_graphics_engine.h" />
+    <ClInclude Include="engine\common\ansi_common.h" />
+    <ClInclude Include="engine\core\ansi_core.h" />
+    <ClInclude Include="engine\core\gui\ansi_gui.h" />
+    <ClInclude Include="engine\core\log\ansi_log.h" />
+    <ClInclude Include="engine\core\window\ansi_window.h" />
+    <ClInclude Include="engine\core\xml\ansi_xml.h" />
+    <ClInclude Include="engine\core\xml\config\ansi_config.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imconfig.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_internal.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imstb_rectpack.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imstb_textedit.h" />
+    <ClInclude Include="engine\external_libraries\imgui\imgui\imstb_truetype.h" />
+    <ClInclude Include="engine\external_libraries\tinyxml2\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="engine\utility\converter\ansi_converter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="configurations\ansi_graphics_engine_config.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

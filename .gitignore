@@ -1,3 +1,6 @@
-# Visual Studio cache files
+# Log files
+*.ini
+
+# Visual Studio files
 /.vs
 /bin

@@ -1,0 +1,4 @@
+<ansi_graphics_engine_config>
+	<window is_windowed="true" position_x="570" position_y="249" client_width="960" client_height="540" title="ANSI Graphics Engine"/>
+	<vsync is_enable="false" swap_interval="1"/>
+</ansi_graphics_engine_config>
