@@ -2,12 +2,14 @@
 
 #include "core/ansi_core.h"
 #include "core/log/ansi_log.h"
+#include "core/timer/ansi_timer.h"
 #include "core/xml/config/ansi_config.h"
 #include "core/gui/ansi_gui.h"
 #include "utility/converter/ansi_converter.h"
 
 namespace AN
 {
+
 	Window::Window() :
 		m_isGlfwInitialized(false),
 		m_window(nullptr)
@@ -56,6 +58,8 @@ namespace AN
 	{
 		while (!glfwWindowShouldClose(m_window))
 		{
+			Core::GetTimer()->OnUpdate();
+
 			GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 			GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
 

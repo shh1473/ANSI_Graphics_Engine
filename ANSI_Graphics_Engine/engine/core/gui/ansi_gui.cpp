@@ -5,6 +5,7 @@
 
 namespace AN
 {
+
 	Gui::Gui() :
 		m_isCreatedContext(false),
 		m_isInitializedGlfw(false),

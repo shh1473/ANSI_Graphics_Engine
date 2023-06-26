@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_libraries\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -154,18 +154,37 @@
     <ClCompile Include="engine\core\ansi_core.cpp" />
     <ClCompile Include="engine\core\gui\ansi_gui.cpp" />
     <ClCompile Include="engine\core\log\ansi_log.cpp" />
+    <ClCompile Include="engine\core\timer\ansi_timer.cpp" />
     <ClCompile Include="engine\core\window\ansi_window.cpp" />
     <ClCompile Include="engine\core\xml\ansi_xml.cpp" />
     <ClCompile Include="engine\core\xml\config\ansi_config.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_demo.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_draw.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_tables.cpp" />
-    <ClCompile Include="engine\external_libraries\imgui\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="engine\external_libraries\tinyxml2\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui_demo.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui_draw.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui_tables.cpp" />
+    <ClCompile Include="engine\external_library\imgui\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="engine\external_library\tinyxml2\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="engine\object\component\ansi_component.cpp" />
+    <ClCompile Include="engine\object\component\renderer\ansi_renderer.cpp" />
+    <ClCompile Include="engine\object\component\renderer\input_param\ansi_input_param.cpp" />
+    <ClCompile Include="engine\object\component\renderer\output_param\ansi_output_param.cpp" />
+    <ClCompile Include="engine\object\component\renderer\raster_param\ansi_raster_param.cpp" />
+    <ClCompile Include="engine\object\component\renderer\shader_param\ansi_shader_param.cpp" />
+    <ClCompile Include="engine\object\component\transform\ansi_transform.cpp" />
+    <ClCompile Include="engine\resource\ansi_resource.cpp" />
+    <ClCompile Include="engine\scene\ansi_scene.cpp" />
+    <ClCompile Include="engine\object\ansi_object.cpp" />
+    <ClCompile Include="engine\scene\render_executor\ansi_render_executor.cpp" />
+    <ClCompile Include="engine\scene\render_executor\input_executor\ansi_input_executor.cpp" />
+    <ClCompile Include="engine\scene\render_executor\output_executor\ansi_output_executor.cpp" />
+    <ClCompile Include="engine\scene\render_executor\raster_executor\ansi_raster_executor.cpp" />
+    <ClCompile Include="engine\scene\render_executor\shader_executor\ansi_shader_executor.cpp" />
+    <ClCompile Include="engine\scene\resource_storage\ansi_resource_storage.cpp" />
+    <ClCompile Include="engine\resource\shader\ansi_shader.cpp" />
     <ClCompile Include="engine\utility\converter\ansi_converter.cpp" />
+    <ClCompile Include="engine\utility\shader_loader\ansi_shader_loader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,20 +193,41 @@
     <ClInclude Include="engine\core\ansi_core.h" />
     <ClInclude Include="engine\core\gui\ansi_gui.h" />
     <ClInclude Include="engine\core\log\ansi_log.h" />
+    <ClInclude Include="engine\core\timer\ansi_timer.h" />
     <ClInclude Include="engine\core\window\ansi_window.h" />
     <ClInclude Include="engine\core\xml\ansi_xml.h" />
     <ClInclude Include="engine\core\xml\config\ansi_config.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imconfig.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imgui_internal.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imstb_rectpack.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imstb_textedit.h" />
-    <ClInclude Include="engine\external_libraries\imgui\imgui\imstb_truetype.h" />
-    <ClInclude Include="engine\external_libraries\tinyxml2\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imconfig.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imgui.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imgui_internal.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imstb_rectpack.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imstb_textedit.h" />
+    <ClInclude Include="engine\external_library\imgui\imgui\imstb_truetype.h" />
+    <ClInclude Include="engine\external_library\tinyxml2\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="engine\object\component\ansi_component.h" />
+    <ClInclude Include="engine\object\component\renderer\ansi_renderer.h" />
+    <ClInclude Include="engine\object\component\renderer\input_param\ansi_input_param.h" />
+    <ClInclude Include="engine\object\component\renderer\output_param\ansi_output_param.h" />
+    <ClInclude Include="engine\object\component\renderer\raster_param\ansi_raster_param.h" />
+    <ClInclude Include="engine\object\component\renderer\shader_param\ansi_shader_param.h" />
+    <ClInclude Include="engine\object\component\transform\ansi_transform.h" />
+    <ClInclude Include="engine\resource\ansi_resource.h" />
+    <ClInclude Include="engine\scene\ansi_scene.h" />
+    <ClInclude Include="engine\object\ansi_object.h" />
+    <ClInclude Include="engine\scene\render_executor\ansi_render_executor.h" />
+    <ClInclude Include="engine\scene\render_executor\input_executor\ansi_input_executor.h" />
+    <ClInclude Include="engine\scene\render_executor\output_executor\ansi_output_executor.h" />
+    <ClInclude Include="engine\scene\render_executor\raster_executor\ansi_raster_executor.h" />
+    <ClInclude Include="engine\scene\render_executor\shader_executor\ansi_shader_executor.h" />
+    <ClInclude Include="engine\scene\resource_storage\ansi_resource_storage.h" />
+    <ClInclude Include="engine\resource\shader\ansi_shader.h" />
     <ClInclude Include="engine\utility\converter\ansi_converter.h" />
+    <ClInclude Include="engine\utility\shader_loader\ansi_shader_loader.h" />
+    <ClInclude Include="engine\utility\state_checker\ansi_state_checker.h" />
+    <ClInclude Include="engine\utility\state_checker\ansi_state_check_math.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="configurations\ansi_graphics_engine_config.xml" />

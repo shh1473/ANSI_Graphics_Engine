@@ -4,6 +4,7 @@
 
 namespace AN
 {
+
 	class Window
 	{
 	public:

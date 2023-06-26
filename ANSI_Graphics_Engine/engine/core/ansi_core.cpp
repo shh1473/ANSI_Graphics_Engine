@@ -1,9 +1,10 @@
 #include "ansi_core.h"
 
-#include "log/ansi_log.h"
-#include "xml/config/ansi_config.h"
-#include "window/ansi_window.h"
-#include "gui/ansi_gui.h"
+#include "core/log/ansi_log.h"
+#include "core/timer/ansi_timer.h"
+#include "core/xml/config/ansi_config.h"
+#include "core/window/ansi_window.h"
+#include "core/gui/ansi_gui.h"
 
 namespace AN
 {
@@ -24,6 +25,7 @@ namespace AN
 
 	Core::Core() :
 		m_log(new Log()),
+		m_timer(new Timer()),
 		m_config(new Config()),
 		m_window(new Window()),
 		m_gui(new Gui())
@@ -36,6 +38,7 @@ namespace AN
 		AN_DELETE(m_gui);
 		AN_DELETE(m_window);
 		AN_DELETE(m_config);
+		AN_DELETE(m_timer);
 		AN_DELETE(m_log);
 	}
 
