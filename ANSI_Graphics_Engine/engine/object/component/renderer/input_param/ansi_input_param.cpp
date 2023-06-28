@@ -10,6 +10,8 @@ namespace AN
 	InputParam::InputParam() :
 		m_vertexArrayId(m_DefaultVertexArrayId),
 		m_indexBufferId(m_DefaultIndexBufferId),
+		m_vertexCount(0),
+		m_indexCount(0),
 		m_primitiveTopology(m_DefaultPrimitiveTopology)
 	{
 

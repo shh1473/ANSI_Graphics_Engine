@@ -25,4 +25,9 @@ namespace AN
 
 	}
 
+	OutputParam::~OutputParam()
+	{
+
+	}
+
 }

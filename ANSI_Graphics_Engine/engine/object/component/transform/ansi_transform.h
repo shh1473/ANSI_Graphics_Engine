@@ -47,16 +47,20 @@ namespace AN
 		void AddScaleY(float y) { m_scale.AddY(y); }
 		void AddScaleZ(float z) { m_scale.AddZ(z); }
 
+		bool GetIsChangedMatrix() const { return m_isChangedMatrix; }
 		const glm::vec3 & GetPosition() const { return m_position.Get(); }
 		const glm::vec3 & GetRotation() const { return m_rotation.Get(); }
 		const glm::vec3 & GetScale() const { return m_scale.Get(); }
+		const glm::vec3 & GetWorldPosition() const { return m_worldPosition; }
 		const glm::mat4 & GetWorldMatrix() const { return m_worldMatrix; }
 		const glm::mat4 & GetParentMatrix() const { return m_parentMatrix.Get(); }
 
 	private:
 		glm::quat ConvertXYZToQuat() const;
 
-		bool m_isChanged;
+		bool m_isChangedTransform;
+		bool m_isChangedMatrix;
+		glm::vec3 m_worldPosition;
 		glm::mat4 m_worldMatrix;
 		StateCheckerVec3 m_position;
 		StateCheckerVec3 m_rotation;

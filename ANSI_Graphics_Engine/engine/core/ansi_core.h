@@ -8,6 +8,7 @@ namespace AN
 	class Timer;
 	class Config;
 	class Window;
+	class Render;
 	class Gui;
 
 	class Core
@@ -21,6 +22,7 @@ namespace AN
 		static Timer * GetTimer() { return m_Instance->m_timer; }
 		static Config * GetConfig() { return m_Instance->m_config; }
 		static Window * GetWindow() { return m_Instance->m_window; }
+		static Render * GetRender() { return m_Instance->m_render; }
 		static Gui * GetGui() { return m_Instance->m_gui; }
 
 	private:
@@ -35,6 +37,7 @@ namespace AN
 		Timer * m_timer;
 		Config * m_config;
 		Window * m_window;
+		Render * m_render;
 		Gui * m_gui;
 
 	};

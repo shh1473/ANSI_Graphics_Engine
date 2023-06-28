@@ -26,8 +26,8 @@ namespace AN
 
 		explicit InputParam();
 
-		void SetVertexArrayId(unsigned vertexArrayId) { m_vertexArrayId = vertexArrayId; }
-		void SetIndexBufferId(unsigned indexBufferId) { m_indexBufferId = indexBufferId; }
+		void SetVertices(unsigned id, unsigned count) { m_vertexArrayId = id; m_vertexCount = count; }
+		void SetIndices(unsigned id, unsigned count) { m_indexBufferId = id; m_indexCount = count; }
 		void SetPrimitiveTopology(PrimitiveTopology primitiveTopology) { m_primitiveTopology = primitiveTopology; }
 
 	private:
@@ -37,6 +37,8 @@ namespace AN
 
 		unsigned m_vertexArrayId;
 		unsigned m_indexBufferId;
+		unsigned m_vertexCount;
+		unsigned m_indexCount;
 		PrimitiveTopology m_primitiveTopology;
 
 	};

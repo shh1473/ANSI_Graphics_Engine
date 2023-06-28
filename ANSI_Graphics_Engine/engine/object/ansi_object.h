@@ -20,22 +20,10 @@ namespace AN
 		bool OnDefaultFixedUpdate();
 		bool OnDefaultLateUpdate();
 
-		void SetIsEnabled(bool isEnabled) { m_isEnabled = isEnabled; }
-		void SetIsDeleted(bool isDeleted) { m_isDeleted = isDeleted; }
-
-		bool GetIsEnabled() const { return m_isEnabled; }
-		bool GetIsDeleted() const { return m_isDeleted; }
-		const std::string & GetName() const { return m_name; }
-		const std::unordered_map<std::string, Object *> & GetChildren() const { return m_children; }
-		const std::unordered_map<std::type_index, Component *> & GetComponents() const { return m_components; }
-		Object * GetParent() const { return m_parent; }
-		Transform * GetTransform() const { return m_transform; }
-
-	public:
-		template <typename T>
-		T * AddComponent()
+		template <typename T, typename ... Args>
+		T * AddComponent(Args ... args)
 		{
-			return static_cast<T *>(m_components[typeid(T)] = new T(this));
+			return static_cast<T *>(m_components[typeid(T)] = new T(this, args ...));
 		}
 
 		template <typename T>
@@ -58,6 +46,17 @@ namespace AN
 			if (m_children.count(name) == 0) { return nullptr; }
 			return static_cast<T *>(m_children[name]);
 		}
+
+		void SetIsEnabled(bool isEnabled) { m_isEnabled = isEnabled; }
+		void SetIsDeleted(bool isDeleted) { m_isDeleted = isDeleted; }
+
+		bool GetIsEnabled() const { return m_isEnabled; }
+		bool GetIsDeleted() const { return m_isDeleted; }
+		const std::string & GetName() const { return m_name; }
+		const std::unordered_map<std::string, Object *> & GetChildren() const { return m_children; }
+		const std::unordered_map<std::type_index, Component *> & GetComponents() const { return m_components; }
+		Object * GetParent() const { return m_parent; }
+		Transform * GetTransform() const { return m_transform; }
 
 	private:
 		bool m_isEnabled;

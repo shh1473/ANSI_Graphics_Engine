@@ -5,13 +5,7 @@
 namespace AN
 {
 
-	using Uniform1iPair = std::pair<const std::string, int &>;
-	using Uniform1fPair = std::pair<const std::string, float &>;
-	using Uniform2fPair = std::pair<const std::string, glm::vec2 &>;
-	using Uniform3fPair = std::pair<const std::string, glm::vec3 &>;
-	using Uniform4fPair = std::pair<const std::string, glm::vec4 &>;
-	using Uniform4fvPair = std::pair<const std::string, glm::mat4 &>;
-
+	class Shader;
 	class ShaderExecutor;
 
 	class ShaderParam
@@ -19,25 +13,24 @@ namespace AN
 	public:
 		friend ShaderExecutor;
 
-		explicit ShaderParam();
+		explicit ShaderParam(Shader * shader);
 
-		void SetUniform1i(const std::string & name, int & value);
-		void SetUniform1f(const std::string & name, float & value);
-		void SetUniform2f(const std::string & name, glm::vec2 & value);
-		void SetUniform3f(const std::string & name, glm::vec3 & value);
-		void SetUniform4f(const std::string & name, glm::vec4 & value);
-		void SetUniform4fv(const std::string & name, glm::mat4 & value);
+		virtual bool OnRender() = 0;
+
+		Shader * GetShader() const { return m_shader; }
+
+	protected:
+		bool SetUniform1i(const std::string & name, int value);
+		bool SetUniform1f(const std::string & name, float value);
+		bool SetUniform2f(const std::string & name, const glm::vec2 & value);
+		bool SetUniform3f(const std::string & name, const glm::vec3 & value);
+		bool SetUniform4f(const std::string & name, const glm::vec4 & value);
+		bool SetUniform4x4f(const std::string & name, const glm::mat4 & value);
 
 	private:
 		int GetUniformLocation(const std::string & name);
 
-		unsigned m_shaderId;
-		std::vector<Uniform1iPair> m_uniforms1i;
-		std::vector<Uniform1fPair> m_uniforms1f;
-		std::vector<Uniform2fPair> m_uniforms2f;
-		std::vector<Uniform3fPair> m_uniforms3f;
-		std::vector<Uniform4fPair> m_uniforms4f;
-		std::vector<Uniform4fvPair> m_uniforms4fv;
+		Shader * m_shader;
 		std::unordered_map<std::string, int> m_uniformLocationCache;
 
 	};

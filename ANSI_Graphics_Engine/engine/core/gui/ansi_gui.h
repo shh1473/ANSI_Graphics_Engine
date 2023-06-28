@@ -4,7 +4,7 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
-#include "common/ansi_common.h"
+#include "core/ansi_core.h"
 
 namespace AN
 {
@@ -16,8 +16,10 @@ namespace AN
 		~Gui();
 
 		bool Initialize();
+		bool OnRenderBegin();
+		void OnRenderEnd();
 
-		bool OnRender();
+		void SetTitle(const std::string & title) { m_title = title; }
 
 	private:
 		bool m_isCreatedContext;

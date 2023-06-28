@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common/ansi_common.h"
+#include "core/ansi_core.h"
 
 namespace AN
 {
@@ -11,14 +11,18 @@ namespace AN
 		explicit Timer();
 
 		void OnUpdate();
+		void StartStopwatch();
 
 		float GetDeltaTime() const { return m_deltaTime; }
+		float GetStopwatchTime() const;
 
 	private:
 		float m_deltaTime;
 		std::chrono::steady_clock::time_point m_currentTime;
 		std::chrono::steady_clock::time_point m_previousTime;
 		std::chrono::nanoseconds m_elapsedTick;
+
+		std::chrono::steady_clock::time_point m_startTime;
 
 	};
 

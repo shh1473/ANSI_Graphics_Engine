@@ -23,8 +23,9 @@
 #include <sstream>
 #include <string>
 #include <codecvt>
-#include <typeindex>
 #include <chrono>
+#include <typeindex>
+#include <algorithm>
 #include <vector>
 #include <unordered_map>
 
@@ -39,6 +40,9 @@ bool CheckGLError(const char * expression, const char * file, int line);
 
 /* 표현식이 false를 반환하면 false를 반환하는 매크로 함수 */
 #define AN_CHECK(expression) if (!(expression)) { return false; }
+
+/* 표현식이 false를 반환하면 nullptr을 반환하는 매크로 함수 */
+#define AN_CHECK_NULL(expression) if (!(expression)) { return nullptr; }
 
 /* 로그 메시지를 출력하는 매크로 함수 */
 #define AN_ERROR_LOG(wstring) AN::Core::GetLog()->WriteLine(MakeLogString(wstring, __FILE__, __LINE__));
@@ -57,6 +61,9 @@ bool CheckGLError(const char * expression, const char * file, int line);
 
 /* OpenGL 명령 실행 후 에러가 발생하면 자동으로 로그 메시지를 출력하고 false를 반환하는 매크로 함수 */
 #define GL_CHECK(expression) expression; AN_CHECK(CheckGLError(#expression, __FILE__, __LINE__));
+
+/* OpenGL 명령 실행 후 에러가 발생하면 자동으로 로그 메시지를 출력하고 nullptr을 반환하는 매크로 함수 */
+#define GL_CHECK_NULL(expression) expression; AN_CHECK_NULL(CheckGLError(#expression, __FILE__, __LINE__));
 
 /* OpenGL 명령 실행 후 에러가 발생하면 자동으로 로그 메시지를 출력하는 매크로 함수 */
 #define GL_ERROR_LOG(expression) expression; CheckGLError(#expression, __FILE__, __LINE__);

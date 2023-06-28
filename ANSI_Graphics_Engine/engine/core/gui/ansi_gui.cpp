@@ -10,7 +10,7 @@ namespace AN
 		m_isCreatedContext(false),
 		m_isInitializedGlfw(false),
 		m_isInitializedOpenGL(false),
-		m_title("Untitled")
+		m_title("Scene Selection")
 	{
 
 	}
@@ -26,7 +26,7 @@ namespace AN
 	{
 		AN_CHECK_LOG(IMGUI_CHECKVERSION());
 		ImGui::CreateContext();
-		//ImGui::StyleColorsDark();
+		ImGui::StyleColorsDark();
 		m_isCreatedContext = true;
 
 		AN_CHECK_LOG(ImGui_ImplGlfw_InitForOpenGL(glfwGetCurrentContext(), true));
@@ -38,20 +38,21 @@ namespace AN
 		return true;
 	}
 
-	bool Gui::OnRender()
+	bool Gui::OnRenderBegin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
 		AN_CHECK_LOG(ImGui::Begin(m_title.c_str()));
-		ImGui::Text("This is some useful text.");
-		ImGui::End();
+		return true;
+	}
 
+	void Gui::OnRenderEnd()
+	{
+		ImGui::End();
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		return true;
 	}
 
 }

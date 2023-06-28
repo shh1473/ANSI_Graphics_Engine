@@ -1,6 +1,5 @@
 #include "ansi_xml.h"
 
-#include "core/ansi_core.h"
 #include "core/log/ansi_log.h"
 #include "utility/converter/ansi_converter.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "object/component/renderer/raster_param/ansi_raster_param.h"
+#include "object/component/camera/raster_param/ansi_raster_param.h"
 #include "utility/state_checker/ansi_state_checker.h"
 
 namespace AN

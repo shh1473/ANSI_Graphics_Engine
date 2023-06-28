@@ -1,15 +1,12 @@
 #include "scene/ansi_scene.h"
 
-#include "scene/render_executor/ansi_render_executor.h"
 #include "scene/resource_storage/ansi_resource_storage.h"
 #include "object/ansi_object.h"
 
 namespace AN
 {
 
-	Scene::Scene(const std::string & name) :
-		m_name(name),
-		m_renderExecutor(new RenderExecutor()),
+	Scene::Scene() :
 		m_resourceStorage(new ResourceStorage()),
 		m_objects()
 	{
@@ -22,6 +19,7 @@ namespace AN
 		{
 			AN_DELETE(iter->second);
 		}
+		AN_DELETE(m_resourceStorage);
 	}
 
 	bool Scene::Initialize()
@@ -54,9 +52,14 @@ namespace AN
 		return true;
 	}
 
-	bool Scene::OnRender()
+	bool Scene::OnRenderGui()
 	{
-		return /*m_renderExecutor.OnRender();*/true;
+		return true;
+	}
+
+	bool Scene::CreateResources()
+	{
+		return true;
 	}
 
 	bool Scene::OnDefaultUpdate()

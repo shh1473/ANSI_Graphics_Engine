@@ -1,7 +1,6 @@
 #include "ansi_converter.h"
 
 #include "tinyxml2/tinyxml2.h"
-#include "core/ansi_core.h"
 #include "core/log/ansi_log.h"
 
 namespace AN

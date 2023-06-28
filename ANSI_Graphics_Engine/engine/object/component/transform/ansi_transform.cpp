@@ -7,7 +7,8 @@ namespace AN
 
 	Transform::Transform(Object * object) :
 		Component(object),
-		m_isChanged(false),
+		m_isChangedTransform(false),
+		m_isChangedMatrix(false),
 		m_worldMatrix(1.0f),
 		m_position(0.0f),
 		m_rotation(0.0f),
@@ -21,17 +22,21 @@ namespace AN
 	{
 		if (m_position.Check() || m_rotation.Check() || m_scale.Check())
 		{
-			m_isChanged = true;
+			m_isChangedTransform = true;
+
 			m_worldMatrix = glm::translate(glm::mat4(1.0f), m_position.Get());
 			m_worldMatrix *= glm::mat4_cast(ConvertXYZToQuat());
-			m_worldMatrix = glm::scale(m_worldMatrix, m_scale.Get());
+			m_worldMatrix *= glm::scale(m_worldMatrix, m_scale.Get());
 			m_position.Reset();
 			m_rotation.Reset();
 			m_scale.Reset();
 		}
 
-		if (m_isChanged || m_parentMatrix.Check())
+		if (m_isChangedTransform || m_parentMatrix.Check())
 		{
+			m_isChangedTransform = false;
+			m_isChangedMatrix = true;
+
 			if (GetObject()->GetParent())
 			{
 				m_worldMatrix *= m_parentMatrix.Get();
@@ -42,7 +47,12 @@ namespace AN
 				iter.second->GetTransform()->m_parentMatrix.Set(m_worldMatrix);
 			}
 
+			m_worldPosition = glm::vec3(m_worldMatrix[3]);
 			m_parentMatrix.Reset();
+		}
+		else
+		{
+			m_isChangedMatrix = false;
 		}
 
 		return true;

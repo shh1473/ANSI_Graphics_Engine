@@ -1,9 +1,13 @@
 #pragma once
 
-#include "resource/shader/ansi_shader.h"
+#include "common/ansi_common.h"
+#include "common/ansi_common_render.h"
 
 namespace AN
 {
+
+	class Shader;
+	class Geometry;
 
 	class ResourceStorage
 	{
@@ -11,10 +15,12 @@ namespace AN
 		explicit ResourceStorage();
 		~ResourceStorage();
 
-		Shader * CreateShader(const std::string & filePath);
+		Shader * CreateShader(const std::string & filePath, RenderType type);
+		Geometry * CreateGeometry();
 
 	private:
 		std::vector<Shader *> m_shaders;
+		std::vector<Geometry *> m_geometries;
 
 	};
 

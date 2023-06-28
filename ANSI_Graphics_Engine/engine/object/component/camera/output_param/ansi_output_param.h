@@ -35,6 +35,7 @@ namespace AN
 		friend class OutputExecutor;
 
 		explicit OutputParam();
+		virtual ~OutputParam();
 
 		void SetIsEnableBlend(bool isEnableBlend) { m_isEnableBlend = isEnableBlend; }
 		void SetFrameBufferId(unsigned frameBufferId) { m_frameBufferId = frameBufferId; }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "object/component/renderer/output_param/ansi_output_param.h"
+#include "object/component/camera/output_param/ansi_output_param.h"
 #include "utility/state_checker/ansi_state_checker.h"
 
 namespace AN

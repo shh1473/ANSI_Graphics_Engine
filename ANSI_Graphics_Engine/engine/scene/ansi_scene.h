@@ -11,7 +11,7 @@ namespace AN
 	class Scene
 	{
 	public:
-		explicit Scene(const std::string & name);
+		explicit Scene();
 		virtual ~Scene();
 
 		virtual bool Initialize();
@@ -20,18 +20,13 @@ namespace AN
 		virtual bool OnUpdate();
 		virtual bool OnFixedUpdate();
 		virtual bool OnLateUpdate();
+		virtual bool OnRenderGui();
+		virtual bool CreateResources();
 
-		bool OnRender();
 		bool OnDefaultUpdate();
 		bool OnDefaultFixedUpdate();
 		bool OnDefaultLateUpdate();
 
-		const std::string & GetName() const { return m_name; }
-		RenderExecutor * GetRenderExecutor() const { return m_renderExecutor; }
-		ResourceStorage * GetResourceGenerator() const { return m_resourceStorage; }
-		const std::unordered_map<std::string, Object *> & GetObjects() const { return m_objects; }
-
-	public:
 		template <typename T>
 		T * AddObject(T * object)
 		{
@@ -45,9 +40,10 @@ namespace AN
 			return static_cast<T *>(m_objects[name]);
 		}
 
+		ResourceStorage * GetResources() const { return m_resourceStorage; }
+		const std::unordered_map<std::string, Object *> & GetObjects() const { return m_objects; }
+
 	private:
-		std::string m_name;
-		RenderExecutor * m_renderExecutor;
 		ResourceStorage * m_resourceStorage;
 		std::unordered_map<std::string, Object *> m_objects;
 

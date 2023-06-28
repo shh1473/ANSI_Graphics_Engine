@@ -1,6 +1,5 @@
 #include "ansi_shader_loader.h"
 
-#include "core/ansi_core.h"
 #include "core/log/ansi_log.h"
 #include "utility/converter/ansi_converter.h"
 
@@ -12,9 +11,9 @@ namespace AN
 		Fragment,
 	};
 
-	bool ShaderLoader::LoadShader(const std::string & filePath, unsigned & resourceId)
+	bool ShaderLoader::LoadShader(const std::string & filePath, unsigned & shaderId)
 	{
-		AN_CHECK_LOG(resourceId = glCreateProgram());
+		AN_CHECK_LOG(shaderId = glCreateProgram());
 
 		unsigned vsId{ 0 }, fsId{ 0 };
 		std::string vsSource, fsSource;
@@ -23,10 +22,10 @@ namespace AN
 		AN_CHECK(CompileShader(GL_VERTEX_SHADER, vsSource, vsId));
 		AN_CHECK(CompileShader(GL_FRAGMENT_SHADER, fsSource, fsId));
 
-		GL_CHECK(glAttachShader(resourceId, vsId));
-		GL_CHECK(glAttachShader(resourceId, fsId));
-		GL_CHECK(glLinkProgram(resourceId));
-		GL_CHECK(glValidateProgram(resourceId));
+		GL_CHECK(glAttachShader(shaderId, vsId));
+		GL_CHECK(glAttachShader(shaderId, fsId));
+		GL_CHECK(glLinkProgram(shaderId));
+		GL_CHECK(glValidateProgram(shaderId));
 
 		GL_CHECK(glDeleteShader(vsId));
 		GL_CHECK(glDeleteShader(fsId));

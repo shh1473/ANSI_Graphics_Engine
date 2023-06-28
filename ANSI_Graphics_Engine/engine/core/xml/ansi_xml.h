@@ -1,7 +1,7 @@
 #pragma once
 
 #include "tinyxml2/tinyxml2.h"
-#include "common/ansi_common.h"
+#include "core/ansi_core.h"
 
 namespace AN
 {
