@@ -12,12 +12,14 @@ namespace Example
 		virtual ~ColorCubeScene();
 
 		bool Initialize() override;
+		bool OnUpdate() override;
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
 	private:
 		AN::Object * m_cube{ nullptr };
 		AN::Object * m_camera{ nullptr };
+		AN::OrbitControls * m_orbitControls{ nullptr };
 
 	private:
 		AN::Shader * m_colorShader{ nullptr };

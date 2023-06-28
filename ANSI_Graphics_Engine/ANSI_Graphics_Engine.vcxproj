@@ -191,7 +191,10 @@
     <ClCompile Include="engine\scene\resource_storage\ansi_resource_storage.cpp" />
     <ClCompile Include="engine\resource\shader\ansi_shader.cpp" />
     <ClCompile Include="engine\utility\converter\ansi_converter.cpp" />
+    <ClCompile Include="engine\utility\event_listener\ansi_event_listener.cpp" />
     <ClCompile Include="engine\utility\obj_loader\ansi_obj_loader.cpp" />
+    <ClCompile Include="engine\utility\orbit_controls\ansi_orbit_controls.cpp" />
+    <ClCompile Include="engine\utility\orbit_controls\spherical\ansi_spherical.cpp" />
     <ClCompile Include="engine\utility\shader_loader\ansi_shader_loader.cpp" />
     <ClCompile Include="examples\scene\01_color_cube_scene\01_color_cube_scene.cpp" />
     <ClCompile Include="examples\shader\color\color_shader.cpp" />
@@ -243,10 +246,13 @@
     <ClInclude Include="engine\scene\resource_storage\ansi_resource_storage.h" />
     <ClInclude Include="engine\resource\shader\ansi_shader.h" />
     <ClInclude Include="engine\utility\converter\ansi_converter.h" />
+    <ClInclude Include="engine\utility\event_listener\ansi_event_listener.h" />
     <ClInclude Include="engine\utility\obj_loader\ansi_obj_loader.h" />
+    <ClInclude Include="engine\utility\orbit_controls\ansi_orbit_controls.h" />
+    <ClInclude Include="engine\utility\orbit_controls\spherical\ansi_spherical.h" />
     <ClInclude Include="engine\utility\shader_loader\ansi_shader_loader.h" />
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker.h" />
-    <ClInclude Include="engine\utility\state_checker\ansi_state_check_math.h" />
+    <ClInclude Include="engine\utility\state_checker\ansi_state_checker_math.h" />
     <ClInclude Include="examples\scene\01_color_cube_scene\01_color_cube_scene.h" />
     <ClInclude Include="examples\shader\color\color_shader.h" />
   </ItemGroup>

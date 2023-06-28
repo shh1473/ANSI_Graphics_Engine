@@ -1,7 +1,7 @@
 #pragma once
 
 #include "object/component/ansi_component.h"
-#include "utility/state_checker/ansi_state_check_math.h"
+#include "utility/state_checker/ansi_state_checker_math.h"
 
 namespace AN
 {

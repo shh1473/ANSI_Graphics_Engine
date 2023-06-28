@@ -52,7 +52,7 @@ namespace AN
 	{
 		AN_CHECK(m_log->Initialize());
 		AN_CHECK(m_config->Initialize());
-		AN_CHECK(m_window->Initialize());
+		AN_CHECK(m_window->Initialize(m_config->GetClientWidth(), m_config->GetClientHeight()));
 		AN_CHECK(m_render->Initialize());
 		AN_CHECK(m_gui->Initialize());
 

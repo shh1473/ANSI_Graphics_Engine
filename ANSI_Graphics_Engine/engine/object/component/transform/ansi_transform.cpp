@@ -9,6 +9,7 @@ namespace AN
 		Component(object),
 		m_isChangedTransform(false),
 		m_isChangedMatrix(false),
+		m_worldPosition(0.0f),
 		m_worldMatrix(1.0f),
 		m_position(0.0f),
 		m_rotation(0.0f),
@@ -23,16 +24,15 @@ namespace AN
 		if (m_position.Check() || m_rotation.Check() || m_scale.Check())
 		{
 			m_isChangedTransform = true;
-
 			m_worldMatrix = glm::translate(glm::mat4(1.0f), m_position.Get());
 			m_worldMatrix *= glm::mat4_cast(ConvertXYZToQuat());
-			m_worldMatrix *= glm::scale(m_worldMatrix, m_scale.Get());
+			m_worldMatrix *= glm::scale(glm::mat4(1.0f), m_scale.Get());
 			m_position.Reset();
 			m_rotation.Reset();
 			m_scale.Reset();
 		}
 
-		if (m_isChangedTransform || m_parentMatrix.Check())
+		if (m_isChangedTransform || (GetObject()->GetParent() && m_parentMatrix.Check()))
 		{
 			m_isChangedTransform = false;
 			m_isChangedMatrix = true;
@@ -74,12 +74,15 @@ namespace AN
 
 	glm::quat Transform::ConvertXYZToQuat() const
 	{
-		const float c1 = cosf(m_rotation.Get().x * 0.5f);
-		const float c2 = cosf(m_rotation.Get().y * 0.5f);
-		const float c3 = cosf(m_rotation.Get().z * 0.5f);
-		const float s1 = sinf(m_rotation.Get().x * 0.5f);
-		const float s2 = sinf(m_rotation.Get().y * 0.5f);
-		const float s3 = sinf(m_rotation.Get().z * 0.5f);
+		static glm::vec3 radianRotation(0.0f);
+
+		radianRotation = glm::radians(m_rotation.Get());
+		const float c1 = cosf(radianRotation.x * 0.5f);
+		const float c2 = cosf(radianRotation.y * 0.5f);
+		const float c3 = cosf(radianRotation.z * 0.5f);
+		const float s1 = sinf(radianRotation.x * 0.5f);
+		const float s2 = sinf(radianRotation.y * 0.5f);
+		const float s3 = sinf(radianRotation.z * 0.5f);
 
 		return glm::quat(
 			c1 * c2 * c3 - s1 * s2 * s3,

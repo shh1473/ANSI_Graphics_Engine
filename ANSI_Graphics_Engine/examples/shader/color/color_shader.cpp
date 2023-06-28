@@ -14,7 +14,7 @@ namespace Example
 
 	bool ColorShader::OnRender()
 	{
-		m_MVP = m_object->GetTransform()->GetWorldMatrix() * AN::Core::GetRender()->GetCurrentCamera()->GetViewProjMatrix();
+		m_MVP = AN::Core::GetRender()->GetCurrentCamera()->GetViewProjMatrix() * m_object->GetTransform()->GetWorldMatrix();
 
 		// Vertex
 		SetUniform4x4f("u_MVP", m_MVP);

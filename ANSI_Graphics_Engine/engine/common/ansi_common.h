@@ -29,6 +29,9 @@
 #include <vector>
 #include <unordered_map>
 
+#define PI 3.1415927f
+#define PI2 6.2831853f
+
 /* 파일 경로와 줄 번호를 와이드 문자열로 결합하는 함수 */
 std::wstring MakeLogString(const std::wstring & expression, const char * filePath, int lineNumber);
 

@@ -2,6 +2,7 @@
 
 #include "core/ansi_core.h"
 #include "core/log/ansi_log.h"
+#include "core/timer/ansi_timer.h"
 #include "core/xml/config/ansi_config.h"
 #include "core/window/ansi_window.h"
 #include "core/gui/ansi_gui.h"
@@ -22,3 +23,5 @@
 #include "object/component/renderer/dispatch_param/ansi_dispatch_param.h"
 #include "object/component/renderer/shader_param/ansi_shader_param.h"
 #include "object/component/camera/ansi_camera.h"
+
+#include "utility/orbit_controls/ansi_orbit_controls.h"

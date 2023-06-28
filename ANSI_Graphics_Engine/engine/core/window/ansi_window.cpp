@@ -8,6 +8,7 @@
 #include "scene/ansi_scene.h"
 #include "utility/converter/ansi_converter.h"
 #include "utility/obj_loader/ansi_obj_loader.h"
+#include "utility/event_listener/ansi_event_listener.h"
 
 //#include "../examples/scene/00_hello_world_scene/00_hello_world_scene.h"
 #include "../examples/scene/01_color_cube_scene/01_color_cube_scene.h"
@@ -15,8 +16,15 @@
 namespace AN
 {
 
+	void OnMouseButton(GLFWwindow * window, int button, int action, int mods);
+	void OnMouseMove(GLFWwindow * window, double positionX, double positionY);
+	void OnMouseWheel(GLFWwindow * window, double deltaX, double deltaY);
+
 	Window::Window() :
 		m_isGlfwInitialized(false),
+		m_width(1024.0f),
+		m_height(1024.0f),
+		m_mousePosition(0.0f),
 		m_window(nullptr),
 		m_currentScene(nullptr),
 		m_nextScene(nullptr)
@@ -30,8 +38,11 @@ namespace AN
 		if (m_isGlfwInitialized) { glfwTerminate(); }
 	}
 
-	bool Window::Initialize()
+	bool Window::Initialize(unsigned width, unsigned height)
 	{
+		m_width = static_cast<float>(width);
+		m_height = static_cast<float>(height);
+
 		/* GLFW 초기화 및 버전 확인 */
 		AN_CHECK_LOG(glfwInit());
 		Core::GetLog()->WriteLine(L"GLFW Version: " + Converter::ToUnicode(glfwGetVersionString()));
@@ -39,10 +50,9 @@ namespace AN
 
 		/* Window 생성 */
 		m_window = glfwCreateWindow(
-			Core::GetConfig()->GetClientWidth(),
-			Core::GetConfig()->GetClientHeight(),
-			Core::GetConfig()->GetWindowTitle().c_str(),
-			nullptr, nullptr);
+			static_cast<int>(m_width),
+			static_cast<int>(m_height),
+			Core::GetConfig()->GetWindowTitle().c_str(), nullptr, nullptr);
 		if (!m_window)
 		{
 			glfwTerminate();
@@ -58,6 +68,10 @@ namespace AN
 
 		/* OpenGL 버전 확인 */
 		Core::GetLog()->WriteLine(L"OpenGL Version: " + Converter::ToUnicode(glGetString(GL_VERSION)));
+
+		glfwSetMouseButtonCallback(m_window, OnMouseButton);
+		glfwSetCursorPosCallback(m_window, OnMouseMove);
+		glfwSetScrollCallback(m_window, OnMouseWheel);
 
 		return true;
 	}
@@ -101,6 +115,29 @@ namespace AN
 		AN_CHECK(m_currentScene->Initialize());
 
 		return true;
+	}
+
+	void OnMouseButton(GLFWwindow * window, int button, int action, int mods)
+	{
+		if (action == GLFW_PRESS)
+		{
+			for (const auto & iter : Core::GetWindow()->GetEventListeners()) { iter->OnMouseDown(button, Core::GetWindow()->GetMousePosition()); }
+		}
+		else
+		{
+			for (const auto & iter : Core::GetWindow()->GetEventListeners()) { iter->OnMouseUp(button); }
+		}
+	}
+
+	void OnMouseMove(GLFWwindow * window, double positionX, double positionY)
+	{
+		Core::GetWindow()->SetMousePosition(static_cast<float>(positionX), static_cast<float>(positionY));
+		for (const auto & iter : Core::GetWindow()->GetEventListeners()) { iter->OnMouseMove(Core::GetWindow()->GetMousePosition()); }
+	}
+
+	void OnMouseWheel(GLFWwindow * window, double deltaX, double deltaY)
+	{
+		for (const auto & iter : Core::GetWindow()->GetEventListeners()) { iter->OnMouseWheel(static_cast<float>(deltaY)); }
 	}
 
 }
