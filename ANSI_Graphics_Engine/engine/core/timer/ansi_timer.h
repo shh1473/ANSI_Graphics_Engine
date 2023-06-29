@@ -2,6 +2,8 @@
 
 #include "core/ansi_core.h"
 
+#define AN_DT AN::Core::GetTimer()->GetDeltaTime()
+
 namespace AN
 {
 

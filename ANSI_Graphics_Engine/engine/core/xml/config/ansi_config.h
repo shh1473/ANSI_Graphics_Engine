@@ -9,24 +9,21 @@ namespace AN
 	{
 	public:
 		explicit Config();
+		virtual ~Config();
 
 		bool Initialize();
 		bool Save();
 
 		void SetIsWindowed(bool isWindowed) { m_isWindowed = isWindowed; }
-		void SetWindowPositionX(unsigned windowPositionX) { m_windowPositionX = windowPositionX; }
-		void SetWindowPositionY(unsigned windowPositionY) { m_windowPositionY = windowPositionY; }
-		void SetClientWidth(unsigned clientWidth) { m_clientWidth = clientWidth; }
-		void SetClientHeight(unsigned clientHeight) { m_clientHeight = clientHeight; }
+		void SetWindowPosition(const glm::ivec2 & position) { m_windowPosition = position; }
+		void SetClientSize(const glm::uvec2 & size) { m_clientSize = size; }
 
 		void SetIsEnableVSync(bool isEnableVSync) { m_isEnableVSync = isEnableVSync; }
 		void SetSwapInterval(unsigned swapInterval) { m_swapInterval = swapInterval; }
 
 		bool GetIsWindowed() const { return m_isWindowed; }
-		unsigned GetWindowPositionX() const { return m_windowPositionX; }
-		unsigned GetWindowPositionY() const { return m_windowPositionY; }
-		unsigned GetClientWidth() const { return m_clientWidth; }
-		unsigned GetClientHeight() const { return m_clientHeight; }
+		const glm::ivec2 & GetWindowPosition() const { return m_windowPosition; }
+		const glm::uvec2 & GetClientSize() const { return m_clientSize; }
 		const std::string & GetWindowTitle() const { return m_windowTitle; }
 
 		bool GetIsEnableVSync() const { return m_isEnableVSync; }
@@ -44,10 +41,8 @@ namespace AN
 
 		// Window
 		bool m_isWindowed;
-		unsigned m_windowPositionX;
-		unsigned m_windowPositionY;
-		unsigned m_clientWidth;
-		unsigned m_clientHeight;
+		glm::ivec2 m_windowPosition;
+		glm::uvec2 m_clientSize;
 		std::string m_windowTitle;
 
 		// VSync

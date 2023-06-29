@@ -9,7 +9,9 @@ namespace AN
 	{
 	public:
 		explicit EventListener();
+		virtual ~EventListener();
 
+		virtual void OnWindowResize();
 		virtual void OnMouseUp(int button);
 		virtual void OnMouseDown(int button, const glm::vec2 & position);
 		virtual void OnMouseMove(const glm::vec2 & position);

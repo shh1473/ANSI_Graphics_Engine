@@ -4,6 +4,7 @@
 #include "object/component/ansi_component.h"
 #include "object/component/camera/output_param/ansi_output_param.h"
 #include "object/component/camera/raster_param/ansi_raster_param.h"
+#include "utility/event_listener/ansi_event_listener.h"
 #include "utility/state_checker/ansi_state_checker_math.h"
 
 namespace AN
@@ -11,16 +12,16 @@ namespace AN
 
 	class GBufferOutput;
 
-	class Camera : public Component
+	class Camera : public Component, public EventListener
 	{
 	public:
-		explicit Camera(Object * object, CameraType type = CameraType::Camera, bool isEnableGBuffers = false);
+		explicit Camera(Object * object, bool isUseClientSize = true, CameraType type = CameraType::Camera, bool isEnableGBuffers = false);
 		virtual ~Camera();
 
 		bool OnUpdate() override;
+		void OnWindowResize() override;
 		bool InitializeGBuffer();
 		bool CheckFrustum(const glm::vec3 & worldPosition, float radius);
-
 
 		void SetIsEnableFrustumCulling(bool isEnable) { m_isEnableFrustumCulling = isEnable; }
 		void SetLookAt(const glm::vec3 & lookAt) { m_lookAt.Set(lookAt); }
@@ -63,6 +64,7 @@ namespace AN
 		static const glm::vec3 m_DefaultLookAt;
 
 		bool m_isEnableFrustumCulling;
+		bool m_isUseClientSize;
 		CameraType m_type;
 		glm::mat4 m_viewMatrix;
 		glm::mat4 m_projMatrix;

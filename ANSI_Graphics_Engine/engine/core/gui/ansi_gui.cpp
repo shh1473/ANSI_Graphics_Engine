@@ -10,6 +10,7 @@ namespace AN
 		m_isCreatedContext(false),
 		m_isInitializedGlfw(false),
 		m_isInitializedOpenGL(false),
+		m_isWindowHovered(false),
 		m_title("Scene Selection")
 	{
 
@@ -40,16 +41,22 @@ namespace AN
 
 	bool Gui::OnRenderBegin()
 	{
+		static bool isShow{ false };
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		AN_CHECK_LOG(ImGui::Begin(m_title.c_str()));
-		return true;
+		isShow = ImGui::Begin(m_title.c_str());
+		m_isWindowHovered = ImGui::IsWindowHovered();
+
+		return isShow;
 	}
 
 	void Gui::OnRenderEnd()
 	{
+		ImGui::Text("%.3f ms / %d FPS", 1000.0f / ImGui::GetIO().Framerate, static_cast<unsigned>(ImGui::GetIO().Framerate));
+
 		ImGui::End();
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

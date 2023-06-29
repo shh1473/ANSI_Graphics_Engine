@@ -11,23 +11,28 @@
 #include "utility/event_listener/ansi_event_listener.h"
 
 //#include "../examples/scene/00_hello_world_scene/00_hello_world_scene.h"
-#include "../examples/scene/01_color_cube_scene/01_color_cube_scene.h"
+#include "../examples/scene/01_color_objects_scene/01_color_objects_scene.h"
 
 namespace AN
 {
 
+	void OnWindowResize(GLFWwindow * window, int width, int height);
+	void OnWindowMove(GLFWwindow * window, int positionX, int positionY);
 	void OnMouseButton(GLFWwindow * window, int button, int action, int mods);
 	void OnMouseMove(GLFWwindow * window, double positionX, double positionY);
 	void OnMouseWheel(GLFWwindow * window, double deltaX, double deltaY);
 
 	Window::Window() :
 		m_isGlfwInitialized(false),
-		m_width(1024.0f),
-		m_height(1024.0f),
+		m_isWindowed(false),
+		m_isBorderless(false),
+		m_clientSize(1024.0f),
 		m_mousePosition(0.0f),
+		m_windowPosition(0),
 		m_window(nullptr),
 		m_currentScene(nullptr),
-		m_nextScene(nullptr)
+		m_nextScene(nullptr),
+		m_eventListeners()
 	{
 
 	}
@@ -35,13 +40,19 @@ namespace AN
 	Window::~Window()
 	{
 		AN_DELETE(m_currentScene);
+		glfwGetWindowPos(m_window, &m_windowPosition.x, &m_windowPosition.y);
+		Core::GetConfig()->SetIsWindowed(m_isWindowed);
+		Core::GetConfig()->SetWindowPosition(m_windowPosition);
+		Core::GetConfig()->SetClientSize(m_clientSize);
 		if (m_isGlfwInitialized) { glfwTerminate(); }
 	}
 
-	bool Window::Initialize(unsigned width, unsigned height)
+	bool Window::Initialize()
 	{
-		m_width = static_cast<float>(width);
-		m_height = static_cast<float>(height);
+		m_isWindowed = Core::GetConfig()->GetIsWindowed();
+		m_clientSize.x = static_cast<float>(Core::GetConfig()->GetClientSize().x);
+		m_clientSize.y = static_cast<float>(Core::GetConfig()->GetClientSize().y);
+		m_windowPosition = Core::GetConfig()->GetWindowPosition();
 
 		/* GLFW 초기화 및 버전 확인 */
 		AN_CHECK_LOG(glfwInit());
@@ -50,16 +61,17 @@ namespace AN
 
 		/* Window 생성 */
 		m_window = glfwCreateWindow(
-			static_cast<int>(m_width),
-			static_cast<int>(m_height),
+			static_cast<int>(m_clientSize.x),
+			static_cast<int>(m_clientSize.y),
 			Core::GetConfig()->GetWindowTitle().c_str(), nullptr, nullptr);
 		if (!m_window)
 		{
 			glfwTerminate();
 			AN_CHECK_LOG(m_window);
 		}
-		GL_CHECK(glfwMakeContextCurrent(m_window));
-		GL_CHECK(glfwSwapInterval(Core::GetConfig()->GetIsEnableVSync() ? Core::GetConfig()->GetSwapInterval() : 0));
+		GLFW_CHECK(glfwSetWindowPos(m_window, m_windowPosition.x, m_windowPosition.y));
+		GLFW_CHECK(glfwMakeContextCurrent(m_window));
+		GLFW_CHECK(glfwSwapInterval(Core::GetConfig()->GetIsEnableVSync() ? Core::GetConfig()->GetSwapInterval() : 0));
 
 		/* GLEW 초기화 및 버전 확인 */
 		GLenum result{ glewInit() };
@@ -69,6 +81,9 @@ namespace AN
 		/* OpenGL 버전 확인 */
 		Core::GetLog()->WriteLine(L"OpenGL Version: " + Converter::ToUnicode(glGetString(GL_VERSION)));
 
+		/* 이벤트 콜백 설정 */
+		glfwSetWindowSizeCallback(m_window, OnWindowResize);
+		glfwSetWindowPosCallback(m_window, OnWindowMove);
 		glfwSetMouseButtonCallback(m_window, OnMouseButton);
 		glfwSetCursorPosCallback(m_window, OnMouseMove);
 		glfwSetScrollCallback(m_window, OnMouseWheel);
@@ -78,29 +93,77 @@ namespace AN
 
 	bool Window::Run()
 	{
-		m_nextScene = new Example::ColorCubeScene();
+		m_nextScene = new Example::ColorObjectsScene();
 		AN_CHECK(ApplyChangeScene());
 
 		while (!glfwWindowShouldClose(m_window))
 		{
 			Core::GetTimer()->OnUpdate();
-			m_currentScene->OnDefaultUpdate();
-			m_currentScene->OnUpdate();
-			m_currentScene->OnDefaultLateUpdate();
-			m_currentScene->OnLateUpdate();
+			AN_CHECK(m_currentScene->OnDefaultUpdate());
+			AN_CHECK(m_currentScene->OnUpdate());
+			AN_CHECK(m_currentScene->OnDefaultLateUpdate());
+			AN_CHECK(m_currentScene->OnLateUpdate());
 
 			GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 			GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
 
-			Core::GetRender()->OnRender();
-			Core::GetGui()->OnRenderBegin();
-			m_currentScene->OnRenderGui();
+			AN_CHECK(Core::GetRender()->OnRender());
+
+			if (Core::GetGui()->OnRenderBegin())
+			{
+				ImGui::Text(">--------- Render Settings ---------<");
+				AN_CHECK(m_currentScene->OnRenderGui());
+				ImGui::NewLine();
+				ImGui::Text(">--------- Window Settings ---------<");
+				AN_CHECK(OnRenderGui());
+			}
 			Core::GetGui()->OnRenderEnd();
 
-			GL_CHECK(glfwSwapBuffers(m_window));
-			GL_CHECK(glfwPollEvents());
+			GLFW_CHECK(glfwSwapBuffers(m_window));
+			GLFW_CHECK(glfwPollEvents());
 
 			if (m_nextScene) { AN_CHECK(ApplyChangeScene()); }
+		}
+
+		return true;
+	}
+
+	bool Window::OnRenderGui()
+	{
+		ImGui::Checkbox("Windowed", &m_isWindowed);
+		if (m_isWindowed) {
+			ImGui::Checkbox("Borderless", &m_isBorderless);
+			if (!m_isBorderless) { ImGui::InputFloat2("Resolution", &m_clientSize[0]); }
+		}
+
+		if (ImGui::Button("Apply")) { AN_CHECK(ApplyWindowSettings()); }
+
+		return true;
+	}
+
+	bool Window::ApplyWindowSettings()
+	{
+		GLFWmonitor * monitor{ glfwGetPrimaryMonitor() };
+		const GLFWvidmode * mode{ glfwGetVideoMode(monitor) };
+
+		if (m_isWindowed)
+		{
+			if (m_isBorderless)
+			{
+				GLFW_CHECK(glfwSetWindowMonitor(m_window, nullptr, 0, 0,
+					mode->width, mode->height, mode->refreshRate));
+			}
+			else
+			{
+				m_windowPosition.x = std::max(m_windowPosition.x, 50);
+				m_windowPosition.y = std::max(m_windowPosition.y, 50);
+				GLFW_CHECK(glfwSetWindowMonitor(m_window, nullptr, m_windowPosition.x, m_windowPosition.y,
+					static_cast<int>(m_clientSize.x), static_cast<int>(m_clientSize.y), mode->refreshRate));
+			}
+		}
+		else
+		{
+			GLFW_CHECK(glfwSetWindowMonitor(m_window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate));
 		}
 
 		return true;
@@ -115,6 +178,18 @@ namespace AN
 		AN_CHECK(m_currentScene->Initialize());
 
 		return true;
+	}
+
+	void OnWindowResize(GLFWwindow * window, int width, int height)
+	{
+		GL_ERROR_LOG(glViewport(0, 0, width, height));
+		Core::GetWindow()->SetClientSize(static_cast<float>(width), static_cast<float>(height));
+		for (const auto & iter : Core::GetWindow()->GetEventListeners()) { iter->OnWindowResize(); }
+	}
+
+	void OnWindowMove(GLFWwindow * window, int positionX, int positionY)
+	{
+		Core::GetWindow()->SetWindowPosition(positionX, positionY);
 	}
 
 	void OnMouseButton(GLFWwindow * window, int button, int action, int mods)

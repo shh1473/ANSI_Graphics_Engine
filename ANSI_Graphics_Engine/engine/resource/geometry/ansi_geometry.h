@@ -26,21 +26,16 @@ namespace AN
 		virtual ~Geometry();
 
 		VertexArray * GenerateVertexArray(unsigned flag = POSITION | TEXCOORD | NORMAL);
+		void RemoveVertexArray(VertexArray * vertexArray);
 
 		unsigned GetIndexBufferId() const { return m_indexBufferId; }
 		unsigned GetVertexCount() const { return m_vertexCount; }
 		unsigned GetIndexCount() const { return m_indexCount; }
 
-		bool CreateCube(float width, float height, float depth, unsigned widthDivision, unsigned heightDivision, unsigned depthDivision, bool isCalculateTB);
-		bool LoadFromObj(const std::string & filePath, bool isIncludeTB);
+		bool GenerateBox(float width, float height, float depth, unsigned widthDivision, unsigned heightDivision, unsigned depthDivision, bool isIncludeTB);
+		bool GenerateFromObj(const std::string & filePath, bool isIncludeTB);
 		
 	private:
-		unsigned BuildPlane(
-			unsigned uIndex, unsigned vIndex, unsigned wIndex, float uDirection, float vDirection,
-			float width, float height, float depth, unsigned divisionX, unsigned divisionY,
-			unsigned currentVertexCount, std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData);
-
-		bool m_isIncludeTB;
 		unsigned m_vertexCount;
 		unsigned m_indexCount;
 		unsigned m_vertexBufferId;

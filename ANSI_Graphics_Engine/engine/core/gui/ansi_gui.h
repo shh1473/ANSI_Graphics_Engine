@@ -21,10 +21,13 @@ namespace AN
 
 		void SetTitle(const std::string & title) { m_title = title; }
 
+		bool GetIsWindowHovered() const { return m_isWindowHovered; }
+
 	private:
 		bool m_isCreatedContext;
 		bool m_isInitializedGlfw;
 		bool m_isInitializedOpenGL;
+		bool m_isWindowHovered;
 		std::string m_title;
 
 	};

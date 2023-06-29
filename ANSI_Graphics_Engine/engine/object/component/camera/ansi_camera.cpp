@@ -1,5 +1,6 @@
 #include "ansi_camera.h"
 
+#include "core/window/ansi_window.h"
 #include "core/render/ansi_render.h"
 #include "object/ansi_object.h"
 #include "object/component/camera/output_param/g_buffer_output/ansi_g_buffer_output.h"
@@ -16,9 +17,10 @@ namespace AN
 	const float Camera::m_DefaultHeight{ 1024.0f };
 	const glm::vec3 Camera::m_DefaultLookAt{ 0.0f };
 
-	Camera::Camera(Object * object, CameraType type, bool isEnableGBuffer) :
+	Camera::Camera(Object * object, bool isUseClientSize, CameraType type, bool isEnableGBuffer) :
 		Component(object),
 		m_isEnableFrustumCulling(true),
+		m_isUseClientSize(isUseClientSize),
 		m_type(type),
 		m_viewMatrix(1.0f),
 		m_projMatrix(1.0f),
@@ -34,8 +36,8 @@ namespace AN
 		m_fov.Set(m_DefaultFov);
 		m_near.Set(m_DefaultNear);
 		m_far.Set(m_DefaultFar);
-		m_width.Set(m_DefaultWidth);
-		m_height.Set(m_DefaultHeight);
+		m_width.Set((m_isUseClientSize) ? Core::GetWindow()->GetClientSize().x : m_DefaultWidth);
+		m_height.Set((m_isUseClientSize) ? Core::GetWindow()->GetClientSize().y : m_DefaultHeight);
 		m_lookAt.Set(m_DefaultLookAt);
 
 		m_isPerspective.Reset();
@@ -94,6 +96,15 @@ namespace AN
 		if (isMatrixChanged) { m_viewProjMatrix = m_projMatrix * m_viewMatrix; }
 
 		return true;
+	}
+
+	void Camera::OnWindowResize()
+	{
+		if (m_isUseClientSize)
+		{
+			m_width.Set(Core::GetWindow()->GetClientSize().x);
+			m_height.Set(Core::GetWindow()->GetClientSize().y);
+		}
 	}
 
 	bool Camera::InitializeGBuffer()

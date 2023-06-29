@@ -1,3 +1,10 @@
+// >========================================================================================<
+//  본 ansi_orbit_controls.h 파일의 코드는 Three.js의 OrbitControls.js 파일을
+//  OpenGL과 C++에 맞게 변형한 것입니다. 마우스로만 조작하는 것을 전제로 하여
+//  터치 패드와 키보드 조작 기능은 제거했으니 전체 코드를 보고 싶으시다면 다음의 주소를 참고하세요.
+//  https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js
+// >========================================================================================<
+
 #pragma once
 
 #include "utility/orbit_controls/spherical/ansi_spherical.h"
@@ -12,49 +19,14 @@ namespace AN
 	class OrbitControls : public EventListener
 	{
 	public:
-		explicit OrbitControls(Camera * camera);
-		~OrbitControls();
-
-		glm::quat MakeQuatFromUnitVectors(const glm::vec3 & from, const glm::vec3 & to) const
-		{
-			glm::quat result(1.0f, 0.0f, 0.0f, 0.0f);
-			const float r{ glm::dot(from, to) };
-
-			if (r < Spherical::GetEpsilon() - 1.0f)
-			{
-				result.w = 0.0f;
-				if (std::abs(from.x) > std::abs(from.z))
-				{
-					result.x = -from.y;
-					result.y = from.x;
-					result.z = 0.0f;
-				}
-				else
-				{
-					result.x = 0.0f;
-					result.y = -from.z;
-					result.z = from.y;
-				}
-			}
-			else
-			{
-				result.x = from.y * to.z - from.z * to.y;
-				result.y = from.z * to.x - from.x * to.z;
-				result.z = from.x * to.y - from.y * to.x;
-				result.w = r;
-			}
-
-			return glm::normalize(result);
-		}
+		explicit OrbitControls(Camera * camera, float panSpeed = 50.0f, float rotateSpeed = 1.0f, float zoomSpeed = 1.0f);
 
 		void OnMouseDown(int button, const glm::vec2 & position) override;
 		void OnMouseUp(int button) override;
 		void OnMouseMove(const glm::vec2 & position) override;
 		void OnMouseWheel(float deltaY) override;
 
-		float GetPolarAngle() const { return m_spherical.GetPhi(); };
-		float GetAzimuthalAngle() const { return m_spherical.GetTheta(); };
-		float GetDistance() const;
+		void Reset();
 
 	private:
 		enum class State { None, Rotate, Pan, Dolly };
@@ -71,8 +43,10 @@ namespace AN
 		void DollyOut(float dollyScale);
 		void DollyIn(float dollyScale);
 
+		float GetDistance() const;
+
 		bool m_isEnabled;
-		float m_scale;
+		float m_dollyScale;
 		float m_zoomSpeed;
 		float m_rotateSpeed;
 		float m_panSpeed;
@@ -98,6 +72,7 @@ namespace AN
 		glm::vec2 m_dollyEnd;
 		glm::vec2 m_dollyDelta;
 		glm::vec3 m_target;
+		glm::vec3 m_resetPosition;
 		Camera * m_camera;
 		Object * m_object;
 

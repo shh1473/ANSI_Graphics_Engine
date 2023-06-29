@@ -26,6 +26,7 @@
 #include <chrono>
 #include <typeindex>
 #include <algorithm>
+#include <random>
 #include <vector>
 #include <unordered_map>
 
@@ -39,7 +40,10 @@ std::wstring MakeLogString(const std::wstring & expression, const char * filePat
 std::wstring MakeLogString(const char * expression, const char * filePath, int lineNumber);
 
 /* OpenGL 에러를 검사하는 함수 */
-bool CheckGLError(const char * expression, const char * file, int line);
+bool CheckGLError(const char * expression, const char * filePath, int lineNumber);
+
+/* GLFW 에러를 검사하는 함수 */
+bool CheckGLFWError(const char * expression, const char * filePath, int lineNumber);
 
 /* 표현식이 false를 반환하면 false를 반환하는 매크로 함수 */
 #define AN_CHECK(expression) if (!(expression)) { return false; }
@@ -70,6 +74,9 @@ bool CheckGLError(const char * expression, const char * file, int line);
 
 /* OpenGL 명령 실행 후 에러가 발생하면 자동으로 로그 메시지를 출력하는 매크로 함수 */
 #define GL_ERROR_LOG(expression) expression; CheckGLError(#expression, __FILE__, __LINE__);
+
+/* GLFW 명령 실행 후 에러가 발생하면 자동으로 로그 메시지를 출력하고 false를 반환하는 매크로 함수 */
+#define GLFW_CHECK(expression) expression; AN_CHECK(CheckGLFWError(#expression, __FILE__, __LINE__));
 
 /* 메모리 해제 후 nullptr 대입 */
 #define AN_DELETE(pointer) if (pointer) { delete pointer; pointer = nullptr; }

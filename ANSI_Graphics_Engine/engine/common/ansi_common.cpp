@@ -21,5 +21,18 @@ bool CheckGLError(const char * expression, const char * filePath, int lineNumber
 
 	std::string errorString{ std::string("[OpenGL Error] (") + std::to_string(error) + std::string("): ") };
 	AN::Core::GetLog()->WriteLine(MakeLogString(errorString.c_str(), filePath, lineNumber));
+
+	return false;
+}
+
+bool CheckGLFWError(const char * expression, const char * filePath, int lineNumber)
+{
+	const char * errorMessage{ nullptr };
+	int error = glfwGetError(&errorMessage);
+	if (error == GLFW_NO_ERROR) { return true; }
+
+	std::string errorString{ std::string("[OpenGL Error] (") + std::to_string(error) + ", " + errorMessage + std::string("): ")};
+	AN::Core::GetLog()->WriteLine(MakeLogString(errorString.c_str(), filePath, lineNumber));
+
 	return false;
 }

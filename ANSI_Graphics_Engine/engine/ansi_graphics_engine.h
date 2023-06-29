@@ -24,4 +24,5 @@
 #include "object/component/renderer/shader_param/ansi_shader_param.h"
 #include "object/component/camera/ansi_camera.h"
 
+#include "utility/random/ansi_random.h"
 #include "utility/orbit_controls/ansi_orbit_controls.h"

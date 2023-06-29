@@ -1,6 +1,14 @@
+// >========================================================================================<
+//  본 ansi_orbit_controls.cpp 파일의 코드는 Three.js의 OrbitControls.js 파일을
+//  OpenGL과 C++에 맞게 변형한 것입니다. 마우스로만 조작하는 것을 전제로 하여
+//  터치 패드와 키보드 조작 기능은 제거했으니 전체 코드를 보고 싶으시다면 다음의 주소를 참고하세요.
+//  https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js
+// >========================================================================================<
+
 #include "ansi_orbit_controls.h"
 
 #include "core/window/ansi_window.h"
+#include "core/gui/ansi_gui.h"
 #include "object/ansi_object.h"
 #include "object/component/transform/ansi_transform.h"
 #include "object/component/camera/ansi_camera.h"
@@ -8,12 +16,12 @@
 namespace AN
 {
 
-	OrbitControls::OrbitControls(Camera * camera) :
+	OrbitControls::OrbitControls(Camera * camera, float panSpeed, float rotateSpeed, float zoomSpeed) :
 		m_isEnabled(true),
-		m_scale(1.0f),
-		m_zoomSpeed(1.0f),
-		m_rotateSpeed(1.0f),
-		m_panSpeed(30.0f),
+		m_dollyScale(1.0f),
+		m_zoomSpeed(zoomSpeed),
+		m_rotateSpeed(rotateSpeed),
+		m_panSpeed(panSpeed),
 		m_minDistance(0.0f),
 		m_maxDistance(std::numeric_limits<float>::infinity()),
 		m_minZoom(0.0f),
@@ -36,20 +44,16 @@ namespace AN
 		m_dollyEnd(0.0f),
 		m_dollyDelta(0.0f),
 		m_target(0.0f),
+		m_resetPosition(camera->GetObject()->GetTransform()->GetPosition()),
 		m_camera(camera),
 		m_object(camera->GetObject())
 	{
-		Core::GetWindow()->AddEventListener(this);
-	}
 
-	OrbitControls::~OrbitControls()
-	{
-		if (Core::GetWindow()) { Core::GetWindow()->RemoveEventListener(this); }
 	}
 
 	void OrbitControls::OnMouseDown(int button, const glm::vec2 & position)
 	{
-		if (m_state != State::None) { return; }
+		if (!m_isEnabled || m_state != State::None || Core::GetGui()->GetIsWindowHovered()) { return; }
 		switch (button)
 		{
 			case GLFW_MOUSE_BUTTON_LEFT:
@@ -69,7 +73,7 @@ namespace AN
 
 	void OrbitControls::OnMouseUp(int button)
 	{
-		if (m_state == State::None) { return; }
+		if (!m_isEnabled || m_state == State::None) { return; }
 		switch (m_state)
 		{
 			case State::Rotate: { if (button == GLFW_MOUSE_BUTTON_LEFT) { m_state = State::None; } } break;
@@ -79,6 +83,7 @@ namespace AN
 
 	void OrbitControls::OnMouseMove(const glm::vec2 & position)
 	{
+		if (!m_isEnabled) { return; }
 		switch (m_state)
 		{
 			case State::Rotate: { HandleMouseMoveRotate(position); } break;
@@ -88,7 +93,18 @@ namespace AN
 
 	void OrbitControls::OnMouseWheel(float deltaY)
 	{
+		if (!m_isEnabled) { return; }
 		HandleMouseWheel(deltaY);
+	}
+
+	void OrbitControls::Reset()
+	{
+		m_target = glm::vec3(0.0f);
+		m_object->GetTransform()->SetPosition(m_resetPosition);
+		m_camera->SetLookAt(m_target);
+		m_spherical.SetFromCartesianCoords(m_object->GetTransform()->GetPosition() - m_target);
+		m_spherical.SetRadius(GetDistance());
+		m_spherical.SetRadius(glm::clamp(m_spherical.GetRadius(), m_minDistance, m_maxDistance));
 	}
 
 	float OrbitControls::GetDistance() const
@@ -122,7 +138,7 @@ namespace AN
 
 		m_spherical.SetPhi(glm::clamp(m_spherical.GetPhi(), m_minPolarAngle, m_maxPolarAngle));
 		m_spherical.MakeSafe();
-		m_spherical.SetRadius(m_spherical.GetRadius() * m_scale);
+		m_spherical.SetRadius(m_spherical.GetRadius() * m_dollyScale);
 		m_spherical.SetRadius(glm::clamp(m_spherical.GetRadius(), m_minDistance, m_maxDistance));
 		
 		m_target += m_panOffset;
@@ -136,7 +152,7 @@ namespace AN
 		m_panOffset.x = 0.0f;
 		m_panOffset.y = 0.0f;
 		m_panOffset.z = 0.0f;
-		m_scale = 1.0f;
+		m_dollyScale = 1.0f;
 	}
 
 	void OrbitControls::HandleMouseMoveRotate(const glm::vec2 & position)
@@ -145,8 +161,8 @@ namespace AN
 		m_rotateDelta = (m_rotateEnd - m_rotateStart) * m_rotateSpeed;
 		m_rotateStart = m_rotateEnd;
 
-		RotateLeft(m_rotateDelta.x / static_cast<float>(Core::GetWindow()->GetWidth()) * PI2);
-		RotateUp(m_rotateDelta.y / static_cast<float>(Core::GetWindow()->GetHeight()) * PI2);
+		RotateLeft(m_rotateDelta.x / static_cast<float>(Core::GetWindow()->GetClientSize().x) * PI2);
+		RotateUp(m_rotateDelta.y / static_cast<float>(Core::GetWindow()->GetClientSize().y) * PI2);
 		Update();
 	}
 
@@ -173,13 +189,13 @@ namespace AN
 		{
 			float targetDistance = glm::length(m_object->GetTransform()->GetPosition() - m_target) * std::tan(glm::radians(m_camera->GetFov() * 0.5f)) * 2.0f;
 
-			PanLeft(targetDistance * panDelta.x / Core::GetWindow()->GetHeight(), m_object->GetTransform()->GetWorldMatrix());
-			PanUp(targetDistance * panDelta.y / Core::GetWindow()->GetHeight(), m_object->GetTransform()->GetWorldMatrix());
+			PanLeft(targetDistance * panDelta.x / Core::GetWindow()->GetClientSize().y, m_object->GetTransform()->GetWorldMatrix());
+			PanUp(targetDistance * panDelta.y / Core::GetWindow()->GetClientSize().y, m_object->GetTransform()->GetWorldMatrix());
 		}
 		else
 		{
-			PanLeft(panDelta.x * m_camera->GetWidth() / m_camera->GetZoom() / Core::GetWindow()->GetWidth(), m_object->GetTransform()->GetWorldMatrix());
-			PanUp(panDelta.y * m_camera->GetHeight() / m_camera->GetZoom() / Core::GetWindow()->GetHeight(), m_object->GetTransform()->GetWorldMatrix());
+			PanLeft(panDelta.x * m_camera->GetWidth() / m_camera->GetZoom() / Core::GetWindow()->GetClientSize().x, m_object->GetTransform()->GetWorldMatrix());
+			PanUp(panDelta.y * m_camera->GetHeight() / m_camera->GetZoom() / Core::GetWindow()->GetClientSize().y, m_object->GetTransform()->GetWorldMatrix());
 		}
 	}
 
@@ -211,13 +227,13 @@ namespace AN
 
 	void OrbitControls::DollyOut(float dollyScale)
 	{
-		if (m_camera->GetIsPerspective()) { m_scale /= dollyScale; }
+		if (m_camera->GetIsPerspective()) { m_dollyScale /= dollyScale; }
 		else { m_camera->SetZoom(glm::clamp(m_camera->GetZoom() * dollyScale, m_minZoom, m_maxZoom)); }
 	}
 
 	void OrbitControls::DollyIn(float dollyScale)
 	{
-		if (m_camera->GetIsPerspective()) { m_scale *= dollyScale; }
+		if (m_camera->GetIsPerspective()) { m_dollyScale *= dollyScale; }
 		else { m_camera->SetZoom(glm::clamp(m_camera->GetZoom() / dollyScale, m_minZoom, m_maxZoom)); }
 	}
 
