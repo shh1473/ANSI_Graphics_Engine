@@ -32,8 +32,7 @@ namespace Example
 		m_boxColorShader->m_color = glm::vec4(
 			AN::Random::Float(0.0f, 1.0f),
 			AN::Random::Float(0.0f, 1.0f),
-			AN::Random::Float(0.0f, 1.0f),
-			1.0f);
+			AN::Random::Float(0.0f, 1.0f), 1.0f);
 
 		m_camera = AddObject(new AN::Object("Camera"));
 		AN::Camera * camera = m_camera->AddComponent<AN::Camera>();
@@ -49,7 +48,7 @@ namespace Example
 		{
 			if (m_boxColorShader->m_color[i] < 0.0f) { m_boxColorShader->m_color[i] = 0.0f; m_colorAddDir[i] = 1.0f; }
 			if (m_boxColorShader->m_color[i] > 1.0f) { m_boxColorShader->m_color[i] = 1.0f; m_colorAddDir[i] = -1.0f; }
-			m_boxColorShader->m_color[i] += AN::Random::Float() * 5.0f * m_colorAddDir[i] * AN_DT;
+			m_boxColorShader->m_color[i] += AN::Random::Float(0.0f, 2.0f) * m_colorAddDir[i] * AN_DT;
 		}
 
 		return true;
@@ -72,10 +71,13 @@ namespace Example
 
 	bool ColorObjectsScene::CreateResources()
 	{
+		/* Shaders */
 		AN_CHECK(m_colorShader = GetResources()->CreateShader("assets/shader/color.shader", RenderType::Forward));
 
+		/* Geometry */
 		AN_CHECK(m_boxGeometry = GetResources()->CreateGeometry());
-		AN_CHECK(m_boxGeometry->GenerateBox(2, 2, 2, 1, 1, 1, false));
+		//AN_CHECK(m_boxGeometry->GenerateBox(2.0f, 2.0f, 2.0f, 2, 2, 2, false));
+		AN_CHECK(m_boxGeometry->GenerateCylinder(false, 1.0f, 2.0f, 3.0f, 0.0f, PI2, 10, 1, false));
 		AN_CHECK(m_boxVA = m_boxGeometry->GenerateVertexArray());
 
 		return true;

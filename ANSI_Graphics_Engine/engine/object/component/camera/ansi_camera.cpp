@@ -40,15 +40,6 @@ namespace AN
 		m_height.Set((m_isUseClientSize) ? Core::GetWindow()->GetClientSize().y : m_DefaultHeight);
 		m_lookAt.Set(m_DefaultLookAt);
 
-		m_isPerspective.Reset();
-		m_zoom.Reset();
-		m_fov.Reset();
-		m_near.Reset();
-		m_far.Reset();
-		m_width.Reset();
-		m_height.Reset();
-		m_lookAt.Reset();
-
 		UpdateViewMatrix();
 		UpdateProjMatrix();
 	}

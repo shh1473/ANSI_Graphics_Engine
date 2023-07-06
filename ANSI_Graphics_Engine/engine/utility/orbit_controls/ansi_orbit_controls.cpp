@@ -146,12 +146,8 @@ namespace AN
 		m_object->GetTransform()->SetRotationY(glm::degrees(m_spherical.GetTheta()));
 		m_camera->SetLookAt(m_target);
 
-		m_sphericalDelta.SetRadius(0.0f);
-		m_sphericalDelta.SetPhi(0.0f);
-		m_sphericalDelta.SetTheta(0.0f);
-		m_panOffset.x = 0.0f;
-		m_panOffset.y = 0.0f;
-		m_panOffset.z = 0.0f;
+		m_sphericalDelta.Set(0.0f, 0.0f, 0.0f);
+		m_panOffset = glm::vec3(0.0f);
 		m_dollyScale = 1.0f;
 	}
 

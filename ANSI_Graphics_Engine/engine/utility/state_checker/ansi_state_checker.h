@@ -7,9 +7,17 @@ namespace AN
 	class StateChecker
 	{
 	public:
-		explicit StateChecker() : m_curValue(), m_oldValue() {}
+		explicit StateChecker() :
+			m_isAppliedInitialValue(false),
+			m_curValue(),
+			m_oldValue() {}
 
-		bool Check() const { return (m_curValue != m_oldValue); }
+		bool Check()
+		{
+			if (!m_isAppliedInitialValue) { return m_isAppliedInitialValue = true; }
+			return (m_curValue != m_oldValue);
+		}
+
 		void Reset() { m_oldValue = m_curValue; }
 
 		void Set(const T & value) { m_curValue = value; }
@@ -18,6 +26,7 @@ namespace AN
 		const T * GetAddress() const { return &m_curValue; }
 
 	protected:
+		bool m_isAppliedInitialValue;
 		T m_curValue;
 		T m_oldValue;
 
@@ -27,21 +36,28 @@ namespace AN
 	class StateArrayChecker
 	{
 	public:
-		explicit StateArrayChecker() : m_start(SIZE), m_end(-1) {}
+		explicit StateArrayChecker() :
+			m_isAppliedInitialValue(false),
+			m_start(0),
+			m_end(SIZE - 1),
+			m_curValues(),
+			m_oldValues() {}
 
 		bool Check() const
 		{
-			for (int i{ 0 }; i < m_end + 1; ++i)
+			if (!m_isAppliedInitialValue) { return m_isAppliedInitialValue = true; }
+			for (unsigned i{ m_start }; i <= m_end; ++i)
 			{
 				if (m_curValues[i] != m_oldValues[i]) { return true; }
 			}
 			return false;
 		}
+
 		void Reset()
 		{
+			for (unsigned i{ m_start }; i <= m_end; ++i) { m_oldValues[i] = m_curValues[i]; }
 			m_start = SIZE;
 			m_end = -1;
-			for (unsigned i{ 0 }; i < SIZE; ++i) { m_oldValues[i] = m_curValues[i]; }
 		}
 
 		void Set(int index, const T & value)
@@ -72,11 +88,12 @@ namespace AN
 				}
 			}
 		}
+
 		void SetAll(const T & value)
 		{
 			m_start = 0;
 			m_end = SIZE - 1;
-			for (unsigned i{ 0 }; i < SIZE; ++i) { m_curValues[i] = value; }
+			for (unsigned i{ m_start }; i <= m_end; ++i) { m_curValues[i] = value; }
 		}
 
 		unsigned GetStart() const { return m_start; }
@@ -87,6 +104,7 @@ namespace AN
 		const T * GetArray() const { return m_curValues; }
 
 	protected:
+		bool m_isAppliedInitialValue;
 		int m_start;
 		int m_end;
 		T m_curValues[SIZE];

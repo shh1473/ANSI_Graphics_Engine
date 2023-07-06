@@ -32,7 +32,9 @@ namespace AN
 		unsigned GetVertexCount() const { return m_vertexCount; }
 		unsigned GetIndexCount() const { return m_indexCount; }
 
-		bool GenerateBox(float width, float height, float depth, unsigned widthDivision, unsigned heightDivision, unsigned depthDivision, bool isIncludeTB);
+		bool GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments, bool isIncludeTB);
+		bool GenerateCylinder(bool isOpenEnded, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength,
+			unsigned radialSegments, unsigned heightSegments, bool isIncludeTB);
 		bool GenerateFromObj(const std::string & filePath, bool isIncludeTB);
 		
 	private:

@@ -13,15 +13,6 @@ namespace AN
 		m_dstAlphaFactor.Set(OutputParam::m_DefaultDstAlphaFactor);
 		m_colorOp.Set(OutputParam::m_DefaultColorOp);
 		m_alphaOp.Set(OutputParam::m_DefaultAlphaOp);
-
-		m_isEnableBlend.Reset();
-		m_frameBufferId.Reset();
-		m_srcFactor.Reset();
-		m_dstFactor.Reset();
-		m_srcAlphaFactor.Reset();
-		m_dstAlphaFactor.Reset();
-		m_colorOp.Reset();
-		m_alphaOp.Reset();
 	}
 
 	bool OutputExecutor::Apply(OutputParam * param)

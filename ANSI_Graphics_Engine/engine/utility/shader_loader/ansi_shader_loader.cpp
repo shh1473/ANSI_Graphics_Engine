@@ -43,11 +43,8 @@ namespace AN
 		AN_CHECK_LOG_M(stream.good(), L"잘못된 Shader 파일 경로: " + Converter::ToUnicode(filePath));
 		while (getline(stream, line))
 		{
-			if (line.find("#shader") != std::string::npos)
-			{
-				if (line.find("vertex") != std::string::npos) { type = ShaderType::Vertex; }
-				else if (line.find("fragment") != std::string::npos) { type = ShaderType::Fragment; }
-			}
+			if (line.find("shader-vertex") != std::string::npos) { type = ShaderType::Vertex; }
+			else if (line.find("shader-fragment") != std::string::npos) { type = ShaderType::Fragment; }
 			else { streams[static_cast<unsigned>(type)] << line << '\n'; }
 		}
 

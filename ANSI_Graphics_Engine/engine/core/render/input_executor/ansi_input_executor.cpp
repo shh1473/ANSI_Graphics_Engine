@@ -11,9 +11,6 @@ namespace AN
 	{
 		m_vertexArrayId.Set(InputParam::m_DefaultVertexArrayId);
 		m_indexBufferId.Set(InputParam::m_DefaultIndexBufferId);
-
-		m_vertexArrayId.Reset();
-		m_indexBufferId.Reset();
 	}
 
 	bool InputExecutor::Apply(InputParam * param)

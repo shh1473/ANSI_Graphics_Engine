@@ -104,8 +104,6 @@ namespace AN
 					// renderer->Shader()->SetUniform1i("output", camera->GetGBufferOutput()->GetDeferredOutputTextureId());
 					AN_CHECK(Draw());
 				}
-				// Copy deferred output texture into framebuffer
-				// camera-> ... copy it
 			}
 		}
 		// Forward
@@ -134,8 +132,8 @@ namespace AN
 				m_shaderExecutor->Apply(renderer->Shader());
 				AN_CHECK(Draw());
 			}
-			// Use a built-in shader to copy the last result texture of compute shaders into main framebuffer
 		}
+		// Use a built-in shader to copy the last result texture of compute shaders into main framebuffer
 
 		return true;
 	}

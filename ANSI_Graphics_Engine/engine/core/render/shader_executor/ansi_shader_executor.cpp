@@ -9,8 +9,6 @@ namespace AN
 	ShaderExecutor::ShaderExecutor()
 	{
 		m_shaderId.Set(0);
-
-		m_shaderId.Reset();
 	}
 
 	bool ShaderExecutor::Apply(ShaderParam * param)

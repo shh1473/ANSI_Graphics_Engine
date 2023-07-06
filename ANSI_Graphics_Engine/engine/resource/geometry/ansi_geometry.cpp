@@ -3,6 +3,7 @@
 #include "core/log/ansi_log.h"
 #include "resource/vertex_array/ansi_vertex_array.h"
 #include "utility/geometry_generator/box/ansi_box_geometry_generator.h"
+#include "utility/geometry_generator/cylinder/ansi_cylinder_geometry_generator.h"
 #include "utility/obj_loader/ansi_obj_loader.h"
 
 namespace AN
@@ -73,12 +74,22 @@ namespace AN
 		AN_DELETE(vertexArray);
 	}
 
-	bool Geometry::GenerateBox(float width, float height, float depth, unsigned widthDivision, unsigned heightDivision, unsigned depthDivision, bool isIncludeTB)
+	bool Geometry::GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments, bool isIncludeTB)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
+		AN_CHECK_LOG(width > 0.0f && height > 0.0f && depth > 0.0f && widthSegments > 0 && heightSegments > 0 && depthSegments > 0);
 		return BoxGeometryGenerator::Create(
-			width, height, depth, widthDivision, heightDivision, depthDivision, isIncludeTB,
+			isIncludeTB, width, height, depth, widthSegments, heightSegments, depthSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
+	}
+
+	bool Geometry::GenerateCylinder(bool isOpenEnded, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength,
+		unsigned radialSegments, unsigned heightSegments, bool isIncludeTB)
+	{
+		AN_CHECK_LOG(m_vertexCount == 0);
+		AN_CHECK_LOG(height > 0.0f && radialSegments >= 3 && heightSegments > 0);
+		return CylinderGeometryGenerator::Create(isIncludeTB, isOpenEnded, topRadius, bottomRadius, height, thetaStart, thetaLength,
+			radialSegments, heightSegments, m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
 
 	bool Geometry::GenerateFromObj(const std::string & filePath, bool isIncludeTB)

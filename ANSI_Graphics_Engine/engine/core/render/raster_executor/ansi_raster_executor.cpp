@@ -11,13 +11,6 @@ namespace AN
 		m_msaa.Set(RasterParam::m_DefaultMSAA);
 		m_depthClipNear.Set(RasterParam::m_DefaultDepthClipNear);
 		m_depthClipFar.Set(RasterParam::m_DefaultDepthClipFar);
-
-		m_fillMode.Reset();
-		m_cullMode.Reset();
-		m_frontFace.Reset();
-		m_msaa.Reset();
-		m_depthClipNear.Reset();
-		m_depthClipFar.Reset();
 	}
 
 	bool RasterExecutor::Apply(RasterParam * param)

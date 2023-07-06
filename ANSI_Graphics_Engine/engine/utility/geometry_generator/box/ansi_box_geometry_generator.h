@@ -15,17 +15,16 @@ namespace AN
 	{
 	public:
 		static bool Create(
-			float width, float height, float depth,
-			unsigned widthDivision, unsigned heightDivision, unsigned depthDivision, bool isCalculateTB,
+			bool isCalculateTB, float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments,
 			unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount);
 
 	private:
 		explicit BoxGeometryGenerator() = delete;
 
 		static unsigned BuildPlane(
-			unsigned uIndex, unsigned vIndex, unsigned wIndex, float uDirection, float vDirection,
-			float width, float height, float depth, unsigned divisionX, unsigned divisionY, bool isIncludeTB,
-			unsigned currentVertexCount, std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData);
+			bool isIncludeTB, unsigned uIndex, unsigned vIndex, unsigned wIndex, float uDirection, float vDirection,
+			float width, float height, float depth, unsigned divisionX, unsigned divisionY, unsigned currentVertexCount,
+			std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData);
 
 	};
 
