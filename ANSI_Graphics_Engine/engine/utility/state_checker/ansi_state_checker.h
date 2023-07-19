@@ -43,10 +43,10 @@ namespace AN
 			m_curValues(),
 			m_oldValues() {}
 
-		bool Check() const
+		bool Check()
 		{
 			if (!m_isAppliedInitialValue) { return m_isAppliedInitialValue = true; }
-			for (unsigned i{ m_start }; i <= m_end; ++i)
+			for (int i{ m_start }; i <= m_end; ++i)
 			{
 				if (m_curValues[i] != m_oldValues[i]) { return true; }
 			}
@@ -55,7 +55,7 @@ namespace AN
 
 		void Reset()
 		{
-			for (unsigned i{ m_start }; i <= m_end; ++i) { m_oldValues[i] = m_curValues[i]; }
+			for (int i{ m_start }; i <= m_end; ++i) { m_oldValues[i] = m_curValues[i]; }
 			m_start = SIZE;
 			m_end = -1;
 		}
@@ -64,7 +64,7 @@ namespace AN
 		{
 			m_curValues[index] = value;
 
-			if (index < m_start) { m_start = index; }
+			if (index < m_start && m_curValues[index] != m_oldValues[index]) { m_start = index; }
 			else if (index == m_start)
 			{
 				if (m_curValues[index] == m_oldValues[index])
@@ -76,7 +76,7 @@ namespace AN
 				}
 			}
 
-			if (index > m_end) { m_end = index; }
+			if (index > m_end && m_curValues[index] != m_oldValues[index]) { m_end = index; }
 			else if (index == m_end)
 			{
 				if (m_curValues[index] == m_oldValues[index])
@@ -93,12 +93,12 @@ namespace AN
 		{
 			m_start = 0;
 			m_end = SIZE - 1;
-			for (unsigned i{ m_start }; i <= m_end; ++i) { m_curValues[i] = value; }
+			for (int i{ m_start }; i <= m_end; ++i) { m_curValues[i] = value; }
 		}
 
-		unsigned GetStart() const { return m_start; }
-		unsigned GetEnd() const { return m_end; }
-		unsigned GetRange() const { return m_end - m_start + 1; }
+		int GetStart() const { return m_start; }
+		int GetEnd() const { return m_end; }
+		int GetRange() const { return m_end - m_start + 1; }
 		const T & Get(unsigned index) const { return m_curValues[index]; }
 		const T * GetAddress(unsigned index) const { return &m_curValues[index]; }
 		const T * GetArray() const { return m_curValues; }

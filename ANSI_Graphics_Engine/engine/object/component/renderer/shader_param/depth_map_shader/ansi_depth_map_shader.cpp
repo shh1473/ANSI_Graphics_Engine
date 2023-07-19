@@ -12,7 +12,7 @@ namespace AN
 
 	}
 
-	bool DepthMapShader::OnRender()
+	bool DepthMapShader::OnUpdateUniforms()
 	{
 		// TODO
 		return true;

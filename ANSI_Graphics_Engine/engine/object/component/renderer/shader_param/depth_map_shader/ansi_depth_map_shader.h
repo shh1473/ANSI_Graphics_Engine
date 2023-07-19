@@ -10,7 +10,7 @@ namespace AN
 	public:
 		explicit DepthMapShader();
 
-		bool OnRender() override;
+		bool OnUpdateUniforms() override;
 
 	};
 

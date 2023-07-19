@@ -1,18 +1,17 @@
-#include "color_shader.h"
+#include "texture_shader.h"
 
 namespace Example
 {
 
-	ColorShader::ColorShader(AN::Shader * shader, AN::Object * object) :
+	TextureShader::TextureShader(AN::Shader * shader, AN::Object * object) :
 		ShaderParam(shader),
-		m_color(1.0f),
 		m_object(object),
 		m_MVP(1.0f)
 	{
 
 	}
 
-	bool ColorShader::OnUpdateUniforms()
+	bool TextureShader::OnUpdateUniforms()
 	{
 		m_MVP = AN::Core::GetRender()->GetCurrentCamera()->GetViewProjMatrix() * m_object->GetTransform()->GetWorldMatrix();
 
@@ -20,7 +19,7 @@ namespace Example
 		AN_CHECK(SetUniform4x4f("u_MVP", m_MVP));
 
 		// Fragment
-		AN_CHECK(SetUniform4f("u_color", m_color));
+		AN_CHECK(SetUniform1i("u_diffuseMap", 0));
 
 		return true;
 	}

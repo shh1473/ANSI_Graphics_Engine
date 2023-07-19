@@ -13,7 +13,7 @@ namespace Example
 	public:
 		explicit ColorShader(AN::Shader * shader, AN::Object * object);
 
-		bool OnRender() override;
+		bool OnUpdateUniforms() override;
 
 	private:
 		AN::Object * m_object;

@@ -8,6 +8,7 @@ namespace AN
 
 	class Shader;
 	class Geometry;
+	class Texture;
 
 	class ResourceStorage
 	{
@@ -17,10 +18,12 @@ namespace AN
 
 		Shader * CreateShader(const std::string & filePath, RenderType type);
 		Geometry * CreateGeometry();
+		Texture * CreateTexture(const std::string & filePath);
 
 	private:
 		std::vector<Shader *> m_shaders;
 		std::vector<Geometry *> m_geometries;
+		std::vector<Texture *> m_textures;
 
 	};
 

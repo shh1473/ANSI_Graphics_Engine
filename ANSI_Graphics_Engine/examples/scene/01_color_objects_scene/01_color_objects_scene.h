@@ -18,11 +18,6 @@ namespace Example
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
-	private: /* === Logics === */
-		ColorShader * m_boxColorShader{ nullptr };
-		ColorShader * m_sphereColorShader{ nullptr };
-		ColorShader * m_cylinderColorShader{ nullptr };
-
 	private: /* === Gui === */
 		bool m_isWireframe;
 

@@ -11,7 +11,7 @@
 namespace AN
 {
 
-	bool BoxGeometryGenerator::Create(
+	bool BoxGeometryGenerator::Generate(
 		float width, float height, float depth,
 		unsigned widthSegments, unsigned heightSegments, unsigned depthSegments,
 		unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount)

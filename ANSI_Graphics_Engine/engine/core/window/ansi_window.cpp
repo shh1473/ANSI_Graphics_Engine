@@ -10,8 +10,9 @@
 #include "utility/obj_loader/ansi_obj_loader.h"
 #include "utility/event_listener/ansi_event_listener.h"
 
-//#include "../examples/scene/00_hello_world_scene/00_hello_world_scene.h"
+#include "../examples/scene/00_hello_world_scene/00_hello_world_scene.h"
 #include "../examples/scene/01_color_objects_scene/01_color_objects_scene.h"
+#include "../examples/scene/02_texture_scene/02_texture_scene.h"
 
 namespace AN
 {
@@ -93,7 +94,8 @@ namespace AN
 
 	bool Window::Run()
 	{
-		m_nextScene = new Example::ColorObjectsScene();
+		//m_nextScene = new Example::ColorObjectsScene();
+		m_nextScene = new Example::TextureScene();
 		AN_CHECK(ApplyChangeScene());
 
 		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));

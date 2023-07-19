@@ -27,6 +27,7 @@
 #include <typeindex>
 #include <algorithm>
 #include <random>
+#include <array>
 #include <vector>
 #include <unordered_map>
 

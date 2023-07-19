@@ -8,6 +8,7 @@ namespace AN
 
 	ShaderParam::ShaderParam(Shader * shader) :
 		m_shader(shader),
+		m_textureIds(),
 		m_uniformLocationCache()
 	{
 

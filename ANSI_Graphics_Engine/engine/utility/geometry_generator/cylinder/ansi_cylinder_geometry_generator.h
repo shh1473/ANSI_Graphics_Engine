@@ -14,7 +14,7 @@ namespace AN
 	class CylinderGeometryGenerator
 	{
 	public:
-		static bool Create(
+		static bool Generate(
 			float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments,
 			unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount);
 

@@ -14,7 +14,7 @@ namespace AN
 	class SphereGeometryGenerator
 	{
 	public:
-		static bool Create(
+		static bool Generate(
 			float radius, unsigned widthSegments, unsigned heightSegments, unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount);
 
 	private:

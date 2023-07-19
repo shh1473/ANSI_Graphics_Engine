@@ -180,6 +180,7 @@
     <ClCompile Include="engine\object\component\renderer\shader_param\depth_map_shader\ansi_depth_map_shader.cpp" />
     <ClCompile Include="engine\object\component\transform\ansi_transform.cpp" />
     <ClCompile Include="engine\resource\geometry\ansi_geometry.cpp" />
+    <ClCompile Include="engine\resource\texture\ansi_texture.cpp" />
     <ClCompile Include="engine\resource\vertex_array\ansi_vertex_array.cpp" />
     <ClCompile Include="engine\scene\ansi_scene.cpp" />
     <ClCompile Include="engine\object\ansi_object.cpp" />
@@ -200,8 +201,11 @@
     <ClCompile Include="engine\utility\orbit_controls\spherical\ansi_spherical.cpp" />
     <ClCompile Include="engine\utility\random\ansi_random.cpp" />
     <ClCompile Include="engine\utility\shader_loader\ansi_shader_loader.cpp" />
+    <ClCompile Include="engine\utility\texture_loader\ansi_texture_loader.cpp" />
     <ClCompile Include="examples\scene\01_color_objects_scene\01_color_objects_scene.cpp" />
+    <ClCompile Include="examples\scene\02_texture_scene\02_texture_scene.cpp" />
     <ClCompile Include="examples\shader\color\color_shader.cpp" />
+    <ClCompile Include="examples\shader\texture\texture_shader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +243,7 @@
     <ClInclude Include="engine\object\component\renderer\shader_param\depth_map_shader\ansi_depth_map_shader.h" />
     <ClInclude Include="engine\object\component\transform\ansi_transform.h" />
     <ClInclude Include="engine\resource\geometry\ansi_geometry.h" />
+    <ClInclude Include="engine\resource\texture\ansi_texture.h" />
     <ClInclude Include="engine\resource\vertex_array\ansi_vertex_array.h" />
     <ClInclude Include="engine\scene\ansi_scene.h" />
     <ClInclude Include="engine\object\ansi_object.h" />
@@ -261,14 +266,18 @@
     <ClInclude Include="engine\utility\shader_loader\ansi_shader_loader.h" />
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker.h" />
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker_math.h" />
+    <ClInclude Include="engine\utility\texture_loader\ansi_texture_loader.h" />
     <ClInclude Include="examples\scene\01_color_objects_scene\01_color_objects_scene.h" />
+    <ClInclude Include="examples\scene\02_texture_scene\02_texture_scene.h" />
     <ClInclude Include="examples\shader\color\color_shader.h" />
+    <ClInclude Include="examples\shader\texture\texture_shader.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="configurations\ansi_graphics_engine_config.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shader\color.shader" />
+    <None Include="assets\shader\texture.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

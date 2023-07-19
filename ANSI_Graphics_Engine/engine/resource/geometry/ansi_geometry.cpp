@@ -63,7 +63,7 @@ namespace AN
 		for (unsigned i{ 0 }; i < elementCounts.size(); ++i)
 		{
 			GL_CHECK_NULL(glEnableVertexAttribArray(i));
-			GL_CHECK_NULL(glVertexAttribPointer(i, elementCounts[i], GL_FLOAT, GL_FALSE, 32, reinterpret_cast<const void *>(offsets[i])));
+			GL_CHECK_NULL(glVertexAttribPointer(i, elementCounts[i], GL_FLOAT, GL_FALSE, 8 * sizeof(float), reinterpret_cast<const void *>(offsets[i])));
 		}
 
 		m_vertexArrays.push_back(new VertexArray(id));
@@ -79,7 +79,7 @@ namespace AN
 	bool Geometry::GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		return BoxGeometryGenerator::Create(
+		return BoxGeometryGenerator::Generate(
 			width, height, depth, widthSegments, heightSegments, depthSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
@@ -87,21 +87,21 @@ namespace AN
 	bool Geometry::GenerateSphere(float radius, unsigned widthSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		return SphereGeometryGenerator::Create(radius, widthSegments, heightSegments,
+		return SphereGeometryGenerator::Generate(radius, widthSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
 
 	bool Geometry::GenerateCylinder(float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		return CylinderGeometryGenerator::Create(topRadius, bottomRadius, height, radialSegments, heightSegments,
+		return CylinderGeometryGenerator::Generate(topRadius, bottomRadius, height, radialSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
 
 	bool Geometry::GenerateFromObj(const std::string & filePath)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		return ObjLoader::LoadObj(filePath, m_vertexBufferId, m_vertexCount);
+		return ObjLoader::Load(filePath, m_vertexBufferId, m_vertexCount);
 	}
 
 }

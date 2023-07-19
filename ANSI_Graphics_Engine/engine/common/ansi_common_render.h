@@ -1,5 +1,7 @@
 #pragma once
 
+const unsigned MaximumTextureCount{ 8 };
+
 const unsigned CameraTypeCount{ 3 };
 enum class CameraType
 {

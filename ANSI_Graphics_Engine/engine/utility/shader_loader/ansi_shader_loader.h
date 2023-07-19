@@ -8,7 +8,7 @@ namespace AN
 	class ShaderLoader
 	{
 	public:
-		static bool LoadShader(const std::string & filePath, unsigned & shaderId);
+		static bool Load(const std::string & filePath, unsigned & shaderId);
 
 	private:
 		explicit ShaderLoader() = delete;

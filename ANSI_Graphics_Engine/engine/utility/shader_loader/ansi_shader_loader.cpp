@@ -11,7 +11,7 @@ namespace AN
 		Fragment,
 	};
 
-	bool ShaderLoader::LoadShader(const std::string & filePath, unsigned & shaderId)
+	bool ShaderLoader::Load(const std::string & filePath, unsigned & shaderId)
 	{
 		AN_CHECK_LOG(shaderId = glCreateProgram());
 

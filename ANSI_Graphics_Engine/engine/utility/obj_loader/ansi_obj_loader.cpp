@@ -6,7 +6,7 @@
 namespace AN
 {
 
-	bool ObjLoader::LoadObj(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount)
+	bool ObjLoader::Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount)
 	{
 		std::vector<float> rawVerticesData;
 

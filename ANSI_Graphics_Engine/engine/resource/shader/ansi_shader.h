@@ -16,8 +16,8 @@ namespace AN
 		RenderType GetType() const { return m_type; }
 
 	private:
-		unsigned m_id;
-		RenderType m_type;
+		const unsigned m_id;
+		const RenderType m_type;
 
 	};
 

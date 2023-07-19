@@ -11,7 +11,7 @@
 namespace AN
 {
 
-	bool CylinderGeometryGenerator::Create(
+	bool CylinderGeometryGenerator::Generate(
 		float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments,
 		unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount)
 	{

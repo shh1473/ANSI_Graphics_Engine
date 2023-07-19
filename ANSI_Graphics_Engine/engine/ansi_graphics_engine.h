@@ -11,6 +11,7 @@
 #include "resource/shader/ansi_shader.h"
 #include "resource/geometry/ansi_geometry.h"
 #include "resource/vertex_array/ansi_vertex_array.h"
+#include "resource/texture/ansi_texture.h"
 
 #include "scene/ansi_scene.h"
 #include "scene/resource_storage/ansi_resource_storage.h"

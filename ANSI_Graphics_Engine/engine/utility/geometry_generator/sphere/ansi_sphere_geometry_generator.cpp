@@ -11,7 +11,7 @@
 namespace AN
 {
 
-	bool SphereGeometryGenerator::Create(
+	bool SphereGeometryGenerator::Generate(
 		float radius, unsigned widthSegments, unsigned heightSegments, unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount)
 	{
 		AN_CHECK_LOG(radius > 0.0f && widthSegments >= 3 && heightSegments > 1);

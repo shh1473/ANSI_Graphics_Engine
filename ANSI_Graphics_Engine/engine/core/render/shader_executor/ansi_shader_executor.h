@@ -15,6 +15,7 @@ namespace AN
 
 	private:
 		StateChecker<unsigned> m_shaderId;
+		StateArrayChecker<unsigned, MaximumTextureCount> m_textureIds;
 
 	};
 

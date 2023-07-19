@@ -21,7 +21,7 @@ namespace AN
 	bool BuiltInResources::Initialize()
 	{
 		unsigned depthMapShaderId{ 0 };
-		//AN_CHECK(ShaderLoader::LoadShader("<TODO>", depthMapShaderId));
+		//AN_CHECK(ShaderLoader::Load("<TODO>", depthMapShaderId));
 		m_depthMapShader = new Shader(depthMapShaderId, RenderType::Packing);
 		return true;
 	}

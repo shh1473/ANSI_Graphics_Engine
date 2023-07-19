@@ -23,34 +23,42 @@ namespace Example
 
 		/* === Box Object === */
 		m_box = AddObject(new AN::Object("Box"));
-		m_box->GetTransform()->SetScale(10.0f, 10.0f, 10.0f);
-		AN::Renderer * cubeRenderer = m_box->AddComponent<AN::Renderer>(m_boxColorShader = new ColorShader(m_colorShader, m_box));
+		m_box->GetTransform()->SetScale(5.0f, 5.0f, 5.0f);
+
+		auto boxShader = new ColorShader(m_colorShader, m_box);
+		auto cubeRenderer = m_box->AddComponent<AN::Renderer>(boxShader);
 		cubeRenderer->Input()->SetVertices(m_boxVA->GetId(), m_boxGeometry->GetVertexCount());
 		cubeRenderer->Input()->SetIndices(m_boxGeometry->GetIndexBufferId(), m_boxGeometry->GetIndexCount());
-		m_boxColorShader->m_color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+		boxShader->m_color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 
 		/* === Sphere Object === */
 		m_sphere = AddObject(new AN::Object("Sphere"));
-		m_sphere->GetTransform()->SetPositionX(30.0f);
-		m_sphere->GetTransform()->SetScale(10.0f, 10.0f, 10.0f);
-		AN::Renderer * sphereRenderer = m_sphere->AddComponent<AN::Renderer>(m_sphereColorShader = new ColorShader(m_colorShader, m_sphere));
+		m_sphere->GetTransform()->SetPositionX(20.0f);
+		m_sphere->GetTransform()->SetScale(5.0f, 5.0f, 5.0f);
+
+		auto sphereShader = new ColorShader(m_colorShader, m_sphere);
+		auto sphereRenderer = m_sphere->AddComponent<AN::Renderer>(sphereShader);
 		sphereRenderer->Input()->SetVertices(m_sphereVA->GetId(), m_sphereGeometry->GetVertexCount());
 		sphereRenderer->Input()->SetIndices(m_sphereGeometry->GetIndexBufferId(), m_sphereGeometry->GetIndexCount());
-		m_sphereColorShader->m_color = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
+		sphereShader->m_color = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
 		/* === Cylinder Object === */
 		m_cylinder = AddObject(new AN::Object("Cylinder"));
-		m_cylinder->GetTransform()->SetPositionX(-30.0f);
-		m_cylinder->GetTransform()->SetScale(10.0f, 10.0f, 10.0f);
-		AN::Renderer * cylinderRenderer = m_cylinder->AddComponent<AN::Renderer>(m_cylinderColorShader = new ColorShader(m_colorShader, m_cylinder));
+		m_cylinder->GetTransform()->SetPositionX(-20.0f);
+		m_cylinder->GetTransform()->SetScale(5.0f, 5.0f, 5.0f);
+
+		auto cylinderShader = new ColorShader(m_colorShader, m_cylinder);
+		auto cylinderRenderer = m_cylinder->AddComponent<AN::Renderer>(cylinderShader);
 		cylinderRenderer->Input()->SetVertices(m_cylinderVA->GetId(), m_cylinderGeometry->GetVertexCount());
 		cylinderRenderer->Input()->SetIndices(m_cylinderGeometry->GetIndexBufferId(), m_cylinderGeometry->GetIndexCount());
-		m_cylinderColorShader->m_color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+		cylinderShader->m_color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
-		AN::Camera * camera = m_camera->AddComponent<AN::Camera>();
 		m_camera->GetTransform()->SetPositionZ(50.0f);
+
+		auto camera = m_camera->AddComponent<AN::Camera>();
+		camera->Raster()->SetCullMode(AN::CullMode::None);
 		m_orbitControls = new AN::OrbitControls(camera);
 
 		return true;
@@ -86,14 +94,18 @@ namespace Example
 		/* Box */
 		AN_CHECK(m_boxGeometry = GetResources()->CreateGeometry());
 		AN_CHECK(m_boxGeometry->GenerateBox(2.0f, 2.0f, 2.0f, 1, 1, 1));
-		AN_CHECK(m_boxVA = m_boxGeometry->GenerateVertexArray(AN::POSITION));
 		/* Sphere */
 		AN_CHECK(m_sphereGeometry = GetResources()->CreateGeometry());
 		AN_CHECK(m_sphereGeometry->GenerateSphere(1.0f, 16, 8));
-		AN_CHECK(m_sphereVA = m_sphereGeometry->GenerateVertexArray(AN::POSITION));
 		/* Cylinder */
 		AN_CHECK(m_cylinderGeometry = GetResources()->CreateGeometry());
 		AN_CHECK(m_cylinderGeometry->GenerateCylinder(1.0f, 1.0f, 2.0f, 12, 1));
+
+		/* Box VA */
+		AN_CHECK(m_boxVA = m_boxGeometry->GenerateVertexArray(AN::POSITION));
+		/* Sphere VA */
+		AN_CHECK(m_sphereVA = m_sphereGeometry->GenerateVertexArray(AN::POSITION));
+		/* Cylinder VA */
 		AN_CHECK(m_cylinderVA = m_cylinderGeometry->GenerateVertexArray(AN::POSITION));
 
 		return true;

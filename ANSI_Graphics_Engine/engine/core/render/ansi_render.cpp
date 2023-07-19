@@ -50,14 +50,14 @@ namespace AN
 			{
 				if (!camera->GetIsEnabled()) { continue; }
 				m_currentCamera = camera;
-				m_rasterExecutor->Apply(camera->Raster());
-				m_outputExecutor->Apply(camera->Output());
+				AN_CHECK(m_rasterExecutor->Apply(camera->Raster()));
+				AN_CHECK(m_outputExecutor->Apply(camera->Output()));
 				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Forward)])
 				{
 					if (renderer->GetDepthMapShader())
 					{
-						m_inputExecutor->Apply(renderer->Input());
-						m_shaderExecutor->Apply(renderer->GetDepthMapShader());
+						AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
+						AN_CHECK(m_shaderExecutor->Apply(renderer->GetDepthMapShader()));
 						AN_CHECK(Draw());
 					}
 				}
@@ -65,8 +65,8 @@ namespace AN
 				{
 					if (renderer->GetDepthMapShader())
 					{
-						m_inputExecutor->Apply(renderer->Input());
-						m_shaderExecutor->Apply(renderer->GetDepthMapShader());
+						AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
+						AN_CHECK(m_shaderExecutor->Apply(renderer->GetDepthMapShader()));
 						AN_CHECK(Draw());
 					}
 				}
@@ -79,12 +79,12 @@ namespace AN
 			{
 				if (!camera->GetIsEnabled()) { continue; }
 				m_currentCamera = camera;
-				m_rasterExecutor->Apply(camera->Raster());
-				m_outputExecutor->Apply(camera->GetGBufferOutput());
+				AN_CHECK(m_rasterExecutor->Apply(camera->Raster()));
+				AN_CHECK(m_outputExecutor->Apply(camera->GetGBufferOutput()));
 				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Packing)])
 				{
-					m_inputExecutor->Apply(renderer->Input());
-					m_shaderExecutor->Apply(renderer->Shader());
+					AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
+					AN_CHECK(m_shaderExecutor->Apply(renderer->Shader()));
 					AN_CHECK(Draw());
 				}
 			}
@@ -98,8 +98,8 @@ namespace AN
 				m_currentCamera = camera;
 				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Deferred)])
 				{
-					m_inputExecutor->Apply(renderer->Dispatch());
-					m_shaderExecutor->Apply(renderer->Shader());
+					AN_CHECK(m_inputExecutor->Apply(renderer->Dispatch()));
+					AN_CHECK(m_shaderExecutor->Apply(renderer->Shader()));
 					// Set output texture uniform from camera
 					// renderer->Shader()->SetUniform1i("output", camera->GetGBufferOutput()->GetDeferredOutputTextureId());
 					AN_CHECK(Draw());
@@ -113,12 +113,12 @@ namespace AN
 			{
 				if (!camera->GetIsEnabled()) { continue; }
 				m_currentCamera = camera;
-				m_rasterExecutor->Apply(camera->Raster());
-				m_outputExecutor->Apply(camera->Output());
+				AN_CHECK(m_rasterExecutor->Apply(camera->Raster()));
+				AN_CHECK(m_outputExecutor->Apply(camera->Output()));
 				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Forward)])
 				{
-					m_inputExecutor->Apply(renderer->Input());
-					m_shaderExecutor->Apply(renderer->Shader());
+					AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
+					AN_CHECK(m_shaderExecutor->Apply(renderer->Shader()));
 					AN_CHECK(Draw());
 				}
 			}
@@ -128,8 +128,8 @@ namespace AN
 		{
 			for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Compute)])
 			{
-				m_inputExecutor->Apply(renderer->Dispatch());
-				m_shaderExecutor->Apply(renderer->Shader());
+				AN_CHECK(m_inputExecutor->Apply(renderer->Dispatch()));
+				AN_CHECK(m_shaderExecutor->Apply(renderer->Shader()));
 				AN_CHECK(Draw());
 			}
 		}

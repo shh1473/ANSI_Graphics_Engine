@@ -8,7 +8,7 @@ namespace AN
 	class ObjLoader
 	{
 	public:
-		static bool LoadObj(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount);
+		static bool Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount);
 
 	private:
 		explicit ObjLoader() = delete;

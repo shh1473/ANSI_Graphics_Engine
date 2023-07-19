@@ -14,7 +14,7 @@ namespace AN
 	class BoxGeometryGenerator
 	{
 	public:
-		static bool Create(
+		static bool Generate(
 			float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments,
 			unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount);
 
