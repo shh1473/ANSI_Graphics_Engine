@@ -96,6 +96,9 @@ namespace AN
 		m_nextScene = new Example::ColorObjectsScene();
 		AN_CHECK(ApplyChangeScene());
 
+		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
+		GL_CHECK(glClearDepth(1.0));
+
 		while (!glfwWindowShouldClose(m_window))
 		{
 			Core::GetTimer()->OnUpdate();
@@ -104,8 +107,8 @@ namespace AN
 			AN_CHECK(m_currentScene->OnDefaultLateUpdate());
 			AN_CHECK(m_currentScene->OnLateUpdate());
 
-			GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 			GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
+			GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
 
 			AN_CHECK(Core::GetRender()->OnRender());
 

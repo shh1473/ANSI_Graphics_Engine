@@ -6,7 +6,7 @@
 namespace AN
 {
 
-	bool ObjLoader::LoadObj(const std::string & filePath, bool isIncludeTB, unsigned & vertexBufferId, unsigned & vertexCount)
+	bool ObjLoader::LoadObj(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount)
 	{
 		std::vector<float> rawVerticesData;
 
@@ -16,21 +16,8 @@ namespace AN
 		std::vector<glm::uvec3> loadedIndices;
 
 		AN_CHECK(ParseObj(filePath, loadedPositions, loadedTexCoords, loadedNormals, loadedIndices));
+		AssembleVertices(loadedPositions, loadedTexCoords, loadedNormals, loadedIndices, rawVerticesData);
 		vertexCount = static_cast<unsigned>(loadedIndices.size());
-
-		if (isIncludeTB)
-		{
-			std::vector<VertexDataExtended> verticesData;
-			AssembleVerticesExtended(loadedPositions, loadedTexCoords, loadedNormals, loadedIndices, verticesData);
-			CalculateTangentBinormal(verticesData);
-			PackVerticesExtended(verticesData, rawVerticesData);
-		}
-		else
-		{
-			std::vector<VertexData> verticesData;
-			AssembleVertices(loadedPositions, loadedTexCoords, loadedNormals, loadedIndices, verticesData);
-			PackVertices(verticesData, rawVerticesData);
-		}
 
 		AN_CHECK(CreateVertexBuffer(rawVerticesData, vertexBufferId));
 
@@ -103,7 +90,7 @@ namespace AN
 							loadedIndices.push_back(tmpIndices);
 						}
 					}
-				}
+				} break;
 			}
 		}
 
@@ -115,104 +102,20 @@ namespace AN
 		const std::vector<glm::vec2> & loadedTexCoords,
 		const std::vector<glm::vec3> & loadedNormals,
 		const std::vector<glm::uvec3> & loadedIndices,
-		std::vector<VertexData> & assembledVertices)
+		std::vector<float> & rawVerticesData)
 	{
 		for (unsigned i{ 0 }; i < loadedIndices.size(); ++i)
 		{
-			assembledVertices.push_back({
-				loadedPositions[loadedIndices[i].x],
-				loadedTexCoords[loadedIndices[i].y],
-				loadedNormals[loadedIndices[i].z] });
-		}
-	}
+			rawVerticesData.push_back(loadedPositions[loadedIndices[i].x].x);
+			rawVerticesData.push_back(loadedPositions[loadedIndices[i].x].y);
+			rawVerticesData.push_back(loadedPositions[loadedIndices[i].x].z);
 
-	void ObjLoader::AssembleVerticesExtended(
-		const std::vector<glm::vec3> & loadedPositions,
-		const std::vector<glm::vec2> & loadedTexCoords,
-		const std::vector<glm::vec3> & loadedNormals,
-		const std::vector<glm::uvec3> & loadedIndices,
-		std::vector<VertexDataExtended> & assembledVertices)
-	{
-		for (unsigned i{ 0 }; i < loadedIndices.size(); ++i)
-		{
-			assembledVertices.push_back({
-				loadedPositions[loadedIndices[i].x],
-				loadedTexCoords[loadedIndices[i].y],
-				loadedNormals[loadedIndices[i].z],
-				glm::vec3(0.0f), glm::vec3(0.0f) });
-		}
-	}
+			rawVerticesData.push_back(loadedTexCoords[loadedIndices[i].y].x);
+			rawVerticesData.push_back(loadedTexCoords[loadedIndices[i].y].y);
 
-	void ObjLoader::PackVertices(const std::vector<VertexData> & verticesData, std::vector<float> & rawVerticesData)
-	{
-		for (unsigned i{ 0 }; i < verticesData.size(); ++i)
-		{
-			rawVerticesData.push_back(verticesData[i].position.x);
-			rawVerticesData.push_back(verticesData[i].position.y);
-			rawVerticesData.push_back(verticesData[i].position.z);
-			rawVerticesData.push_back(verticesData[i].texCoord.x);
-			rawVerticesData.push_back(verticesData[i].texCoord.y);
-			rawVerticesData.push_back(verticesData[i].normal.x);
-			rawVerticesData.push_back(verticesData[i].normal.y);
-			rawVerticesData.push_back(verticesData[i].normal.z);
-		}
-	}
-
-	void ObjLoader::PackVerticesExtended(const std::vector<VertexDataExtended> & verticesData, std::vector<float> & rawVerticesData)
-	{
-		for (unsigned i{ 0 }; i < verticesData.size(); ++i)
-		{
-			rawVerticesData.push_back(verticesData[i].position.x);
-			rawVerticesData.push_back(verticesData[i].position.y);
-			rawVerticesData.push_back(verticesData[i].position.z);
-			rawVerticesData.push_back(verticesData[i].texCoord.x);
-			rawVerticesData.push_back(verticesData[i].texCoord.y);
-			rawVerticesData.push_back(verticesData[i].normal.x);
-			rawVerticesData.push_back(verticesData[i].normal.y);
-			rawVerticesData.push_back(verticesData[i].normal.z);
-			rawVerticesData.push_back(verticesData[i].tangent.x);
-			rawVerticesData.push_back(verticesData[i].tangent.y);
-			rawVerticesData.push_back(verticesData[i].tangent.z);
-			rawVerticesData.push_back(verticesData[i].binormal.x);
-			rawVerticesData.push_back(verticesData[i].binormal.y);
-			rawVerticesData.push_back(verticesData[i].binormal.z);
-		}
-	}
-
-	void ObjLoader::CalculateTangentBinormal(std::vector<VertexDataExtended> & assembledVertices)
-	{
-		unsigned index{ 0 }, v1{ 0 }, v2{ 0 }, v3{ 0 };
-		float denominator{ 0.0f };
-		glm::vec3 tangent(0.0f), binormal(0.0f);
-		glm::vec3 deltaPosition1(0.0f), deltaPosition2(0.0f);
-		glm::vec2 deltaTexCoord1(0.0f), deltaTexCoord2(0.0f);
-
-		for (unsigned i{ 0 }; i < assembledVertices.size() / 3; ++i)
-		{
-			v1 = index++;
-			v2 = index++;
-			v3 = index++;
-
-			deltaPosition1 = assembledVertices[v2].position - assembledVertices[v1].position;
-			deltaPosition2 = assembledVertices[v3].position - assembledVertices[v1].position;
-			deltaTexCoord1 = assembledVertices[v2].texCoord - assembledVertices[v1].texCoord;
-			deltaTexCoord2 = assembledVertices[v3].texCoord - assembledVertices[v1].texCoord;
-
-			denominator = deltaTexCoord1.x * deltaTexCoord2.y - deltaTexCoord1.y * deltaTexCoord2.x;
-			denominator = (denominator) ? 1.0f / denominator : 0.0f;
-
-			tangent = (deltaPosition1 * deltaTexCoord2.y - deltaPosition2 * deltaTexCoord1.y) * denominator;
-			binormal = (deltaPosition2 * deltaTexCoord1.x - deltaPosition1 * deltaTexCoord2.x) * denominator;
-
-			tangent = glm::normalize(tangent);
-			binormal = glm::normalize(binormal);
-
-			assembledVertices[v1].tangent = tangent;
-			assembledVertices[v2].tangent = tangent;
-			assembledVertices[v3].tangent = tangent;
-			assembledVertices[v1].binormal = binormal;
-			assembledVertices[v2].binormal = binormal;
-			assembledVertices[v3].binormal = binormal;
+			rawVerticesData.push_back(loadedNormals[loadedIndices[i].z].x);
+			rawVerticesData.push_back(loadedNormals[loadedIndices[i].z].y);
+			rawVerticesData.push_back(loadedNormals[loadedIndices[i].z].z);
 		}
 	}
 

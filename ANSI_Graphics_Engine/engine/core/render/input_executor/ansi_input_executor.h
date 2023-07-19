@@ -25,6 +25,8 @@ namespace AN
 		unsigned m_indexCount;
 		glm::uvec3 m_dispatchSize;
 		PrimitiveTopology m_primitiveTopology;
+		StateChecker<bool> m_isEnableDepthTest;
+		StateChecker<bool> m_isEnableDepthWrite;
 		StateChecker<unsigned> m_vertexArrayId;
 		StateChecker<unsigned> m_indexBufferId;
 

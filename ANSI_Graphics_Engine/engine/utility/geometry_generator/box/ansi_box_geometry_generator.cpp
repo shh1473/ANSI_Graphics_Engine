@@ -6,18 +6,22 @@
 
 #include "ansi_box_geometry_generator.h"
 
+#include "core/log/ansi_log.h"
+
 namespace AN
 {
 
 	bool BoxGeometryGenerator::Create(
-		bool isIncludeTB, float width, float height, float depth,
+		float width, float height, float depth,
 		unsigned widthSegments, unsigned heightSegments, unsigned depthSegments,
 		unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount)
 	{
+		AN_CHECK_LOG(width > 0.0f && height > 0.0f && depth > 0.0f && widthSegments > 0 && heightSegments > 0 && depthSegments > 0);
+
 		vertexCount = (
 			(widthSegments + 1) * (heightSegments + 1) + (widthSegments + 1) * (heightSegments + 1) +
 			(widthSegments + 1) * (depthSegments + 1) + (widthSegments + 1) * (depthSegments + 1) +
-			(depthSegments + 1) * (heightSegments + 1) + (depthSegments + 1) * (heightSegments + 1)) * (isIncludeTB ? 14 : 8);
+			(depthSegments + 1) * (heightSegments + 1) + (depthSegments + 1) * (heightSegments + 1)) * 8;
 		indexCount = (
 			widthSegments * heightSegments + widthSegments * heightSegments +
 			widthSegments * depthSegments + widthSegments * depthSegments +
@@ -29,12 +33,12 @@ namespace AN
 		rawVerticesData.reserve(vertexCount);
 		rawIndicesData.reserve(indexCount);
 
-		currentVertexCount += BuildPlane(isIncludeTB, 0, 1, 2, 1, -1, width, height, depth, widthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
-		currentVertexCount += BuildPlane(isIncludeTB, 0, 1, 2, -1, -1, width, height, -depth, widthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
-		currentVertexCount += BuildPlane(isIncludeTB, 0, 2, 1, 1, 1, width, depth, height, widthSegments, depthSegments, currentVertexCount, rawVerticesData, rawIndicesData);
-		currentVertexCount += BuildPlane(isIncludeTB, 0, 2, 1, 1, -1, width, depth, -height, widthSegments, depthSegments, currentVertexCount, rawVerticesData, rawIndicesData);
-		currentVertexCount += BuildPlane(isIncludeTB, 2, 1, 0, -1, -1, depth, height, width, depthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
-		currentVertexCount += BuildPlane(isIncludeTB, 2, 1, 0, 1, -1, depth, height, -width, depthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
+		currentVertexCount += BuildPlane(0, 1, 2, 1, -1, width, height, depth, widthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
+		currentVertexCount += BuildPlane(0, 1, 2, -1, -1, width, height, -depth, widthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
+		currentVertexCount += BuildPlane(0, 2, 1, 1, 1, width, depth, height, widthSegments, depthSegments, currentVertexCount, rawVerticesData, rawIndicesData);
+		currentVertexCount += BuildPlane(0, 2, 1, 1, -1, width, depth, -height, widthSegments, depthSegments, currentVertexCount, rawVerticesData, rawIndicesData);
+		currentVertexCount += BuildPlane(2, 1, 0, -1, -1, depth, height, width, depthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
+		currentVertexCount += BuildPlane(2, 1, 0, 1, -1, depth, height, -width, depthSegments, heightSegments, currentVertexCount, rawVerticesData, rawIndicesData);
 
 		GL_CHECK(glGenBuffers(1, &vertexBufferId));
 		GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId));
@@ -48,7 +52,7 @@ namespace AN
 	}
 
 	unsigned BoxGeometryGenerator::BuildPlane(
-		bool isIncludeTB, unsigned uIndex, unsigned vIndex, unsigned wIndex, float uDirection, float vDirection,
+		unsigned uIndex, unsigned vIndex, unsigned wIndex, float uDirection, float vDirection,
 		float width, float height, float depth, unsigned divisionX, unsigned divisionY, unsigned currentVertexCount,
 		std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData)
 	{
@@ -80,23 +84,6 @@ namespace AN
 				rawVerticesData.push_back(tmpVector.x);
 				rawVerticesData.push_back(tmpVector.y);
 				rawVerticesData.push_back(tmpVector.z);
-
-				if (isIncludeTB)
-				{
-					tmpVector[uIndex] = 1.0f;
-					tmpVector[vIndex] = 0.0f;
-					tmpVector[wIndex] = 0.0f;
-					rawVerticesData.push_back(tmpVector.x);
-					rawVerticesData.push_back(tmpVector.y);
-					rawVerticesData.push_back(tmpVector.z);
-
-					tmpVector[uIndex] = 0.0f;
-					tmpVector[vIndex] = 1.0f;
-					tmpVector[wIndex] = 0.0f;
-					rawVerticesData.push_back(tmpVector.x);
-					rawVerticesData.push_back(tmpVector.y);
-					rawVerticesData.push_back(tmpVector.z);
-				}
 
 				++vertexCount;
 			}

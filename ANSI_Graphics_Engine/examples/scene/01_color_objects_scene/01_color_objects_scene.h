@@ -18,22 +18,30 @@ namespace Example
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
-	private: // Logics
-		glm::vec3 m_colorAddDir;
+	private: /* === Logics === */
 		ColorShader * m_boxColorShader{ nullptr };
+		ColorShader * m_sphereColorShader{ nullptr };
+		ColorShader * m_cylinderColorShader{ nullptr };
 
-	private: // Gui
+	private: /* === Gui === */
 		bool m_isWireframe;
 
-	private: // Objects
+	private: /* === Objects === */
 		AN::Object * m_box{ nullptr };
+		AN::Object * m_sphere{ nullptr };
+		AN::Object * m_cylinder{ nullptr };
 		AN::Object * m_camera{ nullptr };
 		AN::OrbitControls * m_orbitControls{ nullptr };
 
-	private: // Resources
+	private: /* === Resources === */
 		AN::Shader * m_colorShader{ nullptr };
+
 		AN::Geometry * m_boxGeometry{ nullptr };
 		AN::VertexArray * m_boxVA{ nullptr };
+		AN::Geometry * m_sphereGeometry{ nullptr };
+		AN::VertexArray * m_sphereVA{ nullptr };
+		AN::Geometry * m_cylinderGeometry{ nullptr };
+		AN::VertexArray * m_cylinderVA{ nullptr };
 
 	};
 

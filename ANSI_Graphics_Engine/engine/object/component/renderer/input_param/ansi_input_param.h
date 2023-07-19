@@ -35,6 +35,8 @@ namespace AN
 		static const unsigned m_DefaultIndexBufferId;
 		static const PrimitiveTopology m_DefaultPrimitiveTopology;
 
+		bool m_isEnableDepthTest;
+		bool m_isEnableDepthWrite;
 		unsigned m_vertexArrayId;
 		unsigned m_indexBufferId;
 		unsigned m_vertexCount;

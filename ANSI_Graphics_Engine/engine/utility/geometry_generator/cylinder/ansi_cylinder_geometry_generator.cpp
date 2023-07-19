@@ -6,15 +6,19 @@
 
 #include "ansi_cylinder_geometry_generator.h"
 
+#include "core/log/ansi_log.h"
+
 namespace AN
 {
 
 	bool CylinderGeometryGenerator::Create(
-		bool isIncludeTB, bool isOpenEnded, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength,
-		unsigned radialSegments, unsigned heightSegments, unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount)
+		float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments,
+		unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount)
 	{
-		vertexCount = (radialSegments * (heightSegments + 1) + ((isOpenEnded) ? 0 : 2)) * (isIncludeTB ? 14 : 8);
-		indexCount = ((radialSegments * heightSegments * 2) + ((isOpenEnded) ? 0 : (radialSegments * 2))) * 3;
+		AN_CHECK_LOG(height > 0.0f && radialSegments >= 3 && heightSegments > 0);
+
+		vertexCount = (radialSegments * (heightSegments + 1) + 2) * 8;
+		indexCount = ((radialSegments * heightSegments * 2) + (radialSegments * 2)) * 3;
 
 		unsigned currentIndex{ 0 };
 		std::vector<float> rawVerticesData;
@@ -22,13 +26,10 @@ namespace AN
 		rawVerticesData.reserve(vertexCount);
 		rawIndicesData.reserve(indexCount);
 
-		GenerateTorso(topRadius, bottomRadius, height, thetaStart, thetaLength, radialSegments, heightSegments, currentIndex, rawVerticesData, rawIndicesData);
+		GenerateTorso(topRadius, bottomRadius, height, radialSegments, heightSegments, currentIndex, rawVerticesData, rawIndicesData);
 
-		if (!isOpenEnded)
-		{
-			if (topRadius > 0.0f) { GenerateCap(true, topRadius, bottomRadius, height, thetaStart, thetaLength, radialSegments, currentIndex, rawVerticesData, rawIndicesData); }
-			if (bottomRadius > 0.0f) { GenerateCap(false, topRadius, bottomRadius, height, thetaStart, thetaLength, radialSegments, currentIndex, rawVerticesData, rawIndicesData); }
-		}
+		if (topRadius > 0.0f) { GenerateCap(true, topRadius, bottomRadius, height, radialSegments, currentIndex, rawVerticesData, rawIndicesData); }
+		if (bottomRadius > 0.0f) { GenerateCap(false, topRadius, bottomRadius, height, radialSegments, currentIndex, rawVerticesData, rawIndicesData); }
 
 		GL_CHECK(glGenBuffers(1, &vertexBufferId));
 		GL_CHECK(glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId));
@@ -42,7 +43,7 @@ namespace AN
 	}
 
 	void CylinderGeometryGenerator::GenerateTorso(
-		float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength, unsigned radialSegments, unsigned heightSegments,
+		float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments,
 		unsigned & currentIndex, std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData)
 	{
 		const float slope = (bottomRadius - topRadius) / height;
@@ -60,7 +61,7 @@ namespace AN
 			for (unsigned j{ 0 }; j <= radialSegments; ++j)
 			{
 				u = j / static_cast<float>(radialSegments);
-				theta = (u * thetaLength) + thetaStart;
+				theta = u * PI2;
 				sinTheta = std::sin(theta);
 				cosTheta = std::cos(theta);
 
@@ -107,7 +108,7 @@ namespace AN
 	}
 
 	void CylinderGeometryGenerator::GenerateCap(
-		bool isTop, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength, unsigned radialSegments,
+		bool isTop, float topRadius, float bottomRadius, float height, unsigned radialSegments,
 		unsigned & currentIndex, std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData)
 	{
 		const unsigned centerIndexStart{ currentIndex };
@@ -136,7 +137,7 @@ namespace AN
 		for (unsigned i{ 0 }; i <= radialSegments; ++i)
 		{
 			const float u{ i / static_cast<float>(radialSegments) };
-			const float theta{ u * thetaLength + thetaStart };
+			const float theta{ u * PI2 };
 			const float cosTheta{ std::cos(theta) };
 			const float sinTheta{ std::sin(theta) };
 

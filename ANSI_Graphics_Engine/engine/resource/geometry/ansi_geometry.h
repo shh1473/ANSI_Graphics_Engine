@@ -8,7 +8,6 @@ namespace AN
 	constexpr unsigned POSITION{ 1 << 0 };
 	constexpr unsigned TEXCOORD{ 1 << 1 };
 	constexpr unsigned NORMAL{ 1 << 2 };
-	constexpr unsigned TANGENTBINORMAL{ 1 << 3 };
 
 	struct VertexElement
 	{
@@ -32,10 +31,10 @@ namespace AN
 		unsigned GetVertexCount() const { return m_vertexCount; }
 		unsigned GetIndexCount() const { return m_indexCount; }
 
-		bool GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments, bool isIncludeTB);
-		bool GenerateCylinder(bool isOpenEnded, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength,
-			unsigned radialSegments, unsigned heightSegments, bool isIncludeTB);
-		bool GenerateFromObj(const std::string & filePath, bool isIncludeTB);
+		bool GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments);
+		bool GenerateSphere(float radius, unsigned widthSegments, unsigned heightSegments);
+		bool GenerateCylinder(float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments);
+		bool GenerateFromObj(const std::string & filePath);
 		
 	private:
 		unsigned m_vertexCount;

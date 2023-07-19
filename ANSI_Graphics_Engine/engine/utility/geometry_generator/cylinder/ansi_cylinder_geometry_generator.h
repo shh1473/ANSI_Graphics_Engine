@@ -15,15 +15,15 @@ namespace AN
 	{
 	public:
 		static bool Create(
-			bool isIncludeTB, bool isOpenEnded, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength,
-			unsigned radialSegments, unsigned heightSegments, unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount);
+			float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments,
+			unsigned & vertexBufferId, unsigned & indexBufferId, unsigned & vertexCount, unsigned & indexCount);
 
 	private:
 		explicit CylinderGeometryGenerator() = delete;
 
-		static void GenerateTorso(float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength, unsigned radialSegments, unsigned heightSegments,
+		static void GenerateTorso(float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments,
 			unsigned & currentIndex, std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData);
-		static void GenerateCap(bool isTop, float topRadius, float bottomRadius, float height, float thetaStart, float thetaLength, unsigned radialSegments,
+		static void GenerateCap(bool isTop, float topRadius, float bottomRadius, float height, unsigned radialSegments,
 			unsigned & currentIndex, std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData);
 
 	};

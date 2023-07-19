@@ -4,7 +4,7 @@ namespace AN
 {
 
 	FillMode const RasterParam::m_DefaultFillMode{ FillMode::Fill };
-	CullMode const RasterParam::m_DefaultCullMode{ CullMode::None };
+	CullMode const RasterParam::m_DefaultCullMode{ CullMode::Back };
 	FrontFace const RasterParam::m_DefaultFrontFace{ FrontFace::CCW };
 	MSAA const RasterParam::m_DefaultMSAA{ MSAA::None };
 	double const RasterParam::m_DefaultDepthClipNear{ 0.0 };

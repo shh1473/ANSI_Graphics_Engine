@@ -8,6 +8,8 @@ namespace AN
 	PrimitiveTopology const InputParam::m_DefaultPrimitiveTopology{ PrimitiveTopology::Triangles };
 
 	InputParam::InputParam() :
+		m_isEnableDepthTest(true),
+		m_isEnableDepthWrite(true),
 		m_vertexArrayId(m_DefaultVertexArrayId),
 		m_indexBufferId(m_DefaultIndexBufferId),
 		m_vertexCount(0),

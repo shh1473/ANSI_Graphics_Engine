@@ -9,17 +9,34 @@ namespace AN
 		m_dispatchSize(1),
 		m_primitiveTopology(InputParam::m_DefaultPrimitiveTopology)
 	{
+		m_isEnableDepthTest.Set(true);
+		m_isEnableDepthWrite.Set(true);
 		m_vertexArrayId.Set(InputParam::m_DefaultVertexArrayId);
 		m_indexBufferId.Set(InputParam::m_DefaultIndexBufferId);
 	}
 
 	bool InputExecutor::Apply(InputParam * param)
 	{
+		m_isEnableDepthTest.Set(param->m_isEnableDepthTest);
+		m_isEnableDepthWrite.Set(param->m_isEnableDepthWrite);
 		m_vertexArrayId.Set(param->m_vertexArrayId);
 		m_indexBufferId.Set(param->m_indexBufferId);
 		m_vertexCount = param->m_vertexCount;
 		m_indexCount = param->m_indexCount;
 		m_primitiveTopology = param->m_primitiveTopology;
+
+		if (m_isEnableDepthTest.Check())
+		{
+			m_isEnableDepthTest.Reset();
+			if (m_isEnableDepthTest.Get()) { GL_CHECK(glEnable(GL_DEPTH_TEST)); }
+			else { GL_CHECK(glDisable(GL_DEPTH_TEST)); }
+		}
+
+		if (m_isEnableDepthWrite.Check())
+		{
+			m_isEnableDepthWrite.Reset();
+			GL_CHECK(glDepthMask(m_isEnableDepthWrite.Get() ? GL_TRUE : GL_FALSE));
+		}
 
 		if (m_vertexArrayId.Check())
 		{
