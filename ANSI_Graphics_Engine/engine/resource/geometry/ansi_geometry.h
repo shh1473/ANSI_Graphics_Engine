@@ -31,6 +31,7 @@ namespace AN
 		unsigned GetVertexCount() const { return m_vertexCount; }
 		unsigned GetIndexCount() const { return m_indexCount; }
 
+		bool GeneratePlane(float width, float height, unsigned widthSegments, unsigned heightSegments);
 		bool GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments);
 		bool GenerateSphere(float radius, unsigned widthSegments, unsigned heightSegments);
 		bool GenerateCylinder(float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments);

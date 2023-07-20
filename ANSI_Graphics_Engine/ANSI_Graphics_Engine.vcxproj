@@ -195,6 +195,7 @@
     <ClCompile Include="engine\utility\event_listener\ansi_event_listener.cpp" />
     <ClCompile Include="engine\utility\geometry_generator\box\ansi_box_geometry_generator.cpp" />
     <ClCompile Include="engine\utility\geometry_generator\cylinder\ansi_cylinder_geometry_generator.cpp" />
+    <ClCompile Include="engine\utility\geometry_generator\plane\ansi_plane_geometry_generator.cpp" />
     <ClCompile Include="engine\utility\geometry_generator\sphere\ansi_sphere_geometry_generator.cpp" />
     <ClCompile Include="engine\utility\obj_loader\ansi_obj_loader.cpp" />
     <ClCompile Include="engine\utility\orbit_controls\ansi_orbit_controls.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="engine\utility\event_listener\ansi_event_listener.h" />
     <ClInclude Include="engine\utility\geometry_generator\box\ansi_box_geometry_generator.h" />
     <ClInclude Include="engine\utility\geometry_generator\cylinder\ansi_cylinder_geometry_generator.h" />
+    <ClInclude Include="engine\utility\geometry_generator\plane\ansi_plane_geometry_generator.h" />
     <ClInclude Include="engine\utility\geometry_generator\sphere\ansi_sphere_geometry_generator.h" />
     <ClInclude Include="engine\utility\obj_loader\ansi_obj_loader.h" />
     <ClInclude Include="engine\utility\orbit_controls\ansi_orbit_controls.h" />

@@ -18,14 +18,12 @@ namespace AN
 	{
 		AN_CHECK_LOG(width > 0.0f && height > 0.0f && depth > 0.0f && widthSegments > 0 && heightSegments > 0 && depthSegments > 0);
 
-		vertexCount = (
-			(widthSegments + 1) * (heightSegments + 1) + (widthSegments + 1) * (heightSegments + 1) +
-			(widthSegments + 1) * (depthSegments + 1) + (widthSegments + 1) * (depthSegments + 1) +
-			(depthSegments + 1) * (heightSegments + 1) + (depthSegments + 1) * (heightSegments + 1)) * 8;
-		indexCount = (
-			widthSegments * heightSegments + widthSegments * heightSegments +
-			widthSegments * depthSegments + widthSegments * depthSegments +
-			depthSegments * heightSegments + depthSegments * heightSegments) * 6;
+		vertexCount = (((widthSegments + 1) * (heightSegments + 1) * 2) +
+				((widthSegments + 1) * (depthSegments + 1) * 2) +
+				((depthSegments + 1) * (heightSegments + 1) * 2)) * 8;
+		indexCount = ((widthSegments * heightSegments * 2) +
+			(heightSegments * depthSegments * 2) +
+			(depthSegments * widthSegments * 2)) * 6;
 
 		unsigned currentVertexCount{ 0 };
 		std::vector<float> rawVerticesData;
@@ -53,20 +51,20 @@ namespace AN
 
 	unsigned BoxGeometryGenerator::BuildPlane(
 		unsigned uIndex, unsigned vIndex, unsigned wIndex, float uDirection, float vDirection,
-		float width, float height, float depth, unsigned divisionX, unsigned divisionY, unsigned currentVertexCount,
+		float width, float height, float depth, unsigned segmentsX, unsigned segmentsY, unsigned currentVertexCount,
 		std::vector<float> & rawVerticesData, std::vector<unsigned> & rawIndicesData)
 	{
-		unsigned vertexCount{ 0 };
-		const float segmentWidth{ width / static_cast<float>(divisionX) };
-		const float segmentHeight{ height / static_cast<float>(divisionY) };
+		const float segmentWidth{ width / static_cast<float>(segmentsX) };
+		const float segmentHeight{ height / static_cast<float>(segmentsY) };
 		const float halfWidth{ width * 0.5f };
 		const float halfHeight{ height * 0.5f };
 		const float halfDepth{ depth * 0.5f };
+		unsigned vertexCount{ 0 };
 		glm::vec3 tmpVector(0.0f);
 
-		for (unsigned i{ 0 }; i < divisionY + 1; ++i)
+		for (unsigned i{ 0 }; i <= segmentsY; ++i)
 		{
-			for (unsigned j{ 0 }; j < divisionX + 1; ++j)
+			for (unsigned j{ 0 }; j <= segmentsX; ++j)
 			{
 				tmpVector[uIndex] = (j * segmentWidth - halfWidth) * uDirection;
 				tmpVector[vIndex] = (i * segmentHeight - halfHeight) * vDirection;
@@ -75,8 +73,8 @@ namespace AN
 				rawVerticesData.push_back(tmpVector.y);
 				rawVerticesData.push_back(tmpVector.z);
 
-				rawVerticesData.push_back(i / static_cast<float>(divisionX));
-				rawVerticesData.push_back(1.0f - j / static_cast<float>(divisionY));
+				rawVerticesData.push_back(j / static_cast<float>(segmentsX));
+				rawVerticesData.push_back(1.0f - (i / static_cast<float>(segmentsY)));
 
 				tmpVector[uIndex] = 0.0f;
 				tmpVector[vIndex] = 0.0f;
@@ -94,14 +92,14 @@ namespace AN
 		unsigned index3{ 0 };
 		unsigned index4{ 0 };
 
-		for (unsigned i{ 0 }; i < divisionY; ++i)
+		for (unsigned i{ 0 }; i < segmentsY; ++i)
 		{
-			for (unsigned j{ 0 }; j < divisionX; ++j)
+			for (unsigned j{ 0 }; j < segmentsX; ++j)
 			{
-				index1 = currentVertexCount + j + (divisionX + 1) * i;
-				index2 = currentVertexCount + j + (divisionX + 1) * (i + 1);
-				index3 = currentVertexCount + (j + 1) + (divisionX + 1) * (i + 1);
-				index4 = currentVertexCount + (j + 1) + (divisionX + 1) * i;
+				index1 = currentVertexCount + j + (segmentsX + 1) * i;
+				index2 = currentVertexCount + j + (segmentsX + 1) * (i + 1);
+				index3 = currentVertexCount + (j + 1) + (segmentsX + 1) * (i + 1);
+				index4 = currentVertexCount + (j + 1) + (segmentsX + 1) * i;
 
 				rawIndicesData.push_back(index1);
 				rawIndicesData.push_back(index2);

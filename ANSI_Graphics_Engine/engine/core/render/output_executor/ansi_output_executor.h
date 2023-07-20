@@ -16,6 +16,8 @@ namespace AN
 	private:
 		StateChecker<bool> m_isEnableBlend;
 		StateChecker<unsigned> m_frameBufferId;
+		StateChecker<double> m_clearDepth;
+		StateChecker<glm::vec4> m_clearColor;
 		StateChecker<BlendFactor> m_srcFactor;
 		StateChecker<BlendFactor> m_dstFactor;
 		StateChecker<BlendFactor> m_srcAlphaFactor;

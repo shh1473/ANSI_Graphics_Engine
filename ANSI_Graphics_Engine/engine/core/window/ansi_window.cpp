@@ -109,9 +109,6 @@ namespace AN
 			AN_CHECK(m_currentScene->OnDefaultLateUpdate());
 			AN_CHECK(m_currentScene->OnLateUpdate());
 
-			GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
-			GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
-
 			AN_CHECK(Core::GetRender()->OnRender());
 
 			if (Core::GetGui()->OnRenderBegin())

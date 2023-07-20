@@ -2,6 +2,7 @@
 
 #include "core/log/ansi_log.h"
 #include "resource/vertex_array/ansi_vertex_array.h"
+#include "utility/geometry_generator/plane/ansi_plane_geometry_generator.h"
 #include "utility/geometry_generator/box/ansi_box_geometry_generator.h"
 #include "utility/geometry_generator/sphere/ansi_sphere_geometry_generator.h"
 #include "utility/geometry_generator/cylinder/ansi_cylinder_geometry_generator.h"
@@ -74,6 +75,14 @@ namespace AN
 	{
 		m_vertexArrays.erase(std::find(m_vertexArrays.begin(), m_vertexArrays.end(), vertexArray));
 		AN_DELETE(vertexArray);
+	}
+
+	bool Geometry::GeneratePlane(float width, float height, unsigned widthSegments, unsigned heightSegments)
+	{
+		AN_CHECK_LOG(m_vertexCount == 0);
+		return PlaneGeometryGenerator::Generate(
+			width, height, widthSegments, heightSegments,
+			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
 
 	bool Geometry::GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments)

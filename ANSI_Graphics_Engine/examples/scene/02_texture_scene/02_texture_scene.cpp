@@ -5,7 +5,8 @@
 namespace Example
 {
 
-	TextureScene::TextureScene()
+	TextureScene::TextureScene() :
+		m_isWireframe(false)
 	{
 
 	}
@@ -32,8 +33,10 @@ namespace Example
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
-		AN::Camera * camera = m_camera->AddComponent<AN::Camera>();
 		m_camera->GetTransform()->SetPositionZ(50.0f);
+
+		AN::Camera * camera = m_camera->AddComponent<AN::Camera>();
+		camera->Raster()->SetCullMode(AN::CullMode::None);
 		m_orbitControls = new AN::OrbitControls(camera);
 
 		return true;
@@ -46,6 +49,11 @@ namespace Example
 
 	bool TextureScene::OnRenderGui()
 	{
+		if (ImGui::Checkbox("Wireframe", &m_isWireframe))
+		{
+			m_camera->FindComponent<AN::Camera>()->Raster()->SetFillMode((m_isWireframe) ? AN::FillMode::Line : AN::FillMode::Fill);
+		}
+
 		if (ImGui::Button("Reset camera"))
 		{
 			m_orbitControls->Reset();
@@ -63,7 +71,7 @@ namespace Example
 		/* === Geometries === */
 		/* Quad */
 		AN_CHECK(m_quadGeometry = GetResources()->CreateGeometry());
-		AN_CHECK(m_quadGeometry->GenerateBox(2.0f, 2.0f, 2.0f, 1, 1, 1));
+		AN_CHECK(m_quadGeometry->GeneratePlane(2.0f, 2.0f, 1, 1));
 		/* Wall VA */
 		AN_CHECK(m_wallVA = m_quadGeometry->GenerateVertexArray(AN::POSITION | AN::TEXCOORD));
 

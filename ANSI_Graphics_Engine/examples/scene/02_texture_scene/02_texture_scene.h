@@ -18,6 +18,9 @@ namespace Example
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
+	private: /* === Gui === */
+		bool m_isWireframe;
+
 	private: /* === Objects === */
 		AN::Object * m_wall{ nullptr };
 		AN::Object * m_camera{ nullptr };

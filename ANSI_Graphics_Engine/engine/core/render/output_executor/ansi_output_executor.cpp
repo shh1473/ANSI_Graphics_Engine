@@ -19,6 +19,8 @@ namespace AN
 	{
 		m_isEnableBlend.Set(param->m_isEnableBlend);
 		m_frameBufferId.Set(param->m_frameBufferId);
+		m_clearDepth.Set(param->m_clearDepth);
+		m_clearColor.Set(param->m_clearColor);
 		m_srcFactor.Set(param->m_srcFactor);
 		m_dstFactor.Set(param->m_dstFactor);
 		m_srcAlphaFactor.Set(param->m_srcAlphaFactor);
@@ -30,6 +32,18 @@ namespace AN
 		{
 			m_frameBufferId.Reset();
 			GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferId.Get()));
+		}
+
+		if (m_clearDepth.Check())
+		{
+			m_clearDepth.Reset();
+			GL_CHECK(glClearDepth(m_clearDepth.Get()));
+		}
+
+		if (m_clearColor.Check())
+		{
+			m_clearColor.Reset();
+			GL_CHECK(glClearColor(m_clearColor.Get().r, m_clearColor.Get().g, m_clearColor.Get().b, m_clearColor.Get().a));
 		}
 
 		if (m_isEnableBlend.Check())
@@ -66,6 +80,9 @@ namespace AN
 				static_cast<unsigned>(m_colorOp.Get()),
 				static_cast<unsigned>(m_alphaOp.Get())));
 		}
+
+		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
+		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
 
 		return true;
 	}

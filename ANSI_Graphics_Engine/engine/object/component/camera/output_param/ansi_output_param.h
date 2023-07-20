@@ -18,6 +18,7 @@ namespace AN
 		InvSrcAlpha = GL_ONE_MINUS_SRC_ALPHA,
 		InvDstAlpha = GL_ONE_MINUS_DST_ALPHA,
 	};
+
 	enum class BlendOp
 	{
 		Add = GL_FUNC_ADD,
@@ -39,6 +40,8 @@ namespace AN
 
 		void SetIsEnableBlend(bool isEnableBlend) { m_isEnableBlend = isEnableBlend; }
 		void SetFrameBufferId(unsigned frameBufferId) { m_frameBufferId = frameBufferId; }
+		void SetClearDepth(double clearDepth) { m_clearDepth = clearDepth; }
+		void SetClearColor(const glm::vec4 & clearColor) { m_clearColor = clearColor; }
 		void SetSrcFactor(BlendFactor srcFactor) { m_srcFactor = srcFactor; }
 		void SetDstFactor(BlendFactor dstFactor) { m_dstFactor = dstFactor; }
 		void SetSrcAlphaFactor(BlendFactor srcAlphaFactor) { m_srcAlphaFactor = srcAlphaFactor; }
@@ -49,6 +52,8 @@ namespace AN
 	private:
 		static const bool m_DefaultIsEnableBlend;
 		static const unsigned m_DefaultFrameBufferId;
+		static const double m_DefaultClearDepth;
+		static const glm::vec4 m_DefaultClearColor;
 		static const BlendFactor m_DefaultSrcFactor;
 		static const BlendFactor m_DefaultDstFactor;
 		static const BlendFactor m_DefaultSrcAlphaFactor;
@@ -58,6 +63,8 @@ namespace AN
 
 		bool m_isEnableBlend;
 		unsigned m_frameBufferId;
+		double m_clearDepth;
+		glm::vec4 m_clearColor;
 		BlendFactor m_srcFactor;
 		BlendFactor m_dstFactor;
 		BlendFactor m_srcAlphaFactor;
