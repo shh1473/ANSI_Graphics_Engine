@@ -16,7 +16,7 @@
 * 테스트를 통한 보완 중...
 
 ## 테스트
-* 00 - Hello, World Scene: ImGui에서 Hello, World!를 띄우는 장면
+* 00 - Hello, World Scene: ImGui에서 "Hello, World!" 문자열을 띄우는 장면
 * 01 - Color Objects Scene: 원기둥, 직육면체, 구 오브젝트에 서로 다른 색상을 입힌 장면
 * 02 - Texture Scene: 평면 오브젝트에 텍스처를 입힌 장면
 * 계속 추가됩니다...
