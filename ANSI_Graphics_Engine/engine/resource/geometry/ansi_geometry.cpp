@@ -16,6 +16,7 @@ namespace AN
 		m_indexCount(0),
 		m_vertexBufferId(0),
 		m_indexBufferId(0),
+		m_stride(0),
 		m_vertexArrays()
 	{
 
@@ -48,10 +49,9 @@ namespace AN
 		std::vector<unsigned> elementCounts;
 		std::vector<unsigned *> offsets;
 
-		if (flag & POSITION) {
-			elementCounts.push_back(3);
-			offsets.push_back(0);
-		}
+		elementCounts.push_back(3);
+		offsets.push_back(0);
+
 		if (flag & TEXCOORD) {
 			elementCounts.push_back(2);
 			offsets.push_back(reinterpret_cast<unsigned *>(3 * sizeof(float)));
@@ -64,7 +64,7 @@ namespace AN
 		for (unsigned i{ 0 }; i < elementCounts.size(); ++i)
 		{
 			GL_CHECK_NULL(glEnableVertexAttribArray(i));
-			GL_CHECK_NULL(glVertexAttribPointer(i, elementCounts[i], GL_FLOAT, GL_FALSE, 8 * sizeof(float), reinterpret_cast<const void *>(offsets[i])));
+			GL_CHECK_NULL(glVertexAttribPointer(i, elementCounts[i], GL_FLOAT, GL_FALSE, m_stride, reinterpret_cast<const void *>(offsets[i])));
 		}
 
 		m_vertexArrays.push_back(new VertexArray(id));
@@ -80,6 +80,7 @@ namespace AN
 	bool Geometry::GeneratePlane(float width, float height, unsigned widthSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
+		m_stride = 8 * sizeof(float);
 		return PlaneGeometryGenerator::Generate(
 			width, height, widthSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
@@ -88,6 +89,7 @@ namespace AN
 	bool Geometry::GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
+		m_stride = 8 * sizeof(float);
 		return BoxGeometryGenerator::Generate(
 			width, height, depth, widthSegments, heightSegments, depthSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
@@ -96,6 +98,7 @@ namespace AN
 	bool Geometry::GenerateSphere(float radius, unsigned widthSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
+		m_stride = 8 * sizeof(float);
 		return SphereGeometryGenerator::Generate(radius, widthSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
@@ -103,6 +106,7 @@ namespace AN
 	bool Geometry::GenerateCylinder(float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
+		m_stride = 8 * sizeof(float);
 		return CylinderGeometryGenerator::Generate(topRadius, bottomRadius, height, radialSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
@@ -110,7 +114,7 @@ namespace AN
 	bool Geometry::GenerateFromObj(const std::string & filePath)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		return ObjLoader::Load(filePath, m_vertexBufferId, m_vertexCount);
+		return ObjLoader::Load(filePath, m_vertexBufferId, m_vertexCount, m_stride);
 	}
 
 }

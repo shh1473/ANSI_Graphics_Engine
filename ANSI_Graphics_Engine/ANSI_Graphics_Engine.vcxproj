@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyobjloader;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyobjloader;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -167,10 +167,12 @@
     <ClCompile Include="engine\external_library\imgui\imgui\imgui_tables.cpp" />
     <ClCompile Include="engine\external_library\imgui\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\external_library\stb\stb\stb_image.cpp" />
+    <ClCompile Include="engine\external_library\tinyobjloader\tinyobjloader\tiny_obj_loader.cpp" />
     <ClCompile Include="engine\external_library\tinyxml2\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="engine\object\component\ansi_component.cpp" />
     <ClCompile Include="engine\object\component\camera\ansi_camera.cpp" />
     <ClCompile Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.cpp" />
+    <ClCompile Include="engine\object\component\light\ambient_light\ansi_ambient_light.cpp" />
     <ClCompile Include="engine\object\component\renderer\ansi_renderer.cpp" />
     <ClCompile Include="engine\object\component\renderer\dispatch_param\ansi_dispatch_param.cpp" />
     <ClCompile Include="engine\object\component\renderer\input_param\ansi_input_param.cpp" />
@@ -205,7 +207,9 @@
     <ClCompile Include="engine\utility\texture_loader\ansi_texture_loader.cpp" />
     <ClCompile Include="examples\scene\01_color_objects_scene\01_color_objects_scene.cpp" />
     <ClCompile Include="examples\scene\02_texture_scene\02_texture_scene.cpp" />
+    <ClCompile Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.cpp" />
     <ClCompile Include="examples\shader\color\color_shader.cpp" />
+    <ClCompile Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.cpp" />
     <ClCompile Include="examples\shader\texture\texture_shader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -231,10 +235,12 @@
     <ClInclude Include="engine\external_library\imgui\imgui\imstb_textedit.h" />
     <ClInclude Include="engine\external_library\imgui\imgui\imstb_truetype.h" />
     <ClInclude Include="engine\external_library\stb\stb\stb_image.h" />
+    <ClInclude Include="engine\external_library\tinyobjloader\tinyobjloader\tiny_obj_loader.h" />
     <ClInclude Include="engine\external_library\tinyxml2\tinyxml2\tinyxml2.h" />
     <ClInclude Include="engine\object\component\ansi_component.h" />
     <ClInclude Include="engine\object\component\camera\ansi_camera.h" />
     <ClInclude Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.h" />
+    <ClInclude Include="engine\object\component\light\ambient_light\ansi_ambient_light.h" />
     <ClInclude Include="engine\object\component\renderer\ansi_renderer.h" />
     <ClInclude Include="engine\object\component\renderer\dispatch_param\ansi_dispatch_param.h" />
     <ClInclude Include="engine\object\component\renderer\input_param\ansi_input_param.h" />
@@ -271,7 +277,9 @@
     <ClInclude Include="engine\utility\texture_loader\ansi_texture_loader.h" />
     <ClInclude Include="examples\scene\01_color_objects_scene\01_color_objects_scene.h" />
     <ClInclude Include="examples\scene\02_texture_scene\02_texture_scene.h" />
+    <ClInclude Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.h" />
     <ClInclude Include="examples\shader\color\color_shader.h" />
+    <ClInclude Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.h" />
     <ClInclude Include="examples\shader\texture\texture_shader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shader\color.shader" />
+    <None Include="assets\shader\hs_ambient_light.shader" />
     <None Include="assets\shader\texture.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

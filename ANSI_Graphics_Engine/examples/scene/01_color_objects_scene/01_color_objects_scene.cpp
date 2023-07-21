@@ -11,11 +11,6 @@ namespace Example
 
 	}
 
-	ColorObjectsScene::~ColorObjectsScene()
-	{
-		AN_DELETE(m_orbitControls);
-	}
-
 	bool ColorObjectsScene::Initialize()
 	{
 		/* === Gui === */
@@ -60,6 +55,7 @@ namespace Example
 		auto camera = m_camera->AddComponent<AN::Camera>();
 		camera->Raster()->SetCullMode(AN::CullMode::None);
 		m_orbitControls = new AN::OrbitControls(camera);
+		camera->SetOrbitControls(m_orbitControls);
 
 		return true;
 	}
@@ -102,11 +98,11 @@ namespace Example
 		AN_CHECK(m_cylinderGeometry->GenerateCylinder(1.0f, 1.0f, 2.0f, 12, 1));
 
 		/* Box VA */
-		AN_CHECK(m_boxVA = m_boxGeometry->GenerateVertexArray(AN::POSITION));
+		AN_CHECK(m_boxVA = m_boxGeometry->GenerateVertexArray(0));
 		/* Sphere VA */
-		AN_CHECK(m_sphereVA = m_sphereGeometry->GenerateVertexArray(AN::POSITION));
+		AN_CHECK(m_sphereVA = m_sphereGeometry->GenerateVertexArray(0));
 		/* Cylinder VA */
-		AN_CHECK(m_cylinderVA = m_cylinderGeometry->GenerateVertexArray(AN::POSITION));
+		AN_CHECK(m_cylinderVA = m_cylinderGeometry->GenerateVertexArray(0));
 
 		return true;
 	}

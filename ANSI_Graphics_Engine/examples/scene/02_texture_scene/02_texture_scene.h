@@ -11,7 +11,6 @@ namespace Example
 	{
 	public:
 		explicit TextureScene();
-		virtual ~TextureScene();
 
 		bool Initialize() override;
 		bool OnUpdate() override;
@@ -29,7 +28,7 @@ namespace Example
 	private: /* === Resources === */
 		AN::Shader * m_textureShader{ nullptr };
 
-		AN::Geometry * m_quadGeometry{ nullptr };
+		AN::Geometry * m_planeGeometry{ nullptr };
 		AN::VertexArray * m_wallVA{ nullptr };
 
 		AN::Texture * m_wallTexture{ nullptr };

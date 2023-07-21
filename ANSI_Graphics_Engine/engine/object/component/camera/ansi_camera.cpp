@@ -4,6 +4,7 @@
 #include "core/render/ansi_render.h"
 #include "object/ansi_object.h"
 #include "object/component/camera/output_param/g_buffer_output/ansi_g_buffer_output.h"
+#include "utility/orbit_controls/ansi_orbit_controls.h"
 
 namespace AN
 {
@@ -27,7 +28,8 @@ namespace AN
 		m_viewProjMatrix(1.0f),
 		m_outputParam(new OutputParam()),
 		m_rasterParam(new RasterParam()),
-		m_gBufferOutput((isEnableGBuffer) ? new GBufferOutput() : nullptr)
+		m_gBufferOutput((isEnableGBuffer) ? new GBufferOutput() : nullptr),
+		m_orbitControls(nullptr)
 	{
 		Core::GetRender()->AddCamera(this, m_type);
 
@@ -49,6 +51,7 @@ namespace AN
 		Core::GetRender()->RemoveCamera(this, m_type);
 		AN_DELETE(m_outputParam);
 		AN_DELETE(m_rasterParam);
+		AN_DELETE(m_orbitControls);
 	}
 
 	bool Camera::OnUpdate()

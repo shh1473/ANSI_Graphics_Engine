@@ -1,4 +1,4 @@
-# shader-vertex
+# shader_vertex
 
 layout(location = 0) in vec4 position;
 
@@ -10,7 +10,7 @@ void main()
 }
 
 
-# shader-fragment
+# shader_fragment
 
 layout(location = 0) out vec4 FragColor;
 

@@ -11,6 +11,7 @@ namespace AN
 {
 
 	class GBufferOutput;
+	class OrbitControls;
 
 	class Camera : public Component, public EventListener
 	{
@@ -33,6 +34,7 @@ namespace AN
 		void SetSize(float width, float height) { m_width.Set(width); m_height.Set(height); }
 		void AddWidth(float width) { m_width.Set(m_width.Get() + width); }
 		void AddHeight(float height) { m_height.Set(m_height.Get() + height); }
+		void SetOrbitControls(OrbitControls * orbitControls) { m_orbitControls = orbitControls; }
 
 		bool GetIsEnableFrustumCulling() const { return m_isEnableFrustumCulling; }
 		const glm::vec3 & GetLookAt() const { return m_lookAt.Get(); }
@@ -80,6 +82,7 @@ namespace AN
 		RasterParam * m_rasterParam;
 		OutputParam * m_outputParam;
 		GBufferOutput * m_gBufferOutput;
+		OrbitControls * m_orbitControls;
 
 	};
 

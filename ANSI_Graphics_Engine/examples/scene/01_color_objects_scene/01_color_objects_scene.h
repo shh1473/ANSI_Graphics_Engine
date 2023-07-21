@@ -11,7 +11,6 @@ namespace Example
 	{
 	public:
 		explicit ColorObjectsScene();
-		virtual ~ColorObjectsScene();
 
 		bool Initialize() override;
 		bool OnUpdate() override;

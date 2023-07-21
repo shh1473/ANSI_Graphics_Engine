@@ -11,11 +11,6 @@ namespace Example
 
 	}
 
-	TextureScene::~TextureScene()
-	{
-		AN_DELETE(m_orbitControls);
-	}
-
 	bool TextureScene::Initialize()
 	{
 		/* === Gui === */
@@ -27,8 +22,8 @@ namespace Example
 
 		auto wallShader = new TextureShader(m_textureShader, m_wall);
 		auto cubeRenderer = m_wall->AddComponent<AN::Renderer>(wallShader);
-		cubeRenderer->Input()->SetVertices(m_wallVA->GetId(), m_quadGeometry->GetVertexCount());
-		cubeRenderer->Input()->SetIndices(m_quadGeometry->GetIndexBufferId(), m_quadGeometry->GetIndexCount());
+		cubeRenderer->Input()->SetVertices(m_wallVA->GetId(), m_planeGeometry->GetVertexCount());
+		cubeRenderer->Input()->SetIndices(m_planeGeometry->GetIndexBufferId(), m_planeGeometry->GetIndexCount());
 		wallShader->SetDiffuseMap(m_wallTexture->GetId());
 
 		/* === Camera Object === */
@@ -38,6 +33,7 @@ namespace Example
 		AN::Camera * camera = m_camera->AddComponent<AN::Camera>();
 		camera->Raster()->SetCullMode(AN::CullMode::None);
 		m_orbitControls = new AN::OrbitControls(camera);
+		camera->SetOrbitControls(m_orbitControls);
 
 		return true;
 	}
@@ -70,10 +66,10 @@ namespace Example
 
 		/* === Geometries === */
 		/* Quad */
-		AN_CHECK(m_quadGeometry = GetResources()->CreateGeometry());
-		AN_CHECK(m_quadGeometry->GeneratePlane(2.0f, 2.0f, 1, 1));
+		AN_CHECK(m_planeGeometry = GetResources()->CreateGeometry());
+		AN_CHECK(m_planeGeometry->GeneratePlane(2.0f, 2.0f, 1, 1));
 		/* Wall VA */
-		AN_CHECK(m_wallVA = m_quadGeometry->GenerateVertexArray(AN::POSITION | AN::TEXCOORD));
+		AN_CHECK(m_wallVA = m_planeGeometry->GenerateVertexArray(AN::TEXCOORD));
 
 		/* === Textures === */
 		AN_CHECK(m_wallTexture = GetResources()->CreateTexture("assets/texture/gravel_diffuse.jpg"));

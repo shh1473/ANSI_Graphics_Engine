@@ -5,9 +5,8 @@
 namespace AN
 {
 
-	constexpr unsigned POSITION{ 1 << 0 };
-	constexpr unsigned TEXCOORD{ 1 << 1 };
-	constexpr unsigned NORMAL{ 1 << 2 };
+	constexpr unsigned TEXCOORD{ 1 << 0 };
+	constexpr unsigned NORMAL{ 1 << 1 };
 
 	struct VertexElement
 	{
@@ -24,7 +23,7 @@ namespace AN
 		explicit Geometry();
 		virtual ~Geometry();
 
-		VertexArray * GenerateVertexArray(unsigned flag = POSITION | TEXCOORD | NORMAL);
+		VertexArray * GenerateVertexArray(unsigned flag = TEXCOORD | NORMAL);
 		void RemoveVertexArray(VertexArray * vertexArray);
 
 		unsigned GetIndexBufferId() const { return m_indexBufferId; }
@@ -42,6 +41,7 @@ namespace AN
 		unsigned m_indexCount;
 		unsigned m_vertexBufferId;
 		unsigned m_indexBufferId;
+		unsigned m_stride;
 		std::vector<VertexArray *> m_vertexArrays;
 
 	};

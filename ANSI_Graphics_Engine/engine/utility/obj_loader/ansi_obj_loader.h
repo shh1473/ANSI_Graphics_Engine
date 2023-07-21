@@ -2,13 +2,15 @@
 
 #include "common/ansi_common.h"
 
+#include "tinyobjloader/tiny_obj_loader.h"
+
 namespace AN
 {
 
 	class ObjLoader
 	{
 	public:
-		static bool Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount);
+		static bool Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount, unsigned & stride);
 
 	private:
 		explicit ObjLoader() = delete;
@@ -20,10 +22,10 @@ namespace AN
 			std::vector<glm::vec3> & loadedNormals,
 			std::vector<glm::uvec3> & loadedIndices);
 		static void AssembleVertices(
-			const std::vector<glm::vec3> & loadedPositions,
-			const std::vector<glm::vec2> & loadedTexCoords,
-			const std::vector<glm::vec3> & loadedNormals,
-			const std::vector<glm::uvec3> & loadedIndices,
+			const std::vector<float> & loadedPositions,
+			const std::vector<float> & loadedTexCoords,
+			const std::vector<float> & loadedNormals,
+			const std::vector<tinyobj::index_t> & loadedIndices,
 			std::vector<float> & rawVerticesData);
 
 	};
