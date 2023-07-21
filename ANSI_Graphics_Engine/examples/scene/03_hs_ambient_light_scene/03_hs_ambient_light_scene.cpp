@@ -5,13 +5,13 @@
 namespace Example
 {
 
-	const glm::vec3 HSAmbientLightScene::m_DefaultAmbientLightUpColor(1.0f, 0.0f, 0.0f);
-	const glm::vec3 HSAmbientLightScene::m_DefaultAmbientLightDownColor(0.0f, 0.0f, 1.0f);
+	const glm::vec3 HSAmbientLightScene::m_DefaultAmbientLightUpColor{ 1.0f, 0.0f, 0.0f };
+	const glm::vec3 HSAmbientLightScene::m_DefaultAmbientLightDownColor{ 0.0f, 0.0f, 1.0f };
 
 	HSAmbientLightScene::HSAmbientLightScene() :
 		m_isWireframe(false),
-		m_upColor(m_DefaultAmbientLightUpColor),
-		m_downColor(m_DefaultAmbientLightDownColor)
+		m_ambientLightUpColor(m_DefaultAmbientLightUpColor),
+		m_ambientLightDownColor(m_DefaultAmbientLightDownColor)
 	{
 
 	}
@@ -19,7 +19,7 @@ namespace Example
 	bool HSAmbientLightScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle("01 - Color Objects");
+		AN::Core::GetGui()->SetTitle("03 - Hemisphere Ambient Light");
 
 		/* === Ambient Light === */
 		m_ambientLight = AddObject(new AN::Object("Ambient Light"));
@@ -27,13 +27,13 @@ namespace Example
 		auto ambientLight = m_ambientLight->AddComponent<AN::AmbientLight>(m_DefaultAmbientLightUpColor, m_DefaultAmbientLightDownColor);
 
 		/* === RGRat Object === */
-		m_rgrat = AddObject(new AN::Object("Cow"));
+		m_rgrat = AddObject(new AN::Object("RG Rat"));
 		m_rgrat->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
 
-		auto wallShader = new HemiSphereAmbientLightShader(m_hsAmbientLightShader, m_rgrat, ambientLight);
-		auto cubeRenderer = m_rgrat->AddComponent<AN::Renderer>(wallShader);
-		cubeRenderer->Input()->SetVertices(m_rgratVA->GetId(), m_rgratGeometry->GetVertexCount());
-		cubeRenderer->Input()->SetIndices(m_rgratGeometry->GetIndexBufferId(), m_rgratGeometry->GetIndexCount());
+		auto hsAmbientLightShader = new HemiSphereAmbientLightShader(m_hsAmbientLightShader, m_rgrat, ambientLight);
+		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(hsAmbientLightShader);
+		rgratRenderer->Input()->SetVertices(m_rgratVA->GetId(), m_rgratGeometry->GetVertexCount());
+		rgratRenderer->Input()->SetIndices(m_rgratGeometry->GetIndexBufferId(), m_rgratGeometry->GetIndexCount());
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
@@ -63,14 +63,14 @@ namespace Example
 			m_orbitControls->Reset();
 		}
 
-		if (ImGui::ColorEdit3("UpColor", &m_upColor.x))
+		if (ImGui::ColorEdit3("UpColor", &m_ambientLightUpColor.x))
 		{
-			m_ambientLight->FindComponent<AN::AmbientLight>()->SetUpColor(m_upColor);
+			m_ambientLight->FindComponent<AN::AmbientLight>()->SetUpColor(m_ambientLightUpColor);
 		}
 
-		if (ImGui::ColorEdit3("DownColor", &m_downColor.x))
+		if (ImGui::ColorEdit3("DownColor", &m_ambientLightDownColor.x))
 		{
-			m_ambientLight->FindComponent<AN::AmbientLight>()->SetDownColor(m_downColor);
+			m_ambientLight->FindComponent<AN::AmbientLight>()->SetDownColor(m_ambientLightDownColor);
 		}
 
 		return true;

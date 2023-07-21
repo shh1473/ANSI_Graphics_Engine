@@ -23,6 +23,7 @@ namespace AN
 		m_isEnableFrustumCulling(true),
 		m_isUseClientSize(isUseClientSize),
 		m_type(type),
+		m_direction(0.0f, 0.0f, -1.0f),
 		m_viewMatrix(1.0f),
 		m_projMatrix(1.0f),
 		m_viewProjMatrix(1.0f),
@@ -63,6 +64,8 @@ namespace AN
 		{
 			UpdateViewMatrix();
 			isMatrixChanged = true;
+
+			m_direction = glm::normalize(m_lookAt.Get() - GetObject()->GetTransform()->GetWorldPosition());
 
 			m_lookAt.Reset();
 		}

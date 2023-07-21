@@ -14,7 +14,7 @@ namespace Example
 	bool TextureScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle("01 - Color Objects");
+		AN::Core::GetGui()->SetTitle("02 - Texture");
 
 		/* === Wall Object === */
 		m_wall = AddObject(new AN::Object("Wall"));

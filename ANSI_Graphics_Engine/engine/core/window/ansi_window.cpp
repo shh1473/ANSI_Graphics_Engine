@@ -14,6 +14,7 @@
 #include "../examples/scene/01_color_objects_scene/01_color_objects_scene.h"
 #include "../examples/scene/02_texture_scene/02_texture_scene.h"
 #include "../examples/scene/03_hs_ambient_light_scene/03_hs_ambient_light_scene.h"
+#include "../examples/scene/04_directional_light_scene/04_directional_light_scene.h"
 
 namespace AN
 {
@@ -97,7 +98,8 @@ namespace AN
 	{
 		//m_nextScene = new Example::ColorObjectsScene();
 		//m_nextScene = new Example::TextureScene();
-		m_nextScene = new Example::HSAmbientLightScene();
+		//m_nextScene = new Example::HSAmbientLightScene();
+		m_nextScene = new Example::DirectionalLightScene();
 		AN_CHECK(ApplyChangeScene());
 
 		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));

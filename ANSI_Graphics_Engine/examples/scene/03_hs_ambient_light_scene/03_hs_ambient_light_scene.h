@@ -23,8 +23,8 @@ namespace Example
 
 	private: /* === Gui === */
 		bool m_isWireframe;
-		glm::vec3 m_upColor;
-		glm::vec3 m_downColor;
+		glm::vec3 m_ambientLightUpColor;
+		glm::vec3 m_ambientLightDownColor;
 
 	private: /* === Objects === */
 		AN::Object * m_rgrat{ nullptr };

@@ -24,6 +24,7 @@
 #include "object/component/renderer/dispatch_param/ansi_dispatch_param.h"
 #include "object/component/renderer/shader_param/ansi_shader_param.h"
 #include "object/component/light/ambient_light/ansi_ambient_light.h"
+#include "object/component/light/directional_light/ansi_directional_light.h"
 #include "object/component/camera/ansi_camera.h"
 
 #include "utility/random/ansi_random.h"

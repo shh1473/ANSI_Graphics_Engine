@@ -38,6 +38,7 @@ namespace AN
 
 		bool GetIsEnableFrustumCulling() const { return m_isEnableFrustumCulling; }
 		const glm::vec3 & GetLookAt() const { return m_lookAt.Get(); }
+		const glm::vec3 & GetDirection() const { return m_direction; }
 		const glm::mat4 & GetViewMatrix() const { return m_viewMatrix; }
 		const glm::mat4 & GetProjMatrix() const { return m_projMatrix; }
 		const glm::mat4 & GetViewProjMatrix() const { return m_viewProjMatrix; }
@@ -68,6 +69,7 @@ namespace AN
 		bool m_isEnableFrustumCulling;
 		bool m_isUseClientSize;
 		CameraType m_type;
+		glm::vec3 m_direction;
 		glm::mat4 m_viewMatrix;
 		glm::mat4 m_projMatrix;
 		glm::mat4 m_viewProjMatrix;
