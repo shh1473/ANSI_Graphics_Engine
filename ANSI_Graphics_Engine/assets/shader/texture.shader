@@ -1,4 +1,5 @@
 # shader_vertex
+# version 460 core
 
 layout(location = 0) in vec4 position;
 layout(location = 1) in vec2 texCoord;
@@ -15,6 +16,7 @@ void main()
 
 
 # shader_fragment
+# version 460 core
 
 layout(location = 0) out vec4 FragColor;
 

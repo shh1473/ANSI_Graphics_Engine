@@ -18,7 +18,6 @@ namespace Example
 	bool HelloWorldScene::OnRenderGui()
 	{
 		ImGui::Text("Hello World!");
-		ImGui::Text("%.3f ms / %d FPS", 1000.0f / ImGui::GetIO().Framerate, static_cast<unsigned>(ImGui::GetIO().Framerate));
 
 		return true;
 	}

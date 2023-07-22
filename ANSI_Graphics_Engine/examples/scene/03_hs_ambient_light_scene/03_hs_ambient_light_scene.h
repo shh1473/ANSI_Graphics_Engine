@@ -5,8 +5,6 @@
 namespace Example
 {
 
-	class HemiSphereAmbientLightShader;
-
 	class HSAmbientLightScene : public AN::Scene
 	{
 	public:

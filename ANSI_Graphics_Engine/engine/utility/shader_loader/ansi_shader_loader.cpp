@@ -70,9 +70,8 @@ namespace AN
 			char * message{ new char[length] };
 
 			GL_ERROR_LOG(glGetShaderInfoLog(shaderId, length, &length, message));
-			Core::GetLog()->WriteSpace(L"Failed:");
 			Core::GetLog()->WriteSpace((type == GL_VERTEX_SHADER) ? L"Vertex" : L"Fragment");
-			Core::GetLog()->WriteLine(L"shader compilation.");
+			Core::GetLog()->WriteLine(L"Shader 컴파일 실패:");
 			Core::GetLog()->WriteLine(Converter::ToUnicode(message));
 
 			delete[] message;

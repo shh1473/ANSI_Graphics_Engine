@@ -174,6 +174,7 @@
     <ClCompile Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.cpp" />
     <ClCompile Include="engine\object\component\light\ambient_light\ansi_ambient_light.cpp" />
     <ClCompile Include="engine\object\component\light\directional_light\ansi_directional_light.cpp" />
+    <ClCompile Include="engine\object\component\light\point_light\ansi_point_light.cpp" />
     <ClCompile Include="engine\object\component\renderer\ansi_renderer.cpp" />
     <ClCompile Include="engine\object\component\renderer\dispatch_param\ansi_dispatch_param.cpp" />
     <ClCompile Include="engine\object\component\renderer\input_param\ansi_input_param.cpp" />
@@ -206,13 +207,16 @@
     <ClCompile Include="engine\utility\random\ansi_random.cpp" />
     <ClCompile Include="engine\utility\shader_loader\ansi_shader_loader.cpp" />
     <ClCompile Include="engine\utility\texture_loader\ansi_texture_loader.cpp" />
+    <ClCompile Include="examples\scene\00_hello_world_scene\00_hello_world_scene.cpp" />
     <ClCompile Include="examples\scene\01_color_objects_scene\01_color_objects_scene.cpp" />
     <ClCompile Include="examples\scene\02_texture_scene\02_texture_scene.cpp" />
     <ClCompile Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.cpp" />
     <ClCompile Include="examples\scene\04_directional_light_scene\04_directional_light_scene.cpp" />
+    <ClCompile Include="examples\scene\05_point_lights_scene\05_point_lights_scene.cpp" />
     <ClCompile Include="examples\shader\color\color_shader.cpp" />
     <ClCompile Include="examples\shader\directional_light\directional_light_shader.cpp" />
     <ClCompile Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.cpp" />
+    <ClCompile Include="examples\shader\point_light\point_lights_3_shader.cpp" />
     <ClCompile Include="examples\shader\texture\texture_shader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -245,6 +249,7 @@
     <ClInclude Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.h" />
     <ClInclude Include="engine\object\component\light\ambient_light\ansi_ambient_light.h" />
     <ClInclude Include="engine\object\component\light\directional_light\ansi_directional_light.h" />
+    <ClInclude Include="engine\object\component\light\point_light\ansi_point_light.h" />
     <ClInclude Include="engine\object\component\renderer\ansi_renderer.h" />
     <ClInclude Include="engine\object\component\renderer\dispatch_param\ansi_dispatch_param.h" />
     <ClInclude Include="engine\object\component\renderer\input_param\ansi_input_param.h" />
@@ -279,13 +284,16 @@
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker.h" />
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker_math.h" />
     <ClInclude Include="engine\utility\texture_loader\ansi_texture_loader.h" />
+    <ClInclude Include="examples\scene\00_hello_world_scene\00_hello_world_scene.h" />
     <ClInclude Include="examples\scene\01_color_objects_scene\01_color_objects_scene.h" />
     <ClInclude Include="examples\scene\02_texture_scene\02_texture_scene.h" />
     <ClInclude Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.h" />
     <ClInclude Include="examples\scene\04_directional_light_scene\04_directional_light_scene.h" />
+    <ClInclude Include="examples\scene\05_point_lights_scene\05_point_lights_scene.h" />
     <ClInclude Include="examples\shader\color\color_shader.h" />
     <ClInclude Include="examples\shader\directional_light\directional_light_shader.h" />
     <ClInclude Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.h" />
+    <ClInclude Include="examples\shader\point_light\point_lights_3_shader.h" />
     <ClInclude Include="examples\shader\texture\texture_shader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +303,7 @@
     <None Include="assets\shader\color.shader" />
     <None Include="assets\shader\directional_light.shader" />
     <None Include="assets\shader\hs_ambient_light.shader" />
+    <None Include="assets\shader\point_lights_3.shader" />
     <None Include="assets\shader\texture.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

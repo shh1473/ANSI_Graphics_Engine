@@ -1,4 +1,5 @@
 # shader_vertex
+# version 460 core
 
 layout(location = 0) in vec4 position;
 layout(location = 1) in vec3 normal;
@@ -16,6 +17,7 @@ void main()
 
 
 # shader_fragment
+# version 460 core
 
 layout(location = 0) out vec4 FragColor;
 
@@ -27,7 +29,7 @@ uniform vec3 u_colorRange;
 void main()
 {
 	float upNormal = (o_worldNormal.y * 0.5) + 0.5;
-	vec3 ambientLightColor = u_downColor + (upNormal * u_colorRange);
+	vec3 color = u_downColor + (upNormal * u_colorRange);
 
-	FragColor = vec4(ambientLightColor, 1.0);
+	FragColor = vec4(color, 1.0);
 }

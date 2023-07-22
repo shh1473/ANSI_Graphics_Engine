@@ -5,8 +5,6 @@
 namespace Example
 {
 
-	class ColorShader;
-
 	class ColorObjectsScene : public AN::Scene
 	{
 	public:

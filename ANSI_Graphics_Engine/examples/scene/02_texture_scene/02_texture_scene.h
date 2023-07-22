@@ -5,8 +5,6 @@
 namespace Example
 {
 
-	class TextureShader;
-
 	class TextureScene : public AN::Scene
 	{
 	public:

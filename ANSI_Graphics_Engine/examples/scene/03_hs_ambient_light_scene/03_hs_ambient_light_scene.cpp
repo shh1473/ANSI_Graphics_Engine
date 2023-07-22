@@ -28,7 +28,6 @@ namespace Example
 
 		/* === RGRat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
-		m_rgrat->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
 
 		auto hsAmbientLightShader = new HemiSphereAmbientLightShader(m_hsAmbientLightShader, m_rgrat, ambientLight);
 		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(hsAmbientLightShader);
@@ -83,10 +82,10 @@ namespace Example
 		AN_CHECK(m_hsAmbientLightShader = GetResources()->CreateShader("assets/shader/hs_ambient_light.shader", RenderType::Forward));
 
 		/* === Geometries === */
-		/* Quad */
+		/* RG Rat */
 		AN_CHECK(m_rgratGeometry = GetResources()->CreateGeometry());
 		AN_CHECK(m_rgratGeometry->GenerateFromObj("assets/model/ptn_rgrat.obj"));
-		/* Wall VA */
+		/* RG Rat VA */
 		AN_CHECK(m_rgratVA = m_rgratGeometry->GenerateVertexArray(AN::NORMAL));
 
 		return true;

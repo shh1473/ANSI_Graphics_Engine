@@ -25,7 +25,7 @@ namespace Example
 		AN_CHECK(SetUniform1f("u_specularPower", m_directionalLight->GetSpecularPower()));
 		AN_CHECK(SetUniform3f("u_color", m_directionalLight->GetColor()));
 		AN_CHECK(SetUniform3f("u_lightDirection", m_directionalLight->GetDirection()));
-		AN_CHECK(SetUniform3f("u_cameraDirection", AN::Core::GetRender()->GetCurrentCamera()->GetDirection()));
+		AN_CHECK(SetUniform3f("u_cameraPosition", AN::Core::GetRender()->GetCurrentCamera()->GetObject()->GetTransform()->GetWorldPosition()));
 
 		return true;
 	}

@@ -97,7 +97,9 @@ namespace AN
 
 	void Camera::OnWindowResize()
 	{
-		if (m_isUseClientSize)
+		if (m_isUseClientSize &&
+			Core::GetWindow()->GetClientSize().x > 0 &&
+			Core::GetWindow()->GetClientSize().y > 0)
 		{
 			m_width.Set(Core::GetWindow()->GetClientSize().x);
 			m_height.Set(Core::GetWindow()->GetClientSize().y);

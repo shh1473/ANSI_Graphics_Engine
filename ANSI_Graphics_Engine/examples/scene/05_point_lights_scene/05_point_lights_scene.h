@@ -5,38 +5,45 @@
 namespace Example
 {
 
-	class DirectionalLightScene : public AN::Scene
+	class PointLightsScene : public AN::Scene
 	{
 	public:
-		explicit DirectionalLightScene();
+		explicit PointLightsScene();
 
 		bool Initialize() override;
 		bool OnUpdate() override;
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
+	private:
+		void UpdateLightDistance(float distance);
+
 	private: /* === Constants === */
+		static constexpr unsigned m_PointLightCount{ 3 };
 		static const float m_DefaultSpecularIntensity;
 		static const float m_DefaultSpecularPower;
-		static const glm::vec3 m_DefaultDirectionalLightColor;
-		static const glm::vec3 m_DefaultDirectionalLightDirection;
+		static const float m_DefaultLightDistance;
+		static const float m_DefaultLightRadius[m_PointLightCount];
+		static const glm::vec3 m_DefaultLightColors[m_PointLightCount];
 
 	private: /* === Gui === */
 		bool m_isWireframe;
 		float m_specularIntensity;
 		float m_specularPower;
-		glm::vec3 m_directionalLightColor;
-		glm::vec3 m_directionalLightDirection;
+		float m_lightRotationY;
+		float m_lightDistance;
+		glm::vec3 m_lightHeights;
 
 	private: /* === Objects === */
 		AN::Object * m_rgrat{ nullptr };
 		AN::Object * m_plane{ nullptr };
-		AN::Object * m_directionalLight{ nullptr };
+		AN::Object * m_lightGroup{ nullptr };
+		AN::Object * m_pointLights[m_PointLightCount]{ nullptr, };
 		AN::Object * m_camera{ nullptr };
 		AN::OrbitControls * m_orbitControls{ nullptr };
 
 	private: /* === Resources === */
-		AN::Shader * m_directionalLightShader{ nullptr };
+		AN::Shader * m_pointLights3Shader{ nullptr };
 
 		AN::Geometry * m_rgratGeometry{ nullptr };
 		AN::VertexArray * m_rgratVA{ nullptr };

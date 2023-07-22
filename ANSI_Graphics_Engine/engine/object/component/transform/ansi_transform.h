@@ -61,6 +61,7 @@ namespace AN
 		bool m_isChangedTransform;
 		bool m_isChangedMatrix;
 		glm::vec3 m_worldPosition;
+		glm::mat4 m_localMatrix;
 		glm::mat4 m_worldMatrix;
 		StateCheckerVec3 m_position;
 		StateCheckerVec3 m_rotation;

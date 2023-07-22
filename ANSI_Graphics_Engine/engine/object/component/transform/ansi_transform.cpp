@@ -10,6 +10,7 @@ namespace AN
 		m_isChangedTransform(false),
 		m_isChangedMatrix(false),
 		m_worldPosition(0.0f),
+		m_localMatrix(1.0f),
 		m_worldMatrix(1.0f),
 		m_position(0.0f),
 		m_rotation(0.0f),
@@ -24,9 +25,11 @@ namespace AN
 		if (m_position.Check() || m_rotation.Check() || m_scale.Check())
 		{
 			m_isChangedTransform = true;
-			m_worldMatrix = glm::translate(glm::mat4(1.0f), m_position.Get());
-			m_worldMatrix *= glm::mat4_cast(ConvertXYZToQuat());
-			m_worldMatrix *= glm::scale(glm::mat4(1.0f), m_scale.Get());
+
+			m_localMatrix = glm::translate(glm::mat4(1.0f), m_position.Get());
+			m_localMatrix *= glm::mat4_cast(ConvertXYZToQuat());
+			m_localMatrix *= glm::scale(glm::mat4(1.0f), m_scale.Get());
+
 			m_position.Reset();
 			m_rotation.Reset();
 			m_scale.Reset();
@@ -37,9 +40,11 @@ namespace AN
 			m_isChangedTransform = false;
 			m_isChangedMatrix = true;
 
+			m_worldMatrix = m_localMatrix;
+
 			if (GetObject()->GetParent())
 			{
-				m_worldMatrix *= m_parentMatrix.Get();
+				m_worldMatrix = m_parentMatrix.Get() * m_worldMatrix;
 			}
 
 			for (const auto & iter : GetObject()->GetChildren())

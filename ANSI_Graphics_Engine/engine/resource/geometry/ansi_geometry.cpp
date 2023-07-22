@@ -1,3 +1,7 @@
+#pragma warning(push)
+/* 'reinterpret_cast': 'unsigned int'에서 더 큰 'unsigned int *'(으)로의 변환 경고 */
+#pragma warning(disable: 4312)
+
 #include "ansi_geometry.h"
 
 #include "core/log/ansi_log.h"
@@ -118,3 +122,5 @@ namespace AN
 	}
 
 }
+
+#pragma warning(pop)

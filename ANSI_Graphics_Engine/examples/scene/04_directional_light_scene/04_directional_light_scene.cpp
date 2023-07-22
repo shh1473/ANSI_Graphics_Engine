@@ -5,10 +5,10 @@
 namespace Example
 {
 
-	const float DirectionalLightScene::m_DefaultSpecularIntensity{ 3.0f };
+	const float DirectionalLightScene::m_DefaultSpecularIntensity{ 2.0f };
 	const float DirectionalLightScene::m_DefaultSpecularPower{ 32.0f };
 	const glm::vec3 DirectionalLightScene::m_DefaultDirectionalLightColor{ 0.75f, 0.75f, 0.75f };
-	const glm::vec3 DirectionalLightScene::m_DefaultDirectionalLightDirection{ 0.0f, -1.0f, -1.0f };
+	const glm::vec3 DirectionalLightScene::m_DefaultDirectionalLightDirection{ 0.0f, -1.0f, -0.5f };
 
 	DirectionalLightScene::DirectionalLightScene() :
 		m_isWireframe(false),
@@ -31,14 +31,23 @@ namespace Example
 		auto directionalLight = m_directionalLight->AddComponent<AN::DirectionalLight>(m_DefaultDirectionalLightColor, m_DefaultDirectionalLightDirection);
 		directionalLight->SetSpecularIntensity(m_DefaultSpecularIntensity);
 
-		/* === RGRat Object === */
+		/* === RG Rat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
-		m_rgrat->GetTransform()->SetScale(1.0f, 1.0f, 1.0f);
 
-		auto directionalLightShader = new DirectionalLightShader(m_directionalLightShader, m_rgrat, directionalLight);
-		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(directionalLightShader);
+		auto rgratDirectionalLightShader = new DirectionalLightShader(m_directionalLightShader, m_rgrat, directionalLight);
+		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(rgratDirectionalLightShader);
 		rgratRenderer->Input()->SetVertices(m_rgratVA->GetId(), m_rgratGeometry->GetVertexCount());
 		rgratRenderer->Input()->SetIndices(m_rgratGeometry->GetIndexBufferId(), m_rgratGeometry->GetIndexCount());
+
+		/* === Plane Object === */
+		m_plane = AddObject(new AN::Object("Plane"));
+		m_plane->GetTransform()->SetPositionY(-15.0f);
+		m_plane->GetTransform()->SetRotationX(-90.0f);
+
+		auto planeDirectionalLightShader = new DirectionalLightShader(m_directionalLightShader, m_plane, directionalLight);
+		auto planeRenderer = m_plane->AddComponent<AN::Renderer>(planeDirectionalLightShader);
+		planeRenderer->Input()->SetVertices(m_planeVA->GetId(), m_planeGeometry->GetVertexCount());
+		planeRenderer->Input()->SetIndices(m_planeGeometry->GetIndexBufferId(), m_planeGeometry->GetIndexCount());
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
@@ -98,11 +107,17 @@ namespace Example
 		AN_CHECK(m_directionalLightShader = GetResources()->CreateShader("assets/shader/directional_light.shader", RenderType::Forward));
 
 		/* === Geometries === */
-		/* Quad */
+		/* RG Rat */
 		AN_CHECK(m_rgratGeometry = GetResources()->CreateGeometry());
 		AN_CHECK(m_rgratGeometry->GenerateFromObj("assets/model/ptn_rgrat.obj"));
-		/* Wall VA */
+		/* RG Rat VA */
 		AN_CHECK(m_rgratVA = m_rgratGeometry->GenerateVertexArray(AN::NORMAL));
+
+		/* Plane */
+		AN_CHECK(m_planeGeometry = GetResources()->CreateGeometry());
+		AN_CHECK(m_planeGeometry->GeneratePlane(200.0f, 200.0f, 1, 1));
+		/* Plane VA */
+		AN_CHECK(m_planeVA = m_planeGeometry->GenerateVertexArray(AN::NORMAL));
 
 		return true;
 	}
