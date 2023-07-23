@@ -3,6 +3,8 @@
 namespace Example
 {
 
+	const std::string HelloWorldScene::m_SceneName{ "00 - Hello World" };
+
 	HelloWorldScene::HelloWorldScene()
 	{
 
@@ -10,16 +12,24 @@ namespace Example
 
 	bool HelloWorldScene::Initialize()
 	{
-		AN::Core::GetGui()->SetTitle("00 - Hello World");
+		AN::Core::GetGui()->SetTitle(m_SceneName);
+
+		GL_CHECK(glClearDepth(1.0f));
+		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 
 		return true;
 	}
 
 	bool HelloWorldScene::OnRenderGui()
 	{
+		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
+		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
+
+		ImGui::Text(">--------- Render Settings ---------<");
+
 		ImGui::Text("Hello World!");
 
-		return true;
+		return ExampleScene::OnRenderGui();
 	}
 
 }

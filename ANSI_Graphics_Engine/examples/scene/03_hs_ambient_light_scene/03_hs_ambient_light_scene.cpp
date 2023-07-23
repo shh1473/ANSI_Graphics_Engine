@@ -5,6 +5,7 @@
 namespace Example
 {
 
+	const std::string HSAmbientLightScene::m_SceneName{ "03 - Hemisphere Ambient Light" };
 	const glm::vec3 HSAmbientLightScene::m_DefaultAmbientLightUpColor{ 1.0f, 0.0f, 0.0f };
 	const glm::vec3 HSAmbientLightScene::m_DefaultAmbientLightDownColor{ 0.0f, 0.0f, 1.0f };
 
@@ -19,7 +20,7 @@ namespace Example
 	bool HSAmbientLightScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle("03 - Hemisphere Ambient Light");
+		AN::Core::GetGui()->SetTitle(m_SceneName);
 
 		/* === Ambient Light === */
 		m_ambientLight = AddObject(new AN::Object("Ambient Light"));
@@ -29,7 +30,7 @@ namespace Example
 		/* === RGRat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
 
-		auto hsAmbientLightShader = new HemiSphereAmbientLightShader(m_hsAmbientLightShader, m_rgrat, ambientLight);
+		auto hsAmbientLightShader = new HemisphereAmbientLightShader(m_hsAmbientLightShader, m_rgrat, ambientLight);
 		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(hsAmbientLightShader);
 		rgratRenderer->Input()->SetVertices(m_rgratVA->GetId(), m_rgratGeometry->GetVertexCount());
 		rgratRenderer->Input()->SetIndices(m_rgratGeometry->GetIndexBufferId(), m_rgratGeometry->GetIndexCount());
@@ -52,6 +53,8 @@ namespace Example
 
 	bool HSAmbientLightScene::OnRenderGui()
 	{
+		ImGui::Text(">--------- Render Settings ---------<");
+
 		if (ImGui::Checkbox("Wireframe", &m_isWireframe))
 		{
 			m_camera->FindComponent<AN::Camera>()->Raster()->SetFillMode((m_isWireframe) ? AN::FillMode::Line : AN::FillMode::Fill);
@@ -72,7 +75,7 @@ namespace Example
 			m_ambientLight->FindComponent<AN::AmbientLight>()->SetDownColor(m_ambientLightDownColor);
 		}
 
-		return true;
+		return ExampleScene::OnRenderGui();
 	}
 
 	bool HSAmbientLightScene::CreateResources()

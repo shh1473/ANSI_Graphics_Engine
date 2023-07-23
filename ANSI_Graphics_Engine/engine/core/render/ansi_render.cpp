@@ -40,6 +40,14 @@ namespace AN
 		return true;
 	}
 
+	void Render::Reset()
+	{
+		m_inputExecutor->Reset();
+		m_rasterExecutor->Reset();
+		m_shaderExecutor->Reset();
+		m_outputExecutor->Reset();
+	}
+
 	bool Render::OnRender()
 	{
 		// Depth Map

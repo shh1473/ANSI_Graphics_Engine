@@ -10,12 +10,7 @@
 #include "utility/obj_loader/ansi_obj_loader.h"
 #include "utility/event_listener/ansi_event_listener.h"
 
-#include "../examples/scene/00_hello_world_scene/00_hello_world_scene.h"
-#include "../examples/scene/01_color_objects_scene/01_color_objects_scene.h"
-#include "../examples/scene/02_texture_scene/02_texture_scene.h"
-#include "../examples/scene/03_hs_ambient_light_scene/03_hs_ambient_light_scene.h"
-#include "../examples/scene/04_directional_light_scene/04_directional_light_scene.h"
-#include "../examples/scene/05_point_lights_scene/05_point_lights_scene.h"
+#include "../examples/manager/example_manager.h"
 
 namespace AN
 {
@@ -97,11 +92,7 @@ namespace AN
 
 	bool Window::Run()
 	{
-		//m_nextScene = new Example::ColorObjectsScene();
-		//m_nextScene = new Example::TextureScene();
-		//m_nextScene = new Example::HSAmbientLightScene();
-		//m_nextScene = new Example::DirectionalLightScene();
-		m_nextScene = new Example::PointLightsScene();
+		m_nextScene = new Example::ExampleManager();
 		AN_CHECK(ApplyChangeScene());
 
 		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
@@ -119,10 +110,7 @@ namespace AN
 
 			if (Core::GetGui()->OnRenderBegin())
 			{
-				ImGui::Text(">--------- Render Settings ---------<");
 				AN_CHECK(m_currentScene->OnRenderGui());
-				ImGui::NewLine();
-				ImGui::Text(">--------- Window Settings ---------<");
 				AN_CHECK(OnRenderGui());
 			}
 			Core::GetGui()->OnRenderEnd();
@@ -138,6 +126,8 @@ namespace AN
 
 	bool Window::OnRenderGui()
 	{
+		ImGui::Text(">--------- Window Settings ---------<");
+
 		ImGui::Checkbox("Windowed", &m_isWindowed);
 		if (m_isWindowed) {
 			ImGui::Checkbox("Borderless", &m_isBorderless);
@@ -184,6 +174,8 @@ namespace AN
 		m_nextScene = nullptr;
 		AN_CHECK(m_currentScene->CreateResources());
 		AN_CHECK(m_currentScene->Initialize());
+
+		Core::GetRender()->Reset();
 
 		return true;
 	}

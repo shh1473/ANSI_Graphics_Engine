@@ -9,7 +9,7 @@ namespace AN
 
 	ShaderExecutor::ShaderExecutor()
 	{
-		m_shaderId.Set(0);
+		Reset();
 	}
 
 	bool ShaderExecutor::Apply(ShaderParam * param)
@@ -36,6 +36,15 @@ namespace AN
 		AN_CHECK(param->OnUpdateUniforms());
 
 		return true;
+	}
+
+	void ShaderExecutor::Reset()
+	{
+		m_shaderId.Set(0);
+		m_textureIds.SetAll(0);
+
+		m_shaderId.Reset();
+		m_textureIds.Reset();
 	}
 
 }

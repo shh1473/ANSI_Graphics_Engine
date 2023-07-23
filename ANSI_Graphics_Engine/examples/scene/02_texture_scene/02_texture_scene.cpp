@@ -5,6 +5,8 @@
 namespace Example
 {
 
+	const std::string TextureScene::m_SceneName{ "02 - Texture" };
+
 	TextureScene::TextureScene() :
 		m_isWireframe(false)
 	{
@@ -14,7 +16,7 @@ namespace Example
 	bool TextureScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle("02 - Texture");
+		AN::Core::GetGui()->SetTitle(m_SceneName);
 
 		/* === Wall Object === */
 		m_wall = AddObject(new AN::Object("Wall"));
@@ -45,6 +47,8 @@ namespace Example
 
 	bool TextureScene::OnRenderGui()
 	{
+		ImGui::Text(">--------- Render Settings ---------<");
+
 		if (ImGui::Checkbox("Wireframe", &m_isWireframe))
 		{
 			m_camera->FindComponent<AN::Camera>()->Raster()->SetFillMode((m_isWireframe) ? AN::FillMode::Line : AN::FillMode::Fill);
@@ -55,7 +59,7 @@ namespace Example
 			m_orbitControls->Reset();
 		}
 
-		return true;
+		return ExampleScene::OnRenderGui();
 	}
 
 	bool TextureScene::CreateResources()
@@ -65,10 +69,10 @@ namespace Example
 		AN_CHECK(m_textureShader = GetResources()->CreateShader("assets/shader/texture.shader", RenderType::Forward));
 
 		/* === Geometries === */
-		/* Quad */
+		/* Plane */
 		AN_CHECK(m_planeGeometry = GetResources()->CreateGeometry());
-		AN_CHECK(m_planeGeometry->GeneratePlane(2.0f, 2.0f, 1, 1));
-		/* Wall VA */
+		AN_CHECK(m_planeGeometry->GeneratePlane(2.0f, 2.0f));
+		/* Plane VA */
 		AN_CHECK(m_wallVA = m_planeGeometry->GenerateVertexArray(AN::TEXCOORD));
 
 		/* === Textures === */

@@ -13,7 +13,6 @@ namespace AN
 
 	Texture::~Texture()
 	{
-		GL_ERROR_LOG(glBindTexture(GL_TEXTURE_2D, 0));
 		GL_ERROR_LOG(glDeleteTextures(1, &m_id));
 	}
 

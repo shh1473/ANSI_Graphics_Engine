@@ -26,6 +26,7 @@
 #include <chrono>
 #include <typeindex>
 #include <algorithm>
+#include <functional>
 #include <random>
 #include <array>
 #include <vector>

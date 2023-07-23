@@ -9,10 +9,7 @@ namespace AN
 		m_dispatchSize(1),
 		m_primitiveTopology(InputParam::m_DefaultPrimitiveTopology)
 	{
-		m_isEnableDepthTest.Set(true);
-		m_isEnableDepthWrite.Set(true);
-		m_vertexArrayId.Set(InputParam::m_DefaultVertexArrayId);
-		m_indexBufferId.Set(InputParam::m_DefaultIndexBufferId);
+		Reset();
 	}
 
 	bool InputExecutor::Apply(InputParam * param)
@@ -58,6 +55,19 @@ namespace AN
 		m_dispatchSize = param->m_size;
 
 		return true;
+	}
+
+	void InputExecutor::Reset()
+	{
+		m_isEnableDepthTest.Set(true);
+		m_isEnableDepthWrite.Set(true);
+		m_vertexArrayId.Set(0);
+		m_indexBufferId.Set(0);
+
+		m_isEnableDepthTest.Reset();
+		m_isEnableDepthWrite.Reset();
+		m_vertexArrayId.Reset();
+		m_indexBufferId.Reset();
 	}
 
 }

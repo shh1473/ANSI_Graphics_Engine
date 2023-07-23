@@ -14,6 +14,7 @@ namespace AN
 
 		bool Apply(InputParam * param);
 		bool Apply(DispatchParam * param);
+		void Reset();
 
 		unsigned GetVertexCount() const { return m_vertexCount; }
 		unsigned GetIndexCount() const { return m_indexCount; }

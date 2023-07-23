@@ -8,19 +8,13 @@
 namespace AN
 {
 
-	DirectionalLight::DirectionalLight(Object * object, const glm::vec3 & color, const glm::vec3 & direction) :
+	DirectionalLight::DirectionalLight(Object * object, const glm::vec3 & color) :
 		Component(object),
 		m_specularIntensity(1.0f),
 		m_specularPower(32.0f),
-		m_color(color * color),
-		m_direction(direction)
+		m_color(color * color)
 	{
 
-	}
-
-	void DirectionalLight::LookAt(const glm::vec3 & target)
-	{
-		m_direction = glm::normalize(target - GetObject()->GetTransform()->GetPosition());
 	}
 
 }

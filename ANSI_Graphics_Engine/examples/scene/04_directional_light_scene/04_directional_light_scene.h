@@ -2,10 +2,12 @@
 
 #include <ansi_graphics_engine.h>
 
+#include "../example_scene.h"
+
 namespace Example
 {
 
-	class DirectionalLightScene : public AN::Scene
+	class DirectionalLightScene : public ExampleScene
 	{
 	public:
 		explicit DirectionalLightScene();
@@ -15,18 +17,21 @@ namespace Example
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
+	public:
+		static const std::string m_SceneName;
+
 	private: /* === Constants === */
 		static const float m_DefaultSpecularIntensity;
 		static const float m_DefaultSpecularPower;
-		static const glm::vec3 m_DefaultDirectionalLightColor;
-		static const glm::vec3 m_DefaultDirectionalLightDirection;
+		static const glm::vec3 m_DefaultLightColor;
+		static const glm::vec2 m_DefaultLightRotation;
 
 	private: /* === Gui === */
 		bool m_isWireframe;
 		float m_specularIntensity;
 		float m_specularPower;
-		glm::vec3 m_directionalLightColor;
-		glm::vec3 m_directionalLightDirection;
+		glm::vec3 m_lightColor;
+		glm::vec2 m_lightRotation;
 
 	private: /* === Objects === */
 		AN::Object * m_rgrat{ nullptr };

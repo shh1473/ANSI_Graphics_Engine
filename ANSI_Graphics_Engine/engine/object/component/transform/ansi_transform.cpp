@@ -1,6 +1,7 @@
 #include "ansi_transform.h"
 
 #include "object/ansi_object.h"
+#include "utility/converter/ansi_converter.h"
 
 namespace AN
 {
@@ -27,7 +28,7 @@ namespace AN
 			m_isChangedTransform = true;
 
 			m_localMatrix = glm::translate(glm::mat4(1.0f), m_position.Get());
-			m_localMatrix *= glm::mat4_cast(ConvertXYZToQuat());
+			m_localMatrix *= glm::mat4_cast(Converter::EulerXYZToQuat(m_rotation.Get()));
 			m_localMatrix *= glm::scale(glm::mat4(1.0f), m_scale.Get());
 
 			m_position.Reset();
@@ -75,25 +76,6 @@ namespace AN
 		m_rotation.Reset();
 		m_scale.Reset();
 		m_parentMatrix.Reset();
-	}
-
-	glm::quat Transform::ConvertXYZToQuat() const
-	{
-		static glm::vec3 radianRotation(0.0f);
-
-		radianRotation = glm::radians(m_rotation.Get());
-		const float c1 = cosf(radianRotation.x * 0.5f);
-		const float c2 = cosf(radianRotation.y * 0.5f);
-		const float c3 = cosf(radianRotation.z * 0.5f);
-		const float s1 = sinf(radianRotation.x * 0.5f);
-		const float s2 = sinf(radianRotation.y * 0.5f);
-		const float s3 = sinf(radianRotation.z * 0.5f);
-
-		return glm::quat(
-			c1 * c2 * c3 - s1 * s2 * s3,
-			s1 * c2 * c3 + c1 * s2 * s3,
-			c1 * s2 * c3 - s1 * c2 * s3,
-			c1 * c2 * s3 + s1 * s2 * c3);
 	}
 
 }

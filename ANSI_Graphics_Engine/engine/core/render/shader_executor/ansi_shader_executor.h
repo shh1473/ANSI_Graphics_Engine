@@ -12,6 +12,7 @@ namespace AN
 		explicit ShaderExecutor();
 
 		bool Apply(ShaderParam * param);
+		void Reset();
 
 	private:
 		StateChecker<unsigned> m_shaderId;

@@ -12,6 +12,7 @@ namespace AN
 		explicit RasterExecutor();
 
 		bool Apply(RasterParam * param);
+		void Reset();
 
 	private:
 		StateChecker<FillMode> m_fillMode;

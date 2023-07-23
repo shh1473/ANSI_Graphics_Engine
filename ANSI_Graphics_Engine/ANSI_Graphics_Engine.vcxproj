@@ -173,6 +173,7 @@
     <ClCompile Include="engine\object\component\camera\ansi_camera.cpp" />
     <ClCompile Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.cpp" />
     <ClCompile Include="engine\object\component\light\ambient_light\ansi_ambient_light.cpp" />
+    <ClCompile Include="engine\object\component\light\capsule_light\ansi_capsule_light.cpp" />
     <ClCompile Include="engine\object\component\light\directional_light\ansi_directional_light.cpp" />
     <ClCompile Include="engine\object\component\light\point_light\ansi_point_light.cpp" />
     <ClCompile Include="engine\object\component\renderer\ansi_renderer.cpp" />
@@ -207,12 +208,16 @@
     <ClCompile Include="engine\utility\random\ansi_random.cpp" />
     <ClCompile Include="engine\utility\shader_loader\ansi_shader_loader.cpp" />
     <ClCompile Include="engine\utility\texture_loader\ansi_texture_loader.cpp" />
+    <ClCompile Include="examples\manager\example_manager.cpp" />
     <ClCompile Include="examples\scene\00_hello_world_scene\00_hello_world_scene.cpp" />
-    <ClCompile Include="examples\scene\01_color_objects_scene\01_color_objects_scene.cpp" />
+    <ClCompile Include="examples\scene\01_colors_scene\01_colors_scene.cpp" />
     <ClCompile Include="examples\scene\02_texture_scene\02_texture_scene.cpp" />
     <ClCompile Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.cpp" />
     <ClCompile Include="examples\scene\04_directional_light_scene\04_directional_light_scene.cpp" />
     <ClCompile Include="examples\scene\05_point_lights_scene\05_point_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\06_capsule_lights_scene\06_capsule_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\example_scene.cpp" />
+    <ClCompile Include="examples\shader\capsule_light\capsule_lights_3_shader.cpp" />
     <ClCompile Include="examples\shader\color\color_shader.cpp" />
     <ClCompile Include="examples\shader\directional_light\directional_light_shader.cpp" />
     <ClCompile Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.cpp" />
@@ -248,6 +253,7 @@
     <ClInclude Include="engine\object\component\camera\ansi_camera.h" />
     <ClInclude Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.h" />
     <ClInclude Include="engine\object\component\light\ambient_light\ansi_ambient_light.h" />
+    <ClInclude Include="engine\object\component\light\capsule_light\ansi_capsule_light.h" />
     <ClInclude Include="engine\object\component\light\directional_light\ansi_directional_light.h" />
     <ClInclude Include="engine\object\component\light\point_light\ansi_point_light.h" />
     <ClInclude Include="engine\object\component\renderer\ansi_renderer.h" />
@@ -284,12 +290,16 @@
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker.h" />
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker_math.h" />
     <ClInclude Include="engine\utility\texture_loader\ansi_texture_loader.h" />
+    <ClInclude Include="examples\manager\example_manager.h" />
     <ClInclude Include="examples\scene\00_hello_world_scene\00_hello_world_scene.h" />
-    <ClInclude Include="examples\scene\01_color_objects_scene\01_color_objects_scene.h" />
+    <ClInclude Include="examples\scene\01_colors_scene\01_colors_scene.h" />
     <ClInclude Include="examples\scene\02_texture_scene\02_texture_scene.h" />
     <ClInclude Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.h" />
     <ClInclude Include="examples\scene\04_directional_light_scene\04_directional_light_scene.h" />
     <ClInclude Include="examples\scene\05_point_lights_scene\05_point_lights_scene.h" />
+    <ClInclude Include="examples\scene\06_capsule_lights_scene\06_capsule_lights_scene.h" />
+    <ClInclude Include="examples\scene\example_scene.h" />
+    <ClInclude Include="examples\shader\capsule_light\capsule_lights_3_shader.h" />
     <ClInclude Include="examples\shader\color\color_shader.h" />
     <ClInclude Include="examples\shader\directional_light\directional_light_shader.h" />
     <ClInclude Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.h" />
@@ -300,6 +310,7 @@
     <Xml Include="configurations\ansi_graphics_engine_config.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\shader\capsule_lights_3.shader" />
     <None Include="assets\shader\color.shader" />
     <None Include="assets\shader\directional_light.shader" />
     <None Include="assets\shader\hs_ambient_light.shader" />

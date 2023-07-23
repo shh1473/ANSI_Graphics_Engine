@@ -1,30 +1,32 @@
-#include "01_color_objects_scene.h"
+#include "01_colors_scene.h"
 
 #include "../examples/shader/color/color_shader.h"
 
 namespace Example
 {
 
-	ColorObjectsScene::ColorObjectsScene() :
+	const std::string ColorsScene::m_SceneName{ "01 - Colors" };
+
+	ColorsScene::ColorsScene() :
 		m_isWireframe(false)
 	{
 
 	}
 
-	bool ColorObjectsScene::Initialize()
+	bool ColorsScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle("01 - Color Objects");
+		AN::Core::GetGui()->SetTitle(m_SceneName);
 
 		/* === Box Object === */
 		m_box = AddObject(new AN::Object("Box"));
 		m_box->GetTransform()->SetScale(5.0f, 5.0f, 5.0f);
 
 		auto boxShader = new ColorShader(m_colorShader, m_box);
-		auto cubeRenderer = m_box->AddComponent<AN::Renderer>(boxShader);
-		cubeRenderer->Input()->SetVertices(m_boxVA->GetId(), m_boxGeometry->GetVertexCount());
-		cubeRenderer->Input()->SetIndices(m_boxGeometry->GetIndexBufferId(), m_boxGeometry->GetIndexCount());
-		boxShader->m_color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+		auto boxRenderer = m_box->AddComponent<AN::Renderer>(boxShader);
+		boxRenderer->Input()->SetVertices(m_boxVA->GetId(), m_boxGeometry->GetVertexCount());
+		boxRenderer->Input()->SetIndices(m_boxGeometry->GetIndexBufferId(), m_boxGeometry->GetIndexCount());
+		boxShader->SetColor(glm::vec3(0.0f, 1.0f, 0.0f));
 
 		/* === Sphere Object === */
 		m_sphere = AddObject(new AN::Object("Sphere"));
@@ -35,7 +37,7 @@ namespace Example
 		auto sphereRenderer = m_sphere->AddComponent<AN::Renderer>(sphereShader);
 		sphereRenderer->Input()->SetVertices(m_sphereVA->GetId(), m_sphereGeometry->GetVertexCount());
 		sphereRenderer->Input()->SetIndices(m_sphereGeometry->GetIndexBufferId(), m_sphereGeometry->GetIndexCount());
-		sphereShader->m_color = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
+		sphereShader->SetColor(glm::vec3(0.0f, 0.0f, 1.0f));
 
 		/* === Cylinder Object === */
 		m_cylinder = AddObject(new AN::Object("Cylinder"));
@@ -46,7 +48,7 @@ namespace Example
 		auto cylinderRenderer = m_cylinder->AddComponent<AN::Renderer>(cylinderShader);
 		cylinderRenderer->Input()->SetVertices(m_cylinderVA->GetId(), m_cylinderGeometry->GetVertexCount());
 		cylinderRenderer->Input()->SetIndices(m_cylinderGeometry->GetIndexBufferId(), m_cylinderGeometry->GetIndexCount());
-		cylinderShader->m_color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+		cylinderShader->SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
@@ -60,13 +62,15 @@ namespace Example
 		return true;
 	}
 
-	bool ColorObjectsScene::OnUpdate()
+	bool ColorsScene::OnUpdate()
 	{
 		return true;
 	}
 
-	bool ColorObjectsScene::OnRenderGui()
+	bool ColorsScene::OnRenderGui()
 	{
+		ImGui::Text(">--------- Render Settings ---------<");
+
 		if (ImGui::Checkbox("Wireframe", &m_isWireframe))
 		{
 			m_camera->FindComponent<AN::Camera>()->Raster()->SetFillMode((m_isWireframe) ? AN::FillMode::Line : AN::FillMode::Fill);
@@ -77,10 +81,10 @@ namespace Example
 			m_orbitControls->Reset();
 		}
 
-		return true;
+		return ExampleScene::OnRenderGui();
 	}
 
-	bool ColorObjectsScene::CreateResources()
+	bool ColorsScene::CreateResources()
 	{
 		/* === Shaders === */
 		/* Color */

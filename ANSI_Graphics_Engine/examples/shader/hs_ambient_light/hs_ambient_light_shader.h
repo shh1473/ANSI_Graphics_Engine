@@ -5,17 +5,16 @@
 namespace Example
 {
 
-	class HemiSphereAmbientLightShader : public AN::ShaderParam
+	class HemisphereAmbientLightShader : public AN::ShaderParam
 	{
 	public:
-		explicit HemiSphereAmbientLightShader(AN::Shader * shader, AN::Object * object, AN::AmbientLight * ambientLight);
+		explicit HemisphereAmbientLightShader(AN::Shader * shader, AN::Object * object, AN::AmbientLight * ambientLight);
 
 		bool OnUpdateUniforms() override;
 
 	private:
 		AN::Object * m_object;
 		AN::AmbientLight * m_ambientLight;
-		glm::mat4 m_MVP;
 
 	};
 

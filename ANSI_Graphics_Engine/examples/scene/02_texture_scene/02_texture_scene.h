@@ -2,10 +2,12 @@
 
 #include <ansi_graphics_engine.h>
 
+#include "../example_scene.h"
+
 namespace Example
 {
 
-	class TextureScene : public AN::Scene
+	class TextureScene : public ExampleScene
 	{
 	public:
 		explicit TextureScene();
@@ -14,6 +16,9 @@ namespace Example
 		bool OnUpdate() override;
 		bool OnRenderGui() override;
 		bool CreateResources() override;
+
+	public:
+		static const std::string m_SceneName;
 
 	private: /* === Gui === */
 		bool m_isWireframe;

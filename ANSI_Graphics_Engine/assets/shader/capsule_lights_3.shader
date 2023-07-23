@@ -31,24 +31,36 @@ in vec3 o_worldNormal;
 uniform float u_specularIntensities[MAX_POINT_LIGHTS];
 uniform float u_specularPowers[MAX_POINT_LIGHTS];
 uniform float u_lightRadiusRcp[MAX_POINT_LIGHTS];
+uniform float u_lightHalfLengths[MAX_POINT_LIGHTS];
 uniform vec3 u_lightColors[MAX_POINT_LIGHTS];
 uniform vec3 u_lightPositions[MAX_POINT_LIGHTS];
+uniform vec3 u_lightDirections[MAX_POINT_LIGHTS];
 uniform vec3 u_cameraPosition;
 
 void main()
 {
+	float distanceFromLight;
 	float distanceToLights;
 	float attenuation;
 	float diffuse;
 	float specular;
+	vec3 nearestPositions;
 	vec3 dirToLights;
+	vec3 dirFromLight;
 	vec3 dirToCamera = normalize(u_cameraPosition - o_worldPosition);
 	vec3 halfWay;
 	vec3 totalColor;
 
-	for (uint i = 0; i < MAX_POINT_LIGHTS; ++i) {
-		dirToLights = normalize(u_lightPositions[i] - o_worldPosition);
-		distanceToLights = length(u_lightPositions[i] - o_worldPosition);
+	for (uint i = 0; i < MAX_POINT_LIGHTS; ++i)
+	{
+		dirFromLight = o_worldPosition - u_lightPositions[i];
+		distanceFromLight = clamp(dot(dirFromLight, u_lightDirections[i]), -u_lightHalfLengths[i], u_lightHalfLengths[i]);
+		nearestPositions = u_lightPositions[i] + (u_lightDirections[i] * distanceFromLight);
+
+		dirToLights = nearestPositions - o_worldPosition;
+		distanceToLights = length(dirToLights);
+		dirToLights /= distanceToLights;
+
 		attenuation = 1.0 - min(distanceToLights * u_lightRadiusRcp[i], 1.0);
 		diffuse = max(dot(o_worldNormal, dirToLights), 0.0);
 

@@ -12,7 +12,6 @@ namespace AN
 
 	Shader::~Shader()
 	{
-		GL_ERROR_LOG(glUseProgram(0));
 		GL_ERROR_LOG(glDeleteProgram(m_id));
 	}
 

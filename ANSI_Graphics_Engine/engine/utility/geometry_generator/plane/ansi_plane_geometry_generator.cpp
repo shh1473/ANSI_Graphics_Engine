@@ -24,6 +24,7 @@ namespace AN
 		std::vector<unsigned> rawIndicesData;
 		rawVerticesData.reserve(vertexCount);
 		rawIndicesData.reserve(indexCount);
+		vertexCount /= 8;
 
 		BuildPlane(width, height, widthSegments, heightSegments, rawVerticesData, rawIndicesData);
 

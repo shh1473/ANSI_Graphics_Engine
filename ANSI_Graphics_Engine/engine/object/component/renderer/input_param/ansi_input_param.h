@@ -31,8 +31,6 @@ namespace AN
 		void SetPrimitiveTopology(PrimitiveTopology primitiveTopology) { m_primitiveTopology = primitiveTopology; }
 
 	private:
-		static const unsigned m_DefaultVertexArrayId;
-		static const unsigned m_DefaultIndexBufferId;
 		static const PrimitiveTopology m_DefaultPrimitiveTopology;
 
 		bool m_isEnableDepthTest;

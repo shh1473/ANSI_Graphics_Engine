@@ -15,7 +15,6 @@ namespace Example
 	private:
 		AN::Object * m_object;
 		AN::DirectionalLight * m_directionalLight;
-		glm::mat4 m_MVP;
 
 	};
 

@@ -22,11 +22,14 @@ namespace AN
 		if (!warning.empty()) { AN_ERROR_LOG(Converter::ToUnicode(warning)); }
 		AN_CHECK_LOG(result);
 
-		AssembleVertices(attrib.vertices, attrib.texcoords, attrib.normals, shapes[0].mesh.indices, rawVerticesData);
-		vertexCount = static_cast<unsigned>(shapes[0].mesh.indices.size());
 		stride = 3 * sizeof(float);
 		if (attrib.texcoords.size() > 0) { stride += 2 * sizeof(float); }
 		if (attrib.normals.size() > 0) { stride += 3 * sizeof(float); }
+
+		vertexCount = static_cast<unsigned>(shapes[0].mesh.indices.size());
+		rawVerticesData.reserve(vertexCount * stride / sizeof(float));
+
+		AssembleVertices(attrib.vertices, attrib.texcoords, attrib.normals, shapes[0].mesh.indices, rawVerticesData);
 
 		AN_CHECK(CreateVertexBuffer(rawVerticesData, vertexBufferId));
 

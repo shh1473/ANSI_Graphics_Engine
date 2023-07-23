@@ -5,10 +5,11 @@
 namespace Example
 {
 
+	const std::string PointLightsScene::m_SceneName{ "05 - Three Point Lights" };
 	const float PointLightsScene::m_DefaultSpecularIntensity{ 1.0f };
 	const float PointLightsScene::m_DefaultSpecularPower{ 32.0f };
-	const float PointLightsScene::m_DefaultLightDistance{ 10.0f };
-	const float PointLightsScene::m_DefaultLightRadius[m_PointLightCount]{ 100.0f, 100.0f, 100.0f };
+	const float PointLightsScene::m_DefaultLightDistance{ 30.0f };
+	const float PointLightsScene::m_DefaultLightRadius{ 100.0f };
 	const glm::vec3 PointLightsScene::m_DefaultLightColors[m_PointLightCount]{
 		glm::vec3(1.0f, 0.0f, 0.0f),
 		glm::vec3(0.0f, 1.0f, 0.0f),
@@ -19,7 +20,8 @@ namespace Example
 		m_isWireframe(false),
 		m_specularIntensity(m_DefaultSpecularIntensity),
 		m_specularPower(m_DefaultSpecularPower),
-		m_lightRotationY(0.0f),
+		m_lightRadius(m_DefaultLightRadius),
+		m_lightRotation(0.0f),
 		m_lightDistance(m_DefaultLightDistance),
 		m_lightHeights(0.0f, 0.0f, 0.0f)
 	{
@@ -29,7 +31,7 @@ namespace Example
 	bool PointLightsScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(std::string("05 - ") + std::to_string(m_PointLightCount) + " Point Lights");
+		AN::Core::GetGui()->SetTitle(m_SceneName);
 
 		/* === Light Group === */
 		m_lightGroup = AddObject(new AN::Object("Light Group"));
@@ -38,9 +40,9 @@ namespace Example
 		AN::PointLight * pointLights[m_PointLightCount]{ nullptr, };
 		for (unsigned i{ 0 }; i < m_PointLightCount; ++i)
 		{
-			m_lightGroup->AddChild(m_pointLights[i] = new AN::Object(std::string("Point Light") + std::to_string(i)));
+			m_lightGroup->AddChild(m_pointLights[i] = new AN::Object(std::string("Point Light ") + std::to_string(i)));
 
-			pointLights[i] = m_pointLights[i]->AddComponent<AN::PointLight>(m_DefaultLightRadius[i], m_DefaultLightColors[i]);
+			pointLights[i] = m_pointLights[i]->AddComponent<AN::PointLight>(m_DefaultLightRadius, m_DefaultLightColors[i]);
 			pointLights[i]->SetSpecularIntensity(m_DefaultSpecularIntensity);
 			pointLights[i]->SetSpecularPower(m_DefaultSpecularPower);
 		}
@@ -82,6 +84,8 @@ namespace Example
 
 	bool PointLightsScene::OnRenderGui()
 	{
+		ImGui::Text(">--------- Render Settings ---------<");
+
 		if (ImGui::Checkbox("Wireframe", &m_isWireframe))
 		{
 			m_camera->FindComponent<AN::Camera>()->Raster()->SetFillMode((m_isWireframe) ? AN::FillMode::Line : AN::FillMode::Fill);
@@ -108,9 +112,17 @@ namespace Example
 			}
 		}
 
-		if (ImGui::DragFloat("Light Rotation", &m_lightRotationY, 1.0f, 0.0f, 360.0f))
+		if (ImGui::DragFloat("Light Radius", &m_lightRadius, 1.0f, 0.0f, 200.0f))
 		{
-			m_lightGroup->GetTransform()->SetRotationY(m_lightRotationY);
+			for (unsigned i{ 0 }; i < m_PointLightCount; ++i)
+			{
+				m_pointLights[i]->FindComponent<AN::PointLight>()->SetRadius(m_lightRadius);
+			}
+		}
+
+		if (ImGui::DragFloat("Light Rotation", &m_lightRotation, 1.0f, -360.0f, 360.0f))
+		{
+			m_lightGroup->GetTransform()->SetRotationY(m_lightRotation);
 		}
 
 		if (ImGui::DragFloat("Light Distance", &m_lightDistance, 0.1f, 0.0f, 50.0f))
@@ -126,7 +138,7 @@ namespace Example
 			}
 		}
 
-		return true;
+		return ExampleScene::OnRenderGui();
 	}
 
 	bool PointLightsScene::CreateResources()

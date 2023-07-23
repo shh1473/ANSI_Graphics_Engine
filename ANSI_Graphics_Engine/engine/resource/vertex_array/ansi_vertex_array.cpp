@@ -11,7 +11,6 @@ namespace AN
 
 	VertexArray::~VertexArray()
 	{
-		GL_ERROR_LOG(glBindVertexArray(0));
 		GL_ERROR_LOG(glDeleteVertexArrays(1, &m_id));
 	}
 

@@ -21,6 +21,8 @@ namespace AN
 		~Render();
 
 		bool Initialize();
+		void Reset();
+
 		bool OnRender();
 
 		void AddCamera(Camera * camera, CameraType type) { m_cameras[static_cast<unsigned>(type)].push_back(camera); }

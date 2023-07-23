@@ -30,6 +30,25 @@ namespace AN
 		return std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t>().to_bytes(w_str);
 	}
 
+	glm::quat Converter::EulerXYZToQuat(const glm::vec3 & rotation)
+	{
+		static glm::vec3 radianRotation(0.0f);
+
+		radianRotation = glm::radians(rotation);
+		const float c1 = cosf(radianRotation.x * 0.5f);
+		const float c2 = cosf(radianRotation.y * 0.5f);
+		const float c3 = cosf(radianRotation.z * 0.5f);
+		const float s1 = sinf(radianRotation.x * 0.5f);
+		const float s2 = sinf(radianRotation.y * 0.5f);
+		const float s3 = sinf(radianRotation.z * 0.5f);
+
+		return glm::quat(
+			c1 * c2 * c3 - s1 * s2 * s3,
+			s1 * c2 * c3 + c1 * s2 * s3,
+			c1 * s2 * c3 - s1 * c2 * s3,
+			c1 * c2 * s3 + s1 * s2 * c3);
+	}
+
 	std::wstring Converter::TinyXMLErrorToString(int error)
 	{
 		switch (error)

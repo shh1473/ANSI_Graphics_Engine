@@ -2,7 +2,7 @@
 
 const unsigned MaximumTextureCount{ 8 };
 
-const unsigned CameraTypeCount{ 3 };
+const unsigned CameraTypeCount{ 2 };
 enum class CameraType
 {
 	Camera,

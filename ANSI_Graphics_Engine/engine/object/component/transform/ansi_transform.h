@@ -56,8 +56,6 @@ namespace AN
 		const glm::mat4 & GetParentMatrix() const { return m_parentMatrix.Get(); }
 
 	private:
-		glm::quat ConvertXYZToQuat() const;
-
 		bool m_isChangedTransform;
 		bool m_isChangedMatrix;
 		glm::vec3 m_worldPosition;

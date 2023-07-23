@@ -16,6 +16,8 @@ namespace AN
 
 		static std::wstring TinyXMLErrorToString(int error);
 
+		static glm::quat EulerXYZToQuat(const glm::vec3 & rotation);
+
 	private:
 		explicit Converter() = delete;
 

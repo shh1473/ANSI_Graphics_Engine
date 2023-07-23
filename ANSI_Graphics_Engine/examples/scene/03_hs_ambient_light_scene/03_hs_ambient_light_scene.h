@@ -2,10 +2,12 @@
 
 #include <ansi_graphics_engine.h>
 
+#include "../example_scene.h"
+
 namespace Example
 {
 
-	class HSAmbientLightScene : public AN::Scene
+	class HSAmbientLightScene : public ExampleScene
 	{
 	public:
 		explicit HSAmbientLightScene();
@@ -15,7 +17,10 @@ namespace Example
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
-	private:
+	public:
+		static const std::string m_SceneName;
+
+	private: /* === Constants === */
 		static const glm::vec3 m_DefaultAmbientLightUpColor;
 		static const glm::vec3 m_DefaultAmbientLightDownColor;
 

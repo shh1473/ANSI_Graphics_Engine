@@ -5,17 +5,18 @@
 namespace Example
 {
 
+	const std::string DirectionalLightScene::m_SceneName{ "04 - Directional Light" };
 	const float DirectionalLightScene::m_DefaultSpecularIntensity{ 2.0f };
 	const float DirectionalLightScene::m_DefaultSpecularPower{ 32.0f };
-	const glm::vec3 DirectionalLightScene::m_DefaultDirectionalLightColor{ 0.75f, 0.75f, 0.75f };
-	const glm::vec3 DirectionalLightScene::m_DefaultDirectionalLightDirection{ 0.0f, -1.0f, -0.5f };
+	const glm::vec3 DirectionalLightScene::m_DefaultLightColor{ 0.75f, 0.75f, 0.75f };
+	const glm::vec2 DirectionalLightScene::m_DefaultLightRotation{ 90.0f, 0.0f };
 
 	DirectionalLightScene::DirectionalLightScene() :
 		m_isWireframe(false),
 		m_specularIntensity(m_DefaultSpecularIntensity),
 		m_specularPower(m_DefaultSpecularPower),
-		m_directionalLightColor(m_DefaultDirectionalLightColor),
-		m_directionalLightDirection(m_DefaultDirectionalLightDirection)
+		m_lightColor(m_DefaultLightColor),
+		m_lightRotation(m_DefaultLightRotation)
 	{
 
 	}
@@ -23,12 +24,14 @@ namespace Example
 	bool DirectionalLightScene::Initialize()
 	{
 		/* === Gui === */
-		AN::Core::GetGui()->SetTitle("04 - Directional Light");
+		AN::Core::GetGui()->SetTitle(m_SceneName);
 
 		/* === Directional Light === */
 		m_directionalLight = AddObject(new AN::Object("Directional Light"));
+		m_directionalLight->GetTransform()->SetRotationX(m_DefaultLightRotation.x);
+		m_directionalLight->GetTransform()->SetRotationY(m_DefaultLightRotation.y);
 
-		auto directionalLight = m_directionalLight->AddComponent<AN::DirectionalLight>(m_DefaultDirectionalLightColor, m_DefaultDirectionalLightDirection);
+		auto directionalLight = m_directionalLight->AddComponent<AN::DirectionalLight>(m_DefaultLightColor);
 		directionalLight->SetSpecularIntensity(m_DefaultSpecularIntensity);
 
 		/* === RG Rat Object === */
@@ -67,6 +70,8 @@ namespace Example
 
 	bool DirectionalLightScene::OnRenderGui()
 	{
+		ImGui::Text(">--------- Render Settings ---------<");
+
 		if (ImGui::Checkbox("Wireframe", &m_isWireframe))
 		{
 			m_camera->FindComponent<AN::Camera>()->Raster()->SetFillMode((m_isWireframe) ? AN::FillMode::Line : AN::FillMode::Fill);
@@ -87,17 +92,18 @@ namespace Example
 			m_directionalLight->FindComponent<AN::DirectionalLight>()->SetSpecularPower(m_specularPower);
 		}
 
-		if (ImGui::ColorEdit3("Color", &m_directionalLightColor.x))
+		if (ImGui::ColorEdit3("Light Color", &m_lightColor.x))
 		{
-			m_directionalLight->FindComponent<AN::DirectionalLight>()->SetColor(m_directionalLightColor);
+			m_directionalLight->FindComponent<AN::DirectionalLight>()->SetColor(m_lightColor);
 		}
 
-		if (ImGui::DragFloat3("Direction", &m_directionalLightDirection.x, 0.01f, -1.0f, 1.0f))
+		if (ImGui::DragFloat2("Light Rotation", &m_lightRotation.x, 1.0f, -360.0f, 360.0f))
 		{
-			m_directionalLight->FindComponent<AN::DirectionalLight>()->SetDirection(m_directionalLightDirection);
+			m_directionalLight->GetTransform()->SetRotationX(m_lightRotation.x);
+			m_directionalLight->GetTransform()->SetRotationY(m_lightRotation.y);
 		}
 
-		return true;
+		return ExampleScene::OnRenderGui();
 	}
 
 	bool DirectionalLightScene::CreateResources()

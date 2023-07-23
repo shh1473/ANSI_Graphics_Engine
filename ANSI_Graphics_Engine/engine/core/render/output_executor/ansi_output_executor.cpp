@@ -5,14 +5,7 @@ namespace AN
 
 	OutputExecutor::OutputExecutor()
 	{
-		m_isEnableBlend.Set(OutputParam::m_DefaultIsEnableBlend);
-		m_frameBufferId.Set(OutputParam::m_DefaultFrameBufferId);
-		m_srcFactor.Set(OutputParam::m_DefaultSrcFactor);
-		m_dstFactor.Set(OutputParam::m_DefaultDstFactor);
-		m_srcAlphaFactor.Set(OutputParam::m_DefaultSrcAlphaFactor);
-		m_dstAlphaFactor.Set(OutputParam::m_DefaultDstAlphaFactor);
-		m_colorOp.Set(OutputParam::m_DefaultColorOp);
-		m_alphaOp.Set(OutputParam::m_DefaultAlphaOp);
+		Reset();
 	}
 
 	bool OutputExecutor::Apply(OutputParam * param)
@@ -85,6 +78,27 @@ namespace AN
 		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
 
 		return true;
+	}
+
+	void OutputExecutor::Reset()
+	{
+		m_isEnableBlend.Set(OutputParam::m_DefaultIsEnableBlend);
+		m_frameBufferId.Set(OutputParam::m_DefaultFrameBufferId);
+		m_srcFactor.Set(OutputParam::m_DefaultSrcFactor);
+		m_dstFactor.Set(OutputParam::m_DefaultDstFactor);
+		m_srcAlphaFactor.Set(OutputParam::m_DefaultSrcAlphaFactor);
+		m_dstAlphaFactor.Set(OutputParam::m_DefaultDstAlphaFactor);
+		m_colorOp.Set(OutputParam::m_DefaultColorOp);
+		m_alphaOp.Set(OutputParam::m_DefaultAlphaOp);
+
+		m_isEnableBlend.Reset();
+		m_frameBufferId.Reset();
+		m_srcFactor.Reset();
+		m_dstFactor.Reset();
+		m_srcAlphaFactor.Reset();
+		m_dstAlphaFactor.Reset();
+		m_colorOp.Reset();
+		m_alphaOp.Reset();
 	}
 
 }

@@ -5,12 +5,7 @@ namespace AN
 
 	RasterExecutor::RasterExecutor()
 	{
-		m_fillMode.Set(RasterParam::m_DefaultFillMode);
-		m_cullMode.Set(RasterParam::m_DefaultCullMode);
-		m_frontFace.Set(RasterParam::m_DefaultFrontFace);
-		m_msaa.Set(RasterParam::m_DefaultMSAA);
-		m_depthClipNear.Set(RasterParam::m_DefaultDepthClipNear);
-		m_depthClipFar.Set(RasterParam::m_DefaultDepthClipFar);
+		Reset();
 	}
 
 	bool RasterExecutor::Apply(RasterParam * param)
@@ -70,6 +65,23 @@ namespace AN
 		}
 
 		return true;
+	}
+
+	void RasterExecutor::Reset()
+	{
+		m_fillMode.Set(RasterParam::m_DefaultFillMode);
+		m_cullMode.Set(RasterParam::m_DefaultCullMode);
+		m_frontFace.Set(RasterParam::m_DefaultFrontFace);
+		m_msaa.Set(RasterParam::m_DefaultMSAA);
+		m_depthClipNear.Set(RasterParam::m_DefaultDepthClipNear);
+		m_depthClipFar.Set(RasterParam::m_DefaultDepthClipFar);
+
+		m_fillMode.Reset();
+		m_cullMode.Reset();
+		m_frontFace.Reset();
+		m_msaa.Reset();
+		m_depthClipNear.Reset();
+		m_depthClipFar.Reset();
 	}
 
 }

@@ -29,11 +29,9 @@ namespace AN
 	Geometry::~Geometry()
 	{
 		if (m_vertexBufferId) {
-			GL_ERROR_LOG(glBindBuffer(GL_ARRAY_BUFFER, 0));
 			GL_ERROR_LOG(glDeleteBuffers(1, &m_vertexBufferId));
 		}
 		if (m_indexBufferId) {
-			GL_ERROR_LOG(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 			GL_ERROR_LOG(glDeleteBuffers(1, &m_indexBufferId));
 		}
 		for (auto & vertexArray : m_vertexArrays) {

@@ -5,20 +5,20 @@ namespace Example
 
 	TextureShader::TextureShader(AN::Shader * shader, AN::Object * object) :
 		ShaderParam(shader),
-		m_object(object),
-		m_MVP(1.0f)
+		m_object(object)
 	{
 
 	}
 
 	bool TextureShader::OnUpdateUniforms()
 	{
-		m_MVP = AN::Core::GetRender()->GetCurrentCamera()->GetViewProjMatrix() * m_object->GetTransform()->GetWorldMatrix();
+		/* === Vertex === */
+		static glm::mat4 MVP(1.0f);
+		MVP = AN::Core::GetRender()->GetCurrentCamera()->GetViewProjMatrix() * m_object->GetTransform()->GetWorldMatrix();
 
-		// Vertex
-		AN_CHECK(SetUniform4x4f("u_MVP", m_MVP));
+		AN_CHECK(SetUniform4x4f("u_MVP", MVP));
 
-		// Fragment
+		/* === Fragment === */
 		AN_CHECK(SetUniform1i("u_diffuseMap", 0));
 
 		return true;

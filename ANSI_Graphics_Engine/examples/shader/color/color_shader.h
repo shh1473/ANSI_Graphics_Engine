@@ -8,16 +8,17 @@ namespace Example
 	class ColorShader : public AN::ShaderParam
 	{
 	public:
-		glm::vec4 m_color;
-
-	public:
 		explicit ColorShader(AN::Shader * shader, AN::Object * object);
 
 		bool OnUpdateUniforms() override;
 
+		void SetColor(const glm::vec3 & color) { m_color = color; }
+
+		const glm::vec3 & GetColor() const { return m_color; }
+
 	private:
+		glm::vec3 m_color;
 		AN::Object * m_object;
-		glm::mat4 m_MVP;
 
 	};
 

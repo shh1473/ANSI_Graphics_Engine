@@ -12,6 +12,7 @@ namespace AN
 		explicit OutputExecutor();
 
 		bool Apply(OutputParam * param);
+		void Reset();
 
 	private:
 		StateChecker<bool> m_isEnableBlend;
