@@ -21,6 +21,6 @@
 * 02 - Texture Scene: 평면 오브젝트에 텍스처를 입힌 장면
 * 03 - Hemisphere Ambient Light Scene: 반구형 앰비언트 라이트를 적용한 장면
 * 04 - Directional Light Scene: 디렉셔널 라이트를 적용한 장면
-* 05 - Three Point Lights Scene: 3개의 포인트 라이트를 적용한 장면
-* 06 - Three Capsule Lights Scene: 3개의 캡슐 라이트를 적용한 장면
+* 05 - Point Lights Scene: 3개의 포인트 라이트를 적용한 장면
+* 06 - Capsule Lights Scene: 3개의 캡슐 라이트를 적용한 장면
 * 계속 추가됩니다...
