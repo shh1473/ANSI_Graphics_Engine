@@ -2,8 +2,9 @@
 
 #include "core/window/ansi_window.h"
 #include "core/render/ansi_render.h"
+#include "core/render/built_in/g_buffer_output/ansi_g_buffer_output.h"
 #include "object/ansi_object.h"
-#include "object/component/camera/output_param/g_buffer_output/ansi_g_buffer_output.h"
+#include "object/component/transform/ansi_transform.h"
 #include "utility/orbit_controls/ansi_orbit_controls.h"
 
 namespace AN
@@ -28,7 +29,6 @@ namespace AN
 		m_projMatrix(1.0f),
 		m_viewProjMatrix(1.0f),
 		m_outputParam(new OutputParam()),
-		m_rasterParam(new RasterParam()),
 		m_gBufferOutput((isEnableGBuffer) ? new GBufferOutput() : nullptr),
 		m_orbitControls(nullptr)
 	{
@@ -51,7 +51,6 @@ namespace AN
 	{
 		Core::GetRender()->RemoveCamera(this, m_type);
 		AN_DELETE(m_outputParam);
-		AN_DELETE(m_rasterParam);
 		AN_DELETE(m_orbitControls);
 	}
 

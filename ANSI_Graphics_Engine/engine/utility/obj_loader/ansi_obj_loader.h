@@ -10,7 +10,7 @@ namespace AN
 	class ObjLoader
 	{
 	public:
-		static bool Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount, unsigned & stride);
+		static bool Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount, unsigned & stride, unsigned & flag);
 
 	private:
 		explicit ObjLoader() = delete;

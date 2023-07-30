@@ -10,8 +10,6 @@ namespace AN
 		Component(object),
 		m_radiusRcp(1.0f / radius),
 		m_halfLength(length * 0.5f),
-		m_specularIntensity(1.0f),
-		m_specularPower(32.0f),
 		m_color(color * color),
 		m_direction(direction)
 	{

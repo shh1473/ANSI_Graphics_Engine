@@ -26,11 +26,14 @@ layout(location = 0) out vec4 FragColor;
 in vec3 o_worldPosition;
 in vec3 o_worldNormal;
 
-uniform float u_specularIntensity;
-uniform float u_specularPower;
+uniform vec3 u_cameraPosition;
+
 uniform vec3 u_lightColor;
 uniform vec3 u_lightDirection;
-uniform vec3 u_cameraPosition;
+
+uniform float u_specularIntensity;
+uniform float u_specularPower;
+uniform vec4 u_diffuseColor;
 
 void main()
 {
@@ -39,7 +42,7 @@ void main()
 	vec3 dirToCamera = normalize(u_cameraPosition - o_worldPosition);
 	vec3 halfWay = normalize(dirToCamera - u_lightDirection);
 	float specular = pow(max(dot(halfWay, o_worldNormal), 0.0), u_specularPower) * u_specularIntensity;
-	vec3 color = u_lightColor * (diffuse + specular);
+	vec3 light = u_lightColor * (diffuse + specular);
 
-	FragColor = vec4(color, 1.0);
+	FragColor = vec4(u_diffuseColor.rgb * light, u_diffuseColor.a);
 }

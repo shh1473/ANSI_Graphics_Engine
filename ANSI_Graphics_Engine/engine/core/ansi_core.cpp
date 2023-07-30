@@ -6,7 +6,7 @@
 #include "core/window/ansi_window.h"
 #include "core/render/ansi_render.h"
 #include "core/gui/ansi_gui.h"
-#include "core/render/built_in_resources/ansi_built_in_resources.h"
+#include "core/render/built_in/ansi_built_in.h"
 
 namespace AN
 {
@@ -39,7 +39,7 @@ namespace AN
 
 	Core::~Core()
 	{
-		delete m_render->GetBuiltInResources();
+		delete m_render->GetBuiltIn();
 		AN_DELETE(m_gui);
 		AN_DELETE(m_window);
 		AN_DELETE(m_render);

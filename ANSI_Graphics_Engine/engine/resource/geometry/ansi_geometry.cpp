@@ -1,9 +1,9 @@
-#pragma warning(push)
-/* 'reinterpret_cast': 'unsigned int'에서 더 큰 'unsigned int *'(으)로의 변환 경고 */
+/* 'reinterpret_cast': 'unsigned int'에서 더 큰 'unsigned int *'(으)로의 변환 경고 해제 */
 #pragma warning(disable: 4312)
 
 #include "ansi_geometry.h"
 
+#include "common/ansi_common_render.h"
 #include "core/log/ansi_log.h"
 #include "resource/vertex_array/ansi_vertex_array.h"
 #include "utility/geometry_generator/plane/ansi_plane_geometry_generator.h"
@@ -20,7 +20,8 @@ namespace AN
 		m_indexCount(0),
 		m_vertexBufferId(0),
 		m_indexBufferId(0),
-		m_stride(0),
+		m_stride(8 * sizeof(float)),
+		m_flag(TEXCOORD | NORMAL),
 		m_vertexArrays()
 	{
 
@@ -28,15 +29,9 @@ namespace AN
 
 	Geometry::~Geometry()
 	{
-		if (m_vertexBufferId) {
-			GL_ERROR_LOG(glDeleteBuffers(1, &m_vertexBufferId));
-		}
-		if (m_indexBufferId) {
-			GL_ERROR_LOG(glDeleteBuffers(1, &m_indexBufferId));
-		}
-		for (auto & vertexArray : m_vertexArrays) {
-			AN_DELETE(vertexArray);
-		}
+		if (m_vertexBufferId) { GL_ERROR_LOG(glDeleteBuffers(1, &m_vertexBufferId)); }
+		if (m_indexBufferId) { GL_ERROR_LOG(glDeleteBuffers(1, &m_indexBufferId)); }
+		for (auto & vertexArray : m_vertexArrays) { AN_DELETE(vertexArray); }
 	}
 
 	VertexArray * Geometry::GenerateVertexArray(unsigned flag)
@@ -51,16 +46,28 @@ namespace AN
 		std::vector<unsigned> elementCounts;
 		std::vector<unsigned *> offsets;
 
+		unsigned offset{ 0 };
 		elementCounts.push_back(3);
-		offsets.push_back(0);
+		offsets.push_back(reinterpret_cast<unsigned *>(offset));
+		offset += 3 * sizeof(float);
 
-		if (flag & TEXCOORD) {
-			elementCounts.push_back(2);
-			offsets.push_back(reinterpret_cast<unsigned *>(3 * sizeof(float)));
+		if (m_flag & TEXCOORD)
+		{
+			if (flag & TEXCOORD)
+			{
+				elementCounts.push_back(2);
+				offsets.push_back(reinterpret_cast<unsigned *>(offset));
+			}
+			offset += 2 * sizeof(float);
 		}
-		if (flag & NORMAL) {
-			elementCounts.push_back(3);
-			offsets.push_back(reinterpret_cast<unsigned *>(5 * sizeof(float)));
+		if (m_flag & NORMAL)
+		{
+			if (flag & NORMAL)
+			{
+				elementCounts.push_back(3);
+				offsets.push_back(reinterpret_cast<unsigned *>(offset));
+			}
+			offset += 3 * sizeof(float);
 		}
 
 		for (unsigned i{ 0 }; i < elementCounts.size(); ++i)
@@ -69,7 +76,7 @@ namespace AN
 			GL_CHECK_NULL(glVertexAttribPointer(i, elementCounts[i], GL_FLOAT, GL_FALSE, m_stride, reinterpret_cast<const void *>(offsets[i])));
 		}
 
-		m_vertexArrays.push_back(new VertexArray(id));
+		m_vertexArrays.push_back(new VertexArray(id, m_indexBufferId, m_vertexCount, m_indexCount));
 		return m_vertexArrays.back();
 	}
 
@@ -82,7 +89,6 @@ namespace AN
 	bool Geometry::GeneratePlane(float width, float height, unsigned widthSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		m_stride = 8 * sizeof(float);
 		return PlaneGeometryGenerator::Generate(
 			width, height, widthSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
@@ -91,7 +97,6 @@ namespace AN
 	bool Geometry::GenerateBox(float width, float height, float depth, unsigned widthSegments, unsigned heightSegments, unsigned depthSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		m_stride = 8 * sizeof(float);
 		return BoxGeometryGenerator::Generate(
 			width, height, depth, widthSegments, heightSegments, depthSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
@@ -100,7 +105,6 @@ namespace AN
 	bool Geometry::GenerateSphere(float radius, unsigned widthSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		m_stride = 8 * sizeof(float);
 		return SphereGeometryGenerator::Generate(radius, widthSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
@@ -108,7 +112,6 @@ namespace AN
 	bool Geometry::GenerateCylinder(float topRadius, float bottomRadius, float height, unsigned radialSegments, unsigned heightSegments)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		m_stride = 8 * sizeof(float);
 		return CylinderGeometryGenerator::Generate(topRadius, bottomRadius, height, radialSegments, heightSegments,
 			m_vertexBufferId, m_indexBufferId, m_vertexCount, m_indexCount);
 	}
@@ -116,9 +119,7 @@ namespace AN
 	bool Geometry::GenerateFromObj(const std::string & filePath)
 	{
 		AN_CHECK_LOG(m_vertexCount == 0);
-		return ObjLoader::Load(filePath, m_vertexBufferId, m_vertexCount, m_stride);
+		return ObjLoader::Load(filePath, m_vertexBufferId, m_vertexCount, m_stride, m_flag);
 	}
 
 }
-
-#pragma warning(pop)

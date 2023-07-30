@@ -7,25 +7,26 @@ namespace AN
 
 	class InputParam;
 	class DispatchParam;
-	class ShaderParam;
-	class DepthMapShader;
+	class Material;
 
 	class Renderer : public Component
 	{
 	public:
-		explicit Renderer(Object * object, ShaderParam * shaderParam, bool isCastShadow = false);
+		explicit Renderer(Object * object, Material * material);
 		virtual ~Renderer();
 
-		InputParam * Input() const { return m_inputParam; }
-		DispatchParam * Dispatch() const { return m_dispatchParam; }
-		ShaderParam * Shader() const { return m_shaderParam; }
-		DepthMapShader * GetDepthMapShader() const { return m_depthMapShader; }
+		bool GetIsCastShadow() const { return m_isCastShadow; }
+		bool GetIsReceiveShadow() const { return m_isReceiveShadow; }
+		Material * GetMaterial() const { return m_material; }
+		InputParam * GetInput() const { return m_inputParam; }
+		DispatchParam * GetDispatch() const { return m_dispatchParam; }
 
 	private:
+		bool m_isCastShadow;
+		bool m_isReceiveShadow;
+		Material * m_material;
 		InputParam * m_inputParam;
 		DispatchParam * m_dispatchParam;
-		ShaderParam * m_shaderParam;
-		DepthMapShader * m_depthMapShader;
 
 	};
 

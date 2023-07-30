@@ -10,27 +10,22 @@ namespace AN
 
 	bool OutputExecutor::Apply(OutputParam * param)
 	{
-		m_isEnableBlend.Set(param->m_isEnableBlend);
-		m_frameBufferId.Set(param->m_frameBufferId);
+		m_clearStencil.Set(param->m_clearStencil);
 		m_clearDepth.Set(param->m_clearDepth);
 		m_clearColor.Set(param->m_clearColor);
-		m_srcFactor.Set(param->m_srcFactor);
-		m_dstFactor.Set(param->m_dstFactor);
-		m_srcAlphaFactor.Set(param->m_srcAlphaFactor);
-		m_dstAlphaFactor.Set(param->m_dstAlphaFactor);
-		m_colorOp.Set(param->m_colorOp);
-		m_alphaOp.Set(param->m_alphaOp);
+		m_msaa.Set(param->m_msaa);
+		m_frameBufferId.Set(param->m_frameBufferId);
 
-		if (m_frameBufferId.Check())
+		if (m_clearStencil.Check())
 		{
-			m_frameBufferId.Reset();
-			GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferId.Get()));
+			m_clearStencil.Reset();
+			GL_CHECK(glClearStencil(m_clearStencil.Get()));
 		}
 
 		if (m_clearDepth.Check())
 		{
 			m_clearDepth.Reset();
-			GL_CHECK(glClearDepth(m_clearDepth.Get()));
+			GL_CHECK(glClearDepthf(m_clearDepth.Get()));
 		}
 
 		if (m_clearColor.Check())
@@ -39,39 +34,24 @@ namespace AN
 			GL_CHECK(glClearColor(m_clearColor.Get().r, m_clearColor.Get().g, m_clearColor.Get().b, m_clearColor.Get().a));
 		}
 
-		if (m_isEnableBlend.Check())
+		if (m_msaa.Check())
 		{
-			m_isEnableBlend.Reset();
-			if (m_isEnableBlend.Get())
+			m_msaa.Reset();
+			if (m_msaa.Get() == MSAA::None)
 			{
-				GL_CHECK(glEnable(GL_BLEND));
+				GL_CHECK(glDisable(GL_MULTISAMPLE));
 			}
 			else
 			{
-				GL_CHECK(glDisable(GL_BLEND));
+				GL_CHECK(glEnable(GL_MULTISAMPLE));
+				GL_CHECK(glHint(GL_MULTISAMPLE_FILTER_HINT_NV, static_cast<unsigned>(m_msaa.Get())));
 			}
 		}
 
-		if (m_srcFactor.Check() || m_dstFactor.Check() || m_srcAlphaFactor.Check() || m_dstAlphaFactor.Check())
+		if (m_frameBufferId.Check())
 		{
-			m_srcFactor.Reset();
-			m_dstFactor.Reset();
-			m_srcAlphaFactor.Reset();
-			m_dstAlphaFactor.Reset();
-			GL_CHECK(glBlendFuncSeparate(
-				static_cast<unsigned>(m_srcFactor.Get()),
-				static_cast<unsigned>(m_dstFactor.Get()),
-				static_cast<unsigned>(m_srcAlphaFactor.Get()),
-				static_cast<unsigned>(m_dstAlphaFactor.Get())));
-		}
-
-		if (m_colorOp.Check() || m_alphaOp.Check())
-		{
-			m_colorOp.Reset();
-			m_alphaOp.Reset();
-			GL_CHECK(glBlendEquationSeparate(
-				static_cast<unsigned>(m_colorOp.Get()),
-				static_cast<unsigned>(m_alphaOp.Get())));
+			m_frameBufferId.Reset();
+			GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferId.Get()));
 		}
 
 		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
@@ -82,23 +62,17 @@ namespace AN
 
 	void OutputExecutor::Reset()
 	{
-		m_isEnableBlend.Set(OutputParam::m_DefaultIsEnableBlend);
-		m_frameBufferId.Set(OutputParam::m_DefaultFrameBufferId);
-		m_srcFactor.Set(OutputParam::m_DefaultSrcFactor);
-		m_dstFactor.Set(OutputParam::m_DefaultDstFactor);
-		m_srcAlphaFactor.Set(OutputParam::m_DefaultSrcAlphaFactor);
-		m_dstAlphaFactor.Set(OutputParam::m_DefaultDstAlphaFactor);
-		m_colorOp.Set(OutputParam::m_DefaultColorOp);
-		m_alphaOp.Set(OutputParam::m_DefaultAlphaOp);
+		m_clearStencil.Set(OutputParam::m_DefaultClearStencil);
+		m_clearDepth.Set(OutputParam::m_DefaultClearDepth);
+		m_clearColor.Set(OutputParam::m_DefaultClearColor);
+		m_msaa.Set(MSAA::None);
+		m_frameBufferId.Set(0);
 
-		m_isEnableBlend.Reset();
+		m_clearStencil.Reset();
+		m_clearDepth.Reset();
+		m_clearColor.Reset();
+		m_msaa.Reset();
 		m_frameBufferId.Reset();
-		m_srcFactor.Reset();
-		m_dstFactor.Reset();
-		m_srcAlphaFactor.Reset();
-		m_dstAlphaFactor.Reset();
-		m_colorOp.Reset();
-		m_alphaOp.Reset();
 	}
 
 }

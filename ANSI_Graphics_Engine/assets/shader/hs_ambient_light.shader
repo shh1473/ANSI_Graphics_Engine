@@ -26,10 +26,12 @@ in vec3 o_worldNormal;
 uniform vec3 u_downColor;
 uniform vec3 u_colorRange;
 
+uniform vec4 u_diffuseColor;
+
 void main()
 {
 	float upNormal = (o_worldNormal.y * 0.5) + 0.5;
-	vec3 color = u_downColor + (upNormal * u_colorRange);
+	vec3 light = u_downColor + (upNormal * u_colorRange);
 
-	FragColor = vec4(color, 1.0);
+	FragColor = vec4(u_diffuseColor.rgb * light, u_diffuseColor.a);
 }

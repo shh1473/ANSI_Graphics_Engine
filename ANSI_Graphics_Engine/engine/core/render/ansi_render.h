@@ -9,10 +9,9 @@ namespace AN
 	class Camera;
 	class Renderer;
 	class InputExecutor;
-	class RasterExecutor;
-	class ShaderExecutor;
 	class OutputExecutor;
-	class BuiltInResources;
+	class ShaderExecutor;
+	class BuiltIn;
 
 	class Render
 	{
@@ -40,17 +39,16 @@ namespace AN
 		}
 
 		Camera * GetCurrentCamera() const { return m_currentCamera; }
-		BuiltInResources * GetBuiltInResources() const { return m_builtInResources; }
+		BuiltIn * GetBuiltIn() const { return m_builtIn; }
 
 	private:
 		bool Draw();
 
 		Camera * m_currentCamera;
 		InputExecutor * m_inputExecutor;
-		RasterExecutor * m_rasterExecutor;
-		ShaderExecutor * m_shaderExecutor;
 		OutputExecutor * m_outputExecutor;
-		BuiltInResources * m_builtInResources;
+		ShaderExecutor * m_shaderExecutor;
+		BuiltIn * m_builtIn;
 		std::vector<Camera *> m_cameras[CameraTypeCount];
 		std::vector<Renderer *> m_renderers[RenderTypeCount];
 

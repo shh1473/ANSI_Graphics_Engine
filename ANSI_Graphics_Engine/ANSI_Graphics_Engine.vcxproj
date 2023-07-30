@@ -112,14 +112,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyobjloader;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\dependencies\VLD\include;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyobjloader;$(SolutionDir)\ANSI_Graphics_Engine\engine</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\GLFW\lib;$(SolutionDir)\dependencies\GLEW\lib\Release\x64;C:\ProgrammingProjects\Visual Leak Detector\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\GLFW\lib;$(SolutionDir)\dependencies\GLEW\lib\Release\x64;$(SolutionDir)\dependencies\VLD\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32s.lib;glu32.lib;opengl32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyobjloader;$(SolutionDir)\ANSI_Graphics_Engine\engine;C:\ProgrammingProjects\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dependencies\GLFW\include;$(SolutionDir)\dependencies\GLEW\include;$(SolutionDir)\dependencies\GLM;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\imgui;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\stb;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyxml2;$(SolutionDir)\ANSI_Graphics_Engine\engine\external_library\tinyobjloader;$(SolutionDir)\ANSI_Graphics_Engine\engine</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
@@ -142,8 +142,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\GLFW\lib;$(SolutionDir)\dependencies\GLEW\lib\Release\x64;C:\ProgrammingProjects\Visual Leak Detector\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;glu32.lib;opengl32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\dependencies\GLFW\lib;$(SolutionDir)\dependencies\GLEW\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;glu32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <TurnOffAssemblyGeneration />
@@ -154,7 +154,7 @@
     <ClCompile Include="engine\core\ansi_core.cpp" />
     <ClCompile Include="engine\core\gui\ansi_gui.cpp" />
     <ClCompile Include="engine\core\log\ansi_log.cpp" />
-    <ClCompile Include="engine\core\render\built_in_resources\ansi_built_in_resources.cpp" />
+    <ClCompile Include="engine\core\render\built_in\ansi_built_in.cpp" />
     <ClCompile Include="engine\core\timer\ansi_timer.cpp" />
     <ClCompile Include="engine\core\window\ansi_window.cpp" />
     <ClCompile Include="engine\core\xml\ansi_xml.cpp" />
@@ -171,20 +171,19 @@
     <ClCompile Include="engine\external_library\tinyxml2\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="engine\object\component\ansi_component.cpp" />
     <ClCompile Include="engine\object\component\camera\ansi_camera.cpp" />
-    <ClCompile Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.cpp" />
-    <ClCompile Include="engine\object\component\light\ambient_light\ansi_ambient_light.cpp" />
+    <ClCompile Include="engine\core\render\built_in\g_buffer_output\ansi_g_buffer_output.cpp" />
+    <ClCompile Include="engine\object\component\light\hs_ambient_light\ansi_hs_ambient_light.cpp" />
     <ClCompile Include="engine\object\component\light\capsule_light\ansi_capsule_light.cpp" />
     <ClCompile Include="engine\object\component\light\directional_light\ansi_directional_light.cpp" />
     <ClCompile Include="engine\object\component\light\point_light\ansi_point_light.cpp" />
     <ClCompile Include="engine\object\component\renderer\ansi_renderer.cpp" />
-    <ClCompile Include="engine\object\component\renderer\dispatch_param\ansi_dispatch_param.cpp" />
-    <ClCompile Include="engine\object\component\renderer\input_param\ansi_input_param.cpp" />
-    <ClCompile Include="engine\object\component\camera\output_param\ansi_output_param.cpp" />
-    <ClCompile Include="engine\object\component\camera\raster_param\ansi_raster_param.cpp" />
-    <ClCompile Include="engine\object\component\renderer\shader_param\ansi_shader_param.cpp" />
-    <ClCompile Include="engine\object\component\renderer\shader_param\depth_map_shader\ansi_depth_map_shader.cpp" />
+    <ClCompile Include="engine\core\render\input_executor\dispatch_param\ansi_dispatch_param.cpp" />
+    <ClCompile Include="engine\core\render\input_executor\input_param\ansi_input_param.cpp" />
+    <ClCompile Include="engine\core\render\output_executor\output_param\ansi_output_param.cpp" />
+    <ClCompile Include="engine\core\render\built_in\depth_mapping_material\ansi_depth_mapping_material.cpp" />
     <ClCompile Include="engine\object\component\transform\ansi_transform.cpp" />
     <ClCompile Include="engine\resource\geometry\ansi_geometry.cpp" />
+    <ClCompile Include="engine\core\render\shader_executor\material\ansi_material.cpp" />
     <ClCompile Include="engine\resource\texture\ansi_texture.cpp" />
     <ClCompile Include="engine\resource\vertex_array\ansi_vertex_array.cpp" />
     <ClCompile Include="engine\scene\ansi_scene.cpp" />
@@ -192,7 +191,6 @@
     <ClCompile Include="engine\core\render\ansi_render.cpp" />
     <ClCompile Include="engine\core\render\input_executor\ansi_input_executor.cpp" />
     <ClCompile Include="engine\core\render\output_executor\ansi_output_executor.cpp" />
-    <ClCompile Include="engine\core\render\raster_executor\ansi_raster_executor.cpp" />
     <ClCompile Include="engine\core\render\shader_executor\ansi_shader_executor.cpp" />
     <ClCompile Include="engine\scene\resource_storage\ansi_resource_storage.cpp" />
     <ClCompile Include="engine\resource\shader\ansi_shader.cpp" />
@@ -209,20 +207,20 @@
     <ClCompile Include="engine\utility\shader_loader\ansi_shader_loader.cpp" />
     <ClCompile Include="engine\utility\texture_loader\ansi_texture_loader.cpp" />
     <ClCompile Include="examples\manager\example_manager.cpp" />
-    <ClCompile Include="examples\scene\00_hello_world_scene\00_hello_world_scene.cpp" />
-    <ClCompile Include="examples\scene\01_colors_scene\01_colors_scene.cpp" />
-    <ClCompile Include="examples\scene\02_texture_scene\02_texture_scene.cpp" />
-    <ClCompile Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.cpp" />
-    <ClCompile Include="examples\scene\04_directional_light_scene\04_directional_light_scene.cpp" />
-    <ClCompile Include="examples\scene\05_point_lights_scene\05_point_lights_scene.cpp" />
-    <ClCompile Include="examples\scene\06_capsule_lights_scene\06_capsule_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\01_basic\hello_world_scene\hello_world_scene.cpp" />
+    <ClCompile Include="examples\scene\01_basic\color_scene\color_scene.cpp" />
+    <ClCompile Include="examples\scene\01_basic\texture_scene\texture_scene.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\hs_ambient_light_scene\hs_ambient_light_scene.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\directional_light_scene\directional_light_scene.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\point_lights_scene\point_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\capsule_lights_scene\capsule_lights_scene.cpp" />
     <ClCompile Include="examples\scene\example_scene.cpp" />
-    <ClCompile Include="examples\shader\capsule_light\capsule_lights_3_shader.cpp" />
-    <ClCompile Include="examples\shader\color\color_shader.cpp" />
-    <ClCompile Include="examples\shader\directional_light\directional_light_shader.cpp" />
-    <ClCompile Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.cpp" />
-    <ClCompile Include="examples\shader\point_light\point_lights_3_shader.cpp" />
-    <ClCompile Include="examples\shader\texture\texture_shader.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\capsule_lights_scene\material\capsule_lights_3\capsule_lights_3_material.cpp" />
+    <ClCompile Include="examples\scene\01_basic\color_scene\material\color\color_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\directional_light_scene\material\directional_light\directional_light_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\hs_ambient_light_scene\material\hs_ambient_light\hs_ambient_light_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\point_lights_scene\material\point_lights_3\point_lights_3_material.cpp" />
+    <ClCompile Include="examples\scene\01_basic\texture_scene\material\texture\texture_material.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -232,7 +230,7 @@
     <ClInclude Include="engine\core\ansi_core.h" />
     <ClInclude Include="engine\core\gui\ansi_gui.h" />
     <ClInclude Include="engine\core\log\ansi_log.h" />
-    <ClInclude Include="engine\core\render\built_in_resources\ansi_built_in_resources.h" />
+    <ClInclude Include="engine\core\render\built_in\ansi_built_in.h" />
     <ClInclude Include="engine\core\timer\ansi_timer.h" />
     <ClInclude Include="engine\core\window\ansi_window.h" />
     <ClInclude Include="engine\core\xml\ansi_xml.h" />
@@ -251,20 +249,19 @@
     <ClInclude Include="engine\external_library\tinyxml2\tinyxml2\tinyxml2.h" />
     <ClInclude Include="engine\object\component\ansi_component.h" />
     <ClInclude Include="engine\object\component\camera\ansi_camera.h" />
-    <ClInclude Include="engine\object\component\camera\output_param\g_buffer_output\ansi_g_buffer_output.h" />
-    <ClInclude Include="engine\object\component\light\ambient_light\ansi_ambient_light.h" />
+    <ClInclude Include="engine\core\render\built_in\g_buffer_output\ansi_g_buffer_output.h" />
+    <ClInclude Include="engine\object\component\light\hs_ambient_light\ansi_hs_ambient_light.h" />
     <ClInclude Include="engine\object\component\light\capsule_light\ansi_capsule_light.h" />
     <ClInclude Include="engine\object\component\light\directional_light\ansi_directional_light.h" />
     <ClInclude Include="engine\object\component\light\point_light\ansi_point_light.h" />
     <ClInclude Include="engine\object\component\renderer\ansi_renderer.h" />
-    <ClInclude Include="engine\object\component\renderer\dispatch_param\ansi_dispatch_param.h" />
-    <ClInclude Include="engine\object\component\renderer\input_param\ansi_input_param.h" />
-    <ClInclude Include="engine\object\component\camera\output_param\ansi_output_param.h" />
-    <ClInclude Include="engine\object\component\camera\raster_param\ansi_raster_param.h" />
-    <ClInclude Include="engine\object\component\renderer\shader_param\ansi_shader_param.h" />
-    <ClInclude Include="engine\object\component\renderer\shader_param\depth_map_shader\ansi_depth_map_shader.h" />
+    <ClInclude Include="engine\core\render\input_executor\dispatch_param\ansi_dispatch_param.h" />
+    <ClInclude Include="engine\core\render\input_executor\input_param\ansi_input_param.h" />
+    <ClInclude Include="engine\core\render\output_executor\output_param\ansi_output_param.h" />
+    <ClInclude Include="engine\core\render\built_in\depth_mapping_material\ansi_depth_mapping_material.h" />
     <ClInclude Include="engine\object\component\transform\ansi_transform.h" />
     <ClInclude Include="engine\resource\geometry\ansi_geometry.h" />
+    <ClInclude Include="engine\core\render\shader_executor\material\ansi_material.h" />
     <ClInclude Include="engine\resource\texture\ansi_texture.h" />
     <ClInclude Include="engine\resource\vertex_array\ansi_vertex_array.h" />
     <ClInclude Include="engine\scene\ansi_scene.h" />
@@ -272,7 +269,6 @@
     <ClInclude Include="engine\core\render\ansi_render.h" />
     <ClInclude Include="engine\core\render\input_executor\ansi_input_executor.h" />
     <ClInclude Include="engine\core\render\output_executor\ansi_output_executor.h" />
-    <ClInclude Include="engine\core\render\raster_executor\ansi_raster_executor.h" />
     <ClInclude Include="engine\core\render\shader_executor\ansi_shader_executor.h" />
     <ClInclude Include="engine\scene\resource_storage\ansi_resource_storage.h" />
     <ClInclude Include="engine\resource\shader\ansi_shader.h" />
@@ -291,20 +287,20 @@
     <ClInclude Include="engine\utility\state_checker\ansi_state_checker_math.h" />
     <ClInclude Include="engine\utility\texture_loader\ansi_texture_loader.h" />
     <ClInclude Include="examples\manager\example_manager.h" />
-    <ClInclude Include="examples\scene\00_hello_world_scene\00_hello_world_scene.h" />
-    <ClInclude Include="examples\scene\01_colors_scene\01_colors_scene.h" />
-    <ClInclude Include="examples\scene\02_texture_scene\02_texture_scene.h" />
-    <ClInclude Include="examples\scene\03_hs_ambient_light_scene\03_hs_ambient_light_scene.h" />
-    <ClInclude Include="examples\scene\04_directional_light_scene\04_directional_light_scene.h" />
-    <ClInclude Include="examples\scene\05_point_lights_scene\05_point_lights_scene.h" />
-    <ClInclude Include="examples\scene\06_capsule_lights_scene\06_capsule_lights_scene.h" />
+    <ClInclude Include="examples\scene\01_basic\hello_world_scene\hello_world_scene.h" />
+    <ClInclude Include="examples\scene\01_basic\color_scene\color_scene.h" />
+    <ClInclude Include="examples\scene\01_basic\texture_scene\texture_scene.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\hs_ambient_light_scene\hs_ambient_light_scene.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\directional_light_scene\directional_light_scene.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\point_lights_scene\point_lights_scene.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\capsule_lights_scene\capsule_lights_scene.h" />
     <ClInclude Include="examples\scene\example_scene.h" />
-    <ClInclude Include="examples\shader\capsule_light\capsule_lights_3_shader.h" />
-    <ClInclude Include="examples\shader\color\color_shader.h" />
-    <ClInclude Include="examples\shader\directional_light\directional_light_shader.h" />
-    <ClInclude Include="examples\shader\hs_ambient_light\hs_ambient_light_shader.h" />
-    <ClInclude Include="examples\shader\point_light\point_lights_3_shader.h" />
-    <ClInclude Include="examples\shader\texture\texture_shader.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\capsule_lights_scene\material\capsule_lights_3\capsule_lights_3_material.h" />
+    <ClInclude Include="examples\scene\01_basic\color_scene\material\color\color_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\directional_light_scene\material\directional_light\directional_light_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\hs_ambient_light_scene\material\hs_ambient_light\hs_ambient_light_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\point_lights_scene\material\point_lights_3\point_lights_3_material.h" />
+    <ClInclude Include="examples\scene\01_basic\texture_scene\material\texture\texture_material.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="configurations\ansi_graphics_engine_config.xml" />

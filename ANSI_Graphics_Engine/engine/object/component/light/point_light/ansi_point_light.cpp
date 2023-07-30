@@ -9,8 +9,6 @@ namespace AN
 	PointLight::PointLight(Object * object, float radius, const glm::vec3 & color) :
 		Component(object),
 		m_radiusRcp(1.0f / radius),
-		m_specularIntensity(1.0f),
-		m_specularPower(32.0f),
 		m_color(color * color)
 	{
 

@@ -28,14 +28,20 @@ layout(location = 0) out vec4 FragColor;
 in vec3 o_worldPosition;
 in vec3 o_worldNormal;
 
-uniform float u_specularIntensities[MAX_POINT_LIGHTS];
-uniform float u_specularPowers[MAX_POINT_LIGHTS];
+/* Camera */
+uniform vec3 u_cameraPosition;
+
+/* Lights */
 uniform float u_lightRadiusRcp[MAX_POINT_LIGHTS];
 uniform float u_lightHalfLengths[MAX_POINT_LIGHTS];
 uniform vec3 u_lightColors[MAX_POINT_LIGHTS];
 uniform vec3 u_lightPositions[MAX_POINT_LIGHTS];
 uniform vec3 u_lightDirections[MAX_POINT_LIGHTS];
-uniform vec3 u_cameraPosition;
+
+/* Material */
+uniform float u_specularIntensity;
+uniform float u_specularPower;
+uniform vec4 u_diffuseColor;
 
 void main()
 {
@@ -49,7 +55,7 @@ void main()
 	vec3 dirFromLight;
 	vec3 dirToCamera = normalize(u_cameraPosition - o_worldPosition);
 	vec3 halfWay;
-	vec3 totalColor;
+	vec3 totalLight;
 
 	for (uint i = 0; i < MAX_POINT_LIGHTS; ++i)
 	{
@@ -65,10 +71,10 @@ void main()
 		diffuse = max(dot(o_worldNormal, dirToLights), 0.0);
 
 		halfWay = normalize(dirToLights + dirToCamera);
-		specular = pow(max(dot(halfWay, o_worldNormal), 0.0), u_specularPowers[i]) * u_specularIntensities[i];
+		specular = pow(max(dot(halfWay, o_worldNormal), 0.0), u_specularPower) * u_specularIntensity;
 
-		totalColor += u_lightColors[i] * (diffuse + specular) * (attenuation * attenuation);
+		totalLight += u_lightColors[i] * (diffuse + specular) * (attenuation * attenuation);
 	}
 
-	FragColor = vec4(totalColor, 1.0);
+	FragColor = vec4(u_diffuseColor.rgb * totalLight, u_diffuseColor.a);
 }

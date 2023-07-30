@@ -14,23 +14,17 @@ namespace AN
 
 		void SetRadius(float radius) { if (radius != 0.0f) { m_radiusRcp = 1.0f / radius; } else { m_radiusRcp = std::numeric_limits<float>::max(); } }
 		void SetLength(float length) { m_halfLength = length * 0.5f; }
-		void SetSpecularIntensity(float specularIntensity) { m_specularIntensity = specularIntensity; }
-		void SetSpecularPower(float specularPower) { m_specularPower = specularPower; }
 		void SetColor(const glm::vec3 & color) { m_color = color; }
 		void SetDirection(const glm::vec3 & direction) { m_direction = direction; }
 
 		float GetRadiusRcp() const { return m_radiusRcp; }
 		float GetHalfLength() const { return m_halfLength; }
-		float GetSpecularIntensity() const { return m_specularIntensity; }
-		float GetSpecularPower() const { return m_specularPower; }
 		const glm::vec3 & GetColor() const { return m_color; }
 		const glm::vec3 & GetDirection() const { return m_direction; }
 
 	private:
 		float m_radiusRcp;
 		float m_halfLength;
-		float m_specularIntensity;
-		float m_specularPower;
 		glm::vec3 m_color;
 		glm::vec3 m_direction;
 

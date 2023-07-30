@@ -1,19 +1,10 @@
 #pragma once
 
 #include "common/ansi_common.h"
+#include "common/ansi_common_render.h"
 
 namespace AN
 {
-
-	constexpr unsigned TEXCOORD{ 1 << 0 };
-	constexpr unsigned NORMAL{ 1 << 1 };
-
-	struct VertexElement
-	{
-		unsigned char normalized;
-		unsigned count;
-		unsigned type;
-	};
 
 	class VertexArray;
 
@@ -42,6 +33,7 @@ namespace AN
 		unsigned m_vertexBufferId;
 		unsigned m_indexBufferId;
 		unsigned m_stride;
+		unsigned m_flag;
 		std::vector<VertexArray *> m_vertexArrays;
 
 	};

@@ -1,9 +1,8 @@
 #pragma once
 
 #include "common/ansi_common_render.h"
+#include "core/render/output_executor/output_param/ansi_output_param.h"
 #include "object/component/ansi_component.h"
-#include "object/component/camera/output_param/ansi_output_param.h"
-#include "object/component/camera/raster_param/ansi_raster_param.h"
 #include "utility/event_listener/ansi_event_listener.h"
 #include "utility/state_checker/ansi_state_checker_math.h"
 
@@ -49,8 +48,7 @@ namespace AN
 		float GetFar() const { return m_far.Get(); }
 		float GetWidth() const { return m_width.Get(); }
 		float GetHeight() const { return m_height.Get(); }
-		RasterParam * Raster() const { return m_rasterParam; }
-		OutputParam * Output() const { return m_outputParam; }
+		OutputParam * GetOutput() const { return m_outputParam; }
 		GBufferOutput * GetGBufferOutput() const { return m_gBufferOutput; }
 
 	private:
@@ -81,7 +79,6 @@ namespace AN
 		StateChecker<float> m_width;
 		StateChecker<float> m_height;
 		StateCheckerVec3 m_lookAt;
-		RasterParam * m_rasterParam;
 		OutputParam * m_outputParam;
 		GBufferOutput * m_gBufferOutput;
 		OrbitControls * m_orbitControls;

@@ -10,8 +10,6 @@ namespace AN
 
 	DirectionalLight::DirectionalLight(Object * object, const glm::vec3 & color) :
 		Component(object),
-		m_specularIntensity(1.0f),
-		m_specularPower(32.0f),
 		m_color(color * color)
 	{
 

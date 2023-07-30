@@ -1,12 +1,13 @@
 #include "ansi_obj_loader.h"
 
+#include "common/ansi_common_render.h"
 #include "core/log/ansi_log.h"
 #include "utility/converter/ansi_converter.h"
 
 namespace AN
 {
 
-	bool ObjLoader::Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount, unsigned & stride)
+	bool ObjLoader::Load(const std::string & filePath, unsigned & vertexBufferId, unsigned & vertexCount, unsigned & stride, unsigned & flag)
 	{
 		std::vector<float> rawVerticesData;
 
@@ -23,11 +24,12 @@ namespace AN
 		AN_CHECK_LOG(result);
 
 		stride = 3 * sizeof(float);
-		if (attrib.texcoords.size() > 0) { stride += 2 * sizeof(float); }
-		if (attrib.normals.size() > 0) { stride += 3 * sizeof(float); }
+		flag = 0;
+		if (attrib.texcoords.size() > 0) { stride += 2 * sizeof(float); flag |= TEXCOORD; }
+		if (attrib.normals.size() > 0) { stride += 3 * sizeof(float); flag |= NORMAL; }
 
 		vertexCount = static_cast<unsigned>(shapes[0].mesh.indices.size());
-		rawVerticesData.reserve(vertexCount * stride / sizeof(float));
+		rawVerticesData.reserve(static_cast<std::size_t>(vertexCount) * stride / sizeof(float));
 
 		AssembleVertices(attrib.vertices, attrib.texcoords, attrib.normals, shapes[0].mesh.indices, rawVerticesData);
 
@@ -129,23 +131,23 @@ namespace AN
 			if (index >= 0)
 			{
 				rawVerticesData.push_back(loadedPositions[index]);
-				rawVerticesData.push_back(loadedPositions[index + 1]);
-				rawVerticesData.push_back(loadedPositions[index + 2]);
+				rawVerticesData.push_back(loadedPositions[static_cast<std::size_t>(index) + 1]);
+				rawVerticesData.push_back(loadedPositions[static_cast<std::size_t>(index) + 2]);
 			}
 
 			index = loadedIndices[i].texcoord_index * 2;
 			if (index >= 0)
 			{
 				rawVerticesData.push_back(loadedTexCoords[index]);
-				rawVerticesData.push_back(loadedTexCoords[index + 1]);
+				rawVerticesData.push_back(loadedTexCoords[static_cast<std::size_t>(index) + 1]);
 			}
 
 			index = loadedIndices[i].normal_index * 3;
 			if (index >= 0)
 			{
 				rawVerticesData.push_back(loadedNormals[index]);
-				rawVerticesData.push_back(loadedNormals[index + 1]);
-				rawVerticesData.push_back(loadedNormals[index + 2]);
+				rawVerticesData.push_back(loadedNormals[static_cast<std::size_t>(index) + 1]);
+				rawVerticesData.push_back(loadedNormals[static_cast<std::size_t>(index) + 2]);
 			}
 		}
 	}

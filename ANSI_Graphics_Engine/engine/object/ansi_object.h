@@ -1,10 +1,12 @@
 #pragma once
 
 #include "common/ansi_common.h"
-#include "object/component/transform/ansi_transform.h"
 
 namespace AN
 {
+
+	class Component;
+	class Transform;
 
 	class Object
 	{

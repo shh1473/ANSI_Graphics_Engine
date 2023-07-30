@@ -1,12 +1,13 @@
 #include "example_manager.h"
 
-#include "../scene/00_hello_world_scene/00_hello_world_scene.h"
-#include "../scene/01_colors_scene/01_colors_scene.h"
-#include "../scene/02_texture_scene/02_texture_scene.h"
-#include "../scene/03_hs_ambient_light_scene/03_hs_ambient_light_scene.h"
-#include "../scene/04_directional_light_scene/04_directional_light_scene.h"
-#include "../scene/05_point_lights_scene/05_point_lights_scene.h"
-#include "../scene/06_capsule_lights_scene/06_capsule_lights_scene.h"
+#include "../scene/01_basic/hello_world_scene/hello_world_scene.h"
+#include "../scene/01_basic/color_scene/color_scene.h"
+#include "../scene/01_basic/texture_scene/texture_scene.h"
+
+#include "../scene/02_forward_shading/hs_ambient_light_scene/hs_ambient_light_scene.h"
+#include "../scene/02_forward_shading/directional_light_scene/directional_light_scene.h"
+#include "../scene/02_forward_shading/point_lights_scene/point_lights_scene.h"
+#include "../scene/02_forward_shading/capsule_lights_scene/capsule_lights_scene.h"
 
 namespace Example
 {
@@ -22,7 +23,7 @@ namespace Example
 		AN::Core::GetGui()->SetTitle("Example Manager");
 
 		m_exampleScenes.push_back(std::make_pair(HelloWorldScene::m_SceneName, []() { return new HelloWorldScene(); }));
-		m_exampleScenes.push_back(std::make_pair(ColorsScene::m_SceneName, []() { return new ColorsScene(); }));
+		m_exampleScenes.push_back(std::make_pair(ColorScene::m_SceneName, []() { return new ColorScene(); }));
 		m_exampleScenes.push_back(std::make_pair(TextureScene::m_SceneName, []() { return new TextureScene(); }));
 		m_exampleScenes.push_back(std::make_pair(HSAmbientLightScene::m_SceneName, []() { return new HSAmbientLightScene(); }));
 		m_exampleScenes.push_back(std::make_pair(DirectionalLightScene::m_SceneName, []() { return new DirectionalLightScene(); }));
