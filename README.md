@@ -20,13 +20,13 @@
 ## 테스트
 
 ### 1장 - 기초
-* 00 - Hello World Scene: ImGui에서 "Hello, World!" 문자열을 띄우는 장면
-* 01 - Colors Scene: 원기둥, 직육면체, 구 오브젝트에 서로 다른 색상을 입힌 장면
-* 02 - Texture Scene: 평면 오브젝트에 텍스처를 입힌 장면
+* Hello World Scene: ImGui에서 "Hello, World!" 문자열을 띄우는 장면
+* Colors Scene: 원기둥, 직육면체, 구 오브젝트에 서로 다른 색상을 입힌 장면
+* Texture Scene: 평면 오브젝트에 텍스처를 입힌 장면
 
-### 2장 - 포워드 방식의 광원
-* 03 - Hemisphere Ambient Light Scene: 반구형 앰비언트 라이트를 적용한 장면
-* 04 - Directional Light Scene: 디렉셔널 라이트를 적용한 장면
-* 05 - Point Lights Scene: 3개의 포인트 라이트를 적용한 장면
-* 06 - Capsule Lights Scene: 3개의 캡슐 라이트를 적용한 장면
+### 2장 - 포워드
+* Hemisphere Ambient Light Scene: 반구형 앰비언트 라이트를 적용한 장면
+* Directional Light Scene: 디렉셔널 라이트를 적용한 장면
+* Point Lights Scene: 3개의 포인트 라이트를 적용한 장면
+* Capsule Lights Scene: 3개의 캡슐 라이트를 적용한 장면
 * [계속 추가됩니다...]
