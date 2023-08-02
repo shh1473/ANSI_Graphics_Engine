@@ -21,7 +21,7 @@
 
 ### 1장 - 기초 렌더링
 * Hello World Scene: ImGui에서 "Hello, World!" 문자열을 띄우는 장면
-* Colors Scene: 원기둥, 직육면체, 구 오브젝트에 서로 다른 색상을 입힌 장면
+* Color Scene: 원기둥, 직육면체, 구 오브젝트에 서로 다른 색상을 입힌 장면
 * Texture Scene: 평면 오브젝트에 텍스처를 입힌 장면
 * [계속 추가됩니다...]
 
