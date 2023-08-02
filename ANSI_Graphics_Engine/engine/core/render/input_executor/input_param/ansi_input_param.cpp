@@ -17,7 +17,7 @@ namespace AN
 
 	}
 
-	void InputParam::SetGeometry(VertexArray * vertexArray)
+	void InputParam::SetVertexArray(VertexArray * vertexArray)
 	{
 		m_vertexArrayId = vertexArray->GetVertexArrayId();
 		m_indexBufferId = vertexArray->GetIndexBufferId();

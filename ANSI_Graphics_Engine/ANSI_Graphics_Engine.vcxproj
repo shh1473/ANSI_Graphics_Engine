@@ -176,12 +176,14 @@
     <ClCompile Include="engine\object\component\light\capsule_light\ansi_capsule_light.cpp" />
     <ClCompile Include="engine\object\component\light\directional_light\ansi_directional_light.cpp" />
     <ClCompile Include="engine\object\component\light\point_light\ansi_point_light.cpp" />
+    <ClCompile Include="engine\object\component\light\spot_light\ansi_spot_light.cpp" />
     <ClCompile Include="engine\object\component\renderer\ansi_renderer.cpp" />
     <ClCompile Include="engine\core\render\input_executor\dispatch_param\ansi_dispatch_param.cpp" />
     <ClCompile Include="engine\core\render\input_executor\input_param\ansi_input_param.cpp" />
     <ClCompile Include="engine\core\render\output_executor\output_param\ansi_output_param.cpp" />
-    <ClCompile Include="engine\core\render\built_in\depth_mapping_material\ansi_depth_mapping_material.cpp" />
+    <ClCompile Include="engine\core\render\built_in\depth_map_material\ansi_depth_map_material.cpp" />
     <ClCompile Include="engine\object\component\transform\ansi_transform.cpp" />
+    <ClCompile Include="engine\resource\framebuffer\ansi_framebuffer.cpp" />
     <ClCompile Include="engine\resource\geometry\ansi_geometry.cpp" />
     <ClCompile Include="engine\core\render\shader_executor\material\ansi_material.cpp" />
     <ClCompile Include="engine\resource\texture\ansi_texture.cpp" />
@@ -214,6 +216,11 @@
     <ClCompile Include="examples\scene\02_forward_shading\directional_light_scene\directional_light_scene.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\point_lights_scene\point_lights_scene.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\capsule_lights_scene\capsule_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\spot_lights_scene\material\spot_lights_3\spot_lights_3_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\spot_lights_scene\spot_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\common_material\screen_plane\screen_plane_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\spot_shadows_scene\material\spot_shadows_3\spot_shadows_3_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\spot_shadows_scene\spot_shadows_scene.cpp" />
     <ClCompile Include="examples\scene\example_scene.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\capsule_lights_scene\material\capsule_lights_3\capsule_lights_3_material.cpp" />
     <ClCompile Include="examples\scene\01_basic\color_scene\material\color\color_material.cpp" />
@@ -227,6 +234,7 @@
     <ClInclude Include="engine\ansi_graphics_engine.h" />
     <ClInclude Include="engine\common\ansi_common.h" />
     <ClInclude Include="engine\common\ansi_common_render.h" />
+    <ClInclude Include="engine\common\ansi_common_type.h" />
     <ClInclude Include="engine\core\ansi_core.h" />
     <ClInclude Include="engine\core\gui\ansi_gui.h" />
     <ClInclude Include="engine\core\log\ansi_log.h" />
@@ -254,12 +262,14 @@
     <ClInclude Include="engine\object\component\light\capsule_light\ansi_capsule_light.h" />
     <ClInclude Include="engine\object\component\light\directional_light\ansi_directional_light.h" />
     <ClInclude Include="engine\object\component\light\point_light\ansi_point_light.h" />
+    <ClInclude Include="engine\object\component\light\spot_light\ansi_spot_light.h" />
     <ClInclude Include="engine\object\component\renderer\ansi_renderer.h" />
     <ClInclude Include="engine\core\render\input_executor\dispatch_param\ansi_dispatch_param.h" />
     <ClInclude Include="engine\core\render\input_executor\input_param\ansi_input_param.h" />
     <ClInclude Include="engine\core\render\output_executor\output_param\ansi_output_param.h" />
-    <ClInclude Include="engine\core\render\built_in\depth_mapping_material\ansi_depth_mapping_material.h" />
+    <ClInclude Include="engine\core\render\built_in\depth_map_material\ansi_depth_map_material.h" />
     <ClInclude Include="engine\object\component\transform\ansi_transform.h" />
+    <ClInclude Include="engine\resource\framebuffer\ansi_framebuffer.h" />
     <ClInclude Include="engine\resource\geometry\ansi_geometry.h" />
     <ClInclude Include="engine\core\render\shader_executor\material\ansi_material.h" />
     <ClInclude Include="engine\resource\texture\ansi_texture.h" />
@@ -294,6 +304,11 @@
     <ClInclude Include="examples\scene\02_forward_shading\directional_light_scene\directional_light_scene.h" />
     <ClInclude Include="examples\scene\02_forward_shading\point_lights_scene\point_lights_scene.h" />
     <ClInclude Include="examples\scene\02_forward_shading\capsule_lights_scene\capsule_lights_scene.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\spot_lights_scene\material\spot_lights_3\spot_lights_3_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\spot_lights_scene\spot_lights_scene.h" />
+    <ClInclude Include="examples\scene\common_material\screen_plane\screen_plane_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\spot_shadows_scene\material\spot_shadows_3\spot_shadows_3_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\spot_shadows_scene\spot_shadows_scene.h" />
     <ClInclude Include="examples\scene\example_scene.h" />
     <ClInclude Include="examples\scene\02_forward_shading\capsule_lights_scene\material\capsule_lights_3\capsule_lights_3_material.h" />
     <ClInclude Include="examples\scene\01_basic\color_scene\material\color\color_material.h" />
@@ -308,9 +323,13 @@
   <ItemGroup>
     <None Include="assets\shader\capsule_lights_3.shader" />
     <None Include="assets\shader\color.shader" />
+    <None Include="assets\shader\depth_map.shader" />
     <None Include="assets\shader\directional_light.shader" />
     <None Include="assets\shader\hs_ambient_light.shader" />
     <None Include="assets\shader\point_lights_3.shader" />
+    <None Include="assets\shader\screen_plane.shader" />
+    <None Include="assets\shader\spot_lights_3.shader" />
+    <None Include="assets\shader\spot_shadows_3.shader" />
     <None Include="assets\shader\texture.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

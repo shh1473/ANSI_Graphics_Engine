@@ -1,8 +1,12 @@
 #include "ansi_camera.h"
 
+#include "core/log/ansi_log.h"
 #include "core/window/ansi_window.h"
 #include "core/render/ansi_render.h"
 #include "core/render/built_in/g_buffer_output/ansi_g_buffer_output.h"
+#include "core/render/output_executor/output_param/ansi_output_param.h"
+#include "resource/framebuffer/ansi_framebuffer.h"
+#include "resource/texture/ansi_texture.h"
 #include "object/ansi_object.h"
 #include "object/component/transform/ansi_transform.h"
 #include "utility/orbit_controls/ansi_orbit_controls.h"
@@ -39,9 +43,9 @@ namespace AN
 		m_fov.Set(m_DefaultFov);
 		m_near.Set(m_DefaultNear);
 		m_far.Set(m_DefaultFar);
-		m_width.Set((m_isUseClientSize) ? Core::GetWindow()->GetClientSize().x : m_DefaultWidth);
-		m_height.Set((m_isUseClientSize) ? Core::GetWindow()->GetClientSize().y : m_DefaultHeight);
 		m_lookAt.Set(m_DefaultLookAt);
+
+		SetSize((m_isUseClientSize) ? Core::GetWindow()->GetClientSize() : glm::vec2(m_DefaultWidth, m_DefaultHeight));
 
 		UpdateViewMatrix();
 		UpdateProjMatrix();
@@ -51,6 +55,8 @@ namespace AN
 	{
 		Core::GetRender()->RemoveCamera(this, m_type);
 		AN_DELETE(m_outputParam);
+		AN_DELETE(m_framebuffer);
+		AN_DELETE(m_depthTexture);
 		AN_DELETE(m_orbitControls);
 	}
 
@@ -100,8 +106,7 @@ namespace AN
 			Core::GetWindow()->GetClientSize().x > 0 &&
 			Core::GetWindow()->GetClientSize().y > 0)
 		{
-			m_width.Set(Core::GetWindow()->GetClientSize().x);
-			m_height.Set(Core::GetWindow()->GetClientSize().y);
+			SetSize(Core::GetWindow()->GetClientSize());
 		}
 	}
 
@@ -117,9 +122,65 @@ namespace AN
 		return true;
 	}
 
+	bool Camera::CreateFramebuffer()
+	{
+		unsigned framebufferId{ 0 };
+
+		GL_CHECK(glGenFramebuffers(1, &framebufferId));
+
+		m_framebuffer = new Framebuffer(framebufferId);
+
+		m_outputParam->m_frameBufferId = m_framebuffer->GetId();
+
+		return true;
+	}
+
+	bool Camera::CreateDepthTexture()
+	{
+		GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer->GetId()));
+
+		unsigned textureId{ 0 };
+		GL_CHECK(glGenTextures(1, &textureId));
+		GL_CHECK(glBindTexture(GL_TEXTURE_2D, textureId));
+		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, static_cast<int>(m_width.Get()), static_cast<int>(m_height.Get()), 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr));
+
+		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER));
+		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
+
+		m_depthTexture = new Texture(textureId, static_cast<unsigned>(m_width.Get()), static_cast<unsigned>(m_height.Get()));
+
+		GL_CHECK(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_depthTexture->GetId(), 0));
+
+		GL_CHECK(glDrawBuffer(GL_NONE));
+		GL_CHECK(glReadBuffer(GL_NONE));
+
+		GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
+
+		GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+
+		return true;
+	}
+
+	void Camera::SetSize(const glm::vec2 & size)
+	{
+		m_width.Set(size.x);
+		m_height.Set(size.y);
+
+		m_outputParam->m_viewport.z = static_cast<int>(m_width.Get());
+		m_outputParam->m_viewport.w = static_cast<int>(m_height.Get());
+	}
+
+	void Camera::SetOffset(const glm::ivec2 & offset)
+	{
+		m_outputParam->m_viewport.x = offset.x;
+		m_outputParam->m_viewport.y = offset.y;
+	}
+
 	void Camera::UpdateViewMatrix()
 	{
-		m_viewMatrix = glm::lookAt(GetObject()->GetTransform()->GetWorldPosition(), m_lookAt.Get(), glm::vec3(0.0f, 1.0f, 0.0f));
+		m_viewMatrix = glm::lookAt(GetObject()->GetTransform()->GetWorldPosition(), m_lookAt.Get(), GetObject()->GetTransform()->GetLookAt(glm::vec3(0.0f, 1.0f, 0.0f)));
 	}
 
 	void Camera::UpdateProjMatrix()

@@ -27,7 +27,9 @@
 #include "object/component/light/directional_light/ansi_directional_light.h"
 #include "object/component/light/point_light/ansi_point_light.h"
 #include "object/component/light/capsule_light/ansi_capsule_light.h"
+#include "object/component/light/spot_light/ansi_spot_light.h"
 #include "object/component/camera/ansi_camera.h"
 
+#include "utility/converter/ansi_converter.h"
 #include "utility/random/ansi_random.h"
 #include "utility/orbit_controls/ansi_orbit_controls.h"

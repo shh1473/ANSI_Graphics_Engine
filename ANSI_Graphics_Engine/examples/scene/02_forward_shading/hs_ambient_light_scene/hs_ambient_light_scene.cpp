@@ -5,7 +5,7 @@
 namespace Example
 {
 
-	const std::string HSAmbientLightScene::m_SceneName{ "03 - Hemisphere Ambient Light" };
+	const std::string HSAmbientLightScene::m_SceneName{ "Hemisphere Ambient Light" };
 
 	HSAmbientLightScene::HSAmbientLightScene() :
 		m_ambientLightUpColor(1.0f, 0.0f, 0.0f),
@@ -19,7 +19,7 @@ namespace Example
 		/* === Gui === */
 		AN::Core::GetGui()->SetTitle(m_SceneName);
 
-		/* === Ambient Light === */
+		/* === Ambient Light Object === */
 		m_ambientLight = AddObject(new AN::Object("Ambient Light"));
 
 		auto ambientLight = m_ambientLight->AddComponent<AN::HSAmbientLight>(m_ambientLightUpColor, m_ambientLightDownColor);
@@ -27,9 +27,7 @@ namespace Example
 		/* === RGRat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
 
-		auto rgratMaterial = new HSAmbientLightMaterial(m_hsAmbientLightShader, ambientLight);
-		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(rgratMaterial);
-		rgratRenderer->GetInput()->SetGeometry(m_rgratVA);
+		m_rgrat->AddComponent<AN::Renderer>(m_rgratVA, new HSAmbientLightMaterial(m_hsAmbientLightShader, ambientLight));
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));

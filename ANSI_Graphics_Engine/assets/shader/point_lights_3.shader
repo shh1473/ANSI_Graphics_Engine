@@ -21,7 +21,7 @@ void main()
 # shader_fragment
 # version 460 core
 
-#define MAX_POINT_LIGHTS 3
+#define LIGHT_COUNT 3
 
 layout(location = 0) out vec4 FragColor;
 
@@ -31,10 +31,10 @@ in vec3 o_worldNormal;
 /* Camera */
 uniform vec3 u_cameraPosition;
 
-/* Lights */
-uniform float u_lightRadiusRcp[MAX_POINT_LIGHTS];
-uniform vec3 u_lightColors[MAX_POINT_LIGHTS];
-uniform vec3 u_lightPositions[MAX_POINT_LIGHTS];
+/* Light */
+uniform float u_lightRadiusRcps[LIGHT_COUNT];
+uniform vec3 u_lightColors[LIGHT_COUNT];
+uniform vec3 u_lightPositions[LIGHT_COUNT];
 
 /* Material */
 uniform float u_specularIntensity;
@@ -52,10 +52,12 @@ void main()
 	vec3 halfWay;
 	vec3 totalLight;
 
-	for (uint i = 0; i < MAX_POINT_LIGHTS; ++i) {
+	for (uint i = 0; i < LIGHT_COUNT; ++i) {
 		dirToLights = normalize(u_lightPositions[i] - o_worldPosition);
 		distanceToLights = length(u_lightPositions[i] - o_worldPosition);
-		attenuation = 1.0 - min(distanceToLights * u_lightRadiusRcp[i], 1.0);
+
+		attenuation = 1.0 - min(distanceToLights * u_lightRadiusRcps[i], 1.0);
+
 		diffuse = max(dot(o_worldNormal, dirToLights), 0.0);
 
 		halfWay = normalize(dirToLights + dirToCamera);

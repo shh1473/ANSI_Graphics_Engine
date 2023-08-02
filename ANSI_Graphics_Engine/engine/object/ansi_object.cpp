@@ -8,6 +8,8 @@ namespace AN
 	Object::Object(const std::string & name) :
 		m_isEnabled(true),
 		m_isDeleted(false),
+		m_isCastShadow(true),
+		m_isReceiveShadow(true),
 		m_name(name),
 		m_children(),
 		m_components(),

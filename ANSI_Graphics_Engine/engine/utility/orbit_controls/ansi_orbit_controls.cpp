@@ -121,8 +121,8 @@ namespace AN
 		if (std::isfinite(m_minAzimuthAngle) && std::isfinite(m_maxAzimuthAngle))
 		{
 
-			if (m_minAzimuthAngle < -PI) m_minAzimuthAngle += PI2; else if (m_minAzimuthAngle > PI) m_minAzimuthAngle -= PI2;
-			if (m_maxAzimuthAngle < -PI) m_maxAzimuthAngle += PI2; else if (m_maxAzimuthAngle > PI) m_maxAzimuthAngle -= PI2;
+			if (m_minAzimuthAngle < -PI) { m_minAzimuthAngle += PI2; } else if (m_minAzimuthAngle > PI) { m_minAzimuthAngle -= PI2;	}
+			if (m_maxAzimuthAngle < -PI) { m_maxAzimuthAngle += PI2; } else if (m_maxAzimuthAngle > PI) { m_maxAzimuthAngle -= PI2;	}
 			if (m_minAzimuthAngle <= m_maxAzimuthAngle)
 			{
 				m_spherical.SetTheta(glm::clamp(m_spherical.GetTheta(), m_minAzimuthAngle, m_maxAzimuthAngle));
@@ -130,8 +130,8 @@ namespace AN
 			else
 			{
 				m_spherical.SetTheta((m_spherical.GetTheta() > (m_minAzimuthAngle + m_maxAzimuthAngle) * 0.5f) ?
-					std::max(m_minAzimuthAngle, m_spherical.GetTheta()) :
-					std::min(m_maxAzimuthAngle, m_spherical.GetTheta()));
+					glm::max(m_minAzimuthAngle, m_spherical.GetTheta()) :
+					glm::min(m_maxAzimuthAngle, m_spherical.GetTheta()));
 			}
 
 		}

@@ -13,6 +13,7 @@ namespace Example
 		explicit HelloWorldScene();
 
 		bool Initialize() override;
+		bool OnUpdate() override;
 		bool OnRenderGui() override;
 
 	public:

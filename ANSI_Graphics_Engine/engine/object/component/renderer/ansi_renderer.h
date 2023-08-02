@@ -8,11 +8,12 @@ namespace AN
 	class InputParam;
 	class DispatchParam;
 	class Material;
+	class VertexArray;
 
 	class Renderer : public Component
 	{
 	public:
-		explicit Renderer(Object * object, Material * material);
+		explicit Renderer(Object * object, VertexArray * vertexArray, Material * material);
 		virtual ~Renderer();
 
 		bool GetIsCastShadow() const { return m_isCastShadow; }

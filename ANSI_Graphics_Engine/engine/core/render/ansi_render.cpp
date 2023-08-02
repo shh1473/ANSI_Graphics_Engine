@@ -4,10 +4,13 @@
 #include "core/render/output_executor/ansi_output_executor.h"
 #include "core/render/shader_executor/ansi_shader_executor.h"
 #include "core/render/built_in/ansi_built_in.h"
+#include "object/ansi_object.h"
 #include "object/component/camera/ansi_camera.h"
 //#include "object/component/camera/output_param/g_buffer_output/ansi_g_buffer_output.h"
 #include "object/component/renderer/ansi_renderer.h"
 //#include "object/component/renderer/shader_param/depth_map_shader/ansi_depth_map_shader.h"
+
+#include "core/render/built_in/depth_map_material/ansi_depth_map_material.h"
 
 namespace AN
 {
@@ -46,35 +49,35 @@ namespace AN
 
 	bool Render::OnRender()
 	{
-		// Depth Map
-		if (m_renderers[static_cast<unsigned>(RenderType::Forward)].size() > 0 ||
-			m_renderers[static_cast<unsigned>(RenderType::Packing)].size() > 0)
+		// Shadow Map
+		for (auto camera : m_cameras[static_cast<unsigned>(CameraType::Light)])
 		{
-			for (const auto & camera : m_cameras[static_cast<unsigned>(CameraType::Light)])
+			if (!camera->GetIsEnabled()) { continue; }
+			m_currentCamera = camera;
+
+			AN_CHECK(m_outputExecutor->Apply(camera->GetOutput()));
+
+			for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Forward)])
 			{
-				if (!camera->GetIsEnabled()) { continue; }
-				m_currentCamera = camera;
-				AN_CHECK(m_outputExecutor->Apply(camera->GetOutput()));
-				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Forward)])
+				if (!renderer->GetObject()->GetIsEnabled() || !renderer->GetObject()->GetIsCastShadow()) { continue; }
+
+				AN_CHECK(m_inputExecutor->Apply(renderer->GetInput()));
+				m_builtIn->GetDepthMapMaterial()->SetTransform(renderer->GetObject()->GetTransform());
+				AN_CHECK(m_shaderExecutor->Apply(m_builtIn->GetDepthMapMaterial()));
+				AN_CHECK(Draw());
+			}
+
+			for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Packing)])
+			{
+				/*if (renderer->GetDepthMapShader())
 				{
-					/*if (renderer->GetDepthMapShader())
-					{
-						AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
-						AN_CHECK(m_shaderExecutor->Apply(renderer->GetDepthMapShader()));
-						AN_CHECK(Draw());
-					}*/
-				}
-				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Packing)])
-				{
-					/*if (renderer->GetDepthMapShader())
-					{
-						AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
-						AN_CHECK(m_shaderExecutor->Apply(renderer->GetDepthMapShader()));
-						AN_CHECK(Draw());
-					}*/
-				}
+					AN_CHECK(m_inputExecutor->Apply(renderer->Input()));
+					AN_CHECK(m_shaderExecutor->Apply(renderer->GetDepthMapShader()));
+					AN_CHECK(Draw());
+				}*/
 			}
 		}
+
 		// Packing
 		if (m_renderers[static_cast<unsigned>(RenderType::Packing)].size() > 0)
 		{
@@ -118,6 +121,8 @@ namespace AN
 				AN_CHECK(m_outputExecutor->Apply(camera->GetOutput()));
 				for (const auto & renderer : m_renderers[static_cast<unsigned>(RenderType::Forward)])
 				{
+					if (!renderer->GetObject()->GetIsEnabled()) { continue; }
+
 					AN_CHECK(m_inputExecutor->Apply(renderer->GetInput()));
 					AN_CHECK(m_shaderExecutor->Apply(renderer->GetMaterial()));
 					AN_CHECK(Draw());

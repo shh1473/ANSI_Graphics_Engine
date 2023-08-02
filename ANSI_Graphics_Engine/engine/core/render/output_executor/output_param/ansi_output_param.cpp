@@ -12,6 +12,7 @@ namespace AN
 		m_clearStencil(m_DefaultClearStencil),
 		m_clearDepth(m_DefaultClearDepth),
 		m_clearColor(m_DefaultClearColor),
+		m_viewport(0),
 		m_msaa(m_DefaultMsaa),
 		m_frameBufferId(0)
 	{

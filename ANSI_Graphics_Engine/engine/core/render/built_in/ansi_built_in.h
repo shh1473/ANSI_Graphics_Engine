@@ -4,6 +4,7 @@ namespace AN
 {
 
 	class Shader;
+	class DepthMapMaterial;
 
 	class BuiltIn
 	{
@@ -13,7 +14,11 @@ namespace AN
 
 		bool Initialize();
 
+		DepthMapMaterial * GetDepthMapMaterial() const { return m_depthMapMaterial; }
+
 	private:
+		Shader * m_depthMapShader;
+		DepthMapMaterial * m_depthMapMaterial;
 
 	};
 

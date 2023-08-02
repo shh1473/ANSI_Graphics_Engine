@@ -21,6 +21,8 @@ namespace AN
 
 		virtual bool OnUpdateUniforms() = 0;
 
+		void SetTransform(Transform * transform) { m_transform = transform; }
+
 	protected:
 		/* === Uniform === */
 		bool SetUniform1i(const std::string & name, int value);

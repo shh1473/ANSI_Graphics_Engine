@@ -10,6 +10,7 @@ namespace AN
 		Component(object),
 		m_isChangedTransform(false),
 		m_isChangedMatrix(false),
+		m_eulerOrder(EulerOrder::XYZ),
 		m_worldPosition(0.0f),
 		m_localMatrix(1.0f),
 		m_worldMatrix(1.0f),
@@ -28,7 +29,7 @@ namespace AN
 			m_isChangedTransform = true;
 
 			m_localMatrix = glm::translate(glm::mat4(1.0f), m_position.Get());
-			m_localMatrix *= glm::mat4_cast(Converter::EulerXYZToQuat(m_rotation.Get()));
+			m_localMatrix *= glm::mat4_cast(Converter::EulerToQuat(m_rotation.Get(), m_eulerOrder));
 			m_localMatrix *= glm::scale(glm::mat4(1.0f), m_scale.Get());
 
 			m_position.Reset();
@@ -76,6 +77,11 @@ namespace AN
 		m_rotation.Reset();
 		m_scale.Reset();
 		m_parentMatrix.Reset();
+	}
+
+	glm::vec3 Transform::GetLookAt(const glm::vec3 & direction) const
+	{
+		return glm::normalize(glm::mat3(m_worldMatrix) * direction);
 	}
 
 }

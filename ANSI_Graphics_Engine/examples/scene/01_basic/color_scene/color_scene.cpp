@@ -5,7 +5,7 @@
 namespace Example
 {
 
-	const std::string ColorScene::m_SceneName{ "01 - Colors" };
+	const std::string ColorScene::m_SceneName{ "Color" };
 
 	ColorScene::ColorScene() :
 		m_isWireframe(false)
@@ -24,8 +24,7 @@ namespace Example
 
 		auto boxMaterial = new ColorMaterial(m_colorShader);
 		boxMaterial->SetDiffuseColor(glm::vec3(0.0f, 1.0f, 0.0f));
-		auto boxRenderer = m_box->AddComponent<AN::Renderer>(boxMaterial);
-		boxRenderer->GetInput()->SetGeometry(m_boxVA);
+		m_box->AddComponent<AN::Renderer>(m_boxVA, boxMaterial);
 
 		/* === Sphere Object === */
 		m_sphere = AddObject(new AN::Object("Sphere"));
@@ -34,8 +33,7 @@ namespace Example
 
 		auto sphereMaterial = new ColorMaterial(m_colorShader);
 		sphereMaterial->SetDiffuseColor(glm::vec3(0.0f, 0.0f, 1.0f));
-		auto sphereRenderer = m_sphere->AddComponent<AN::Renderer>(sphereMaterial);
-		sphereRenderer->GetInput()->SetGeometry(m_sphereVA);
+		m_sphere->AddComponent<AN::Renderer>(m_sphereVA, sphereMaterial);
 
 		/* === Cylinder Object === */
 		m_cylinder = AddObject(new AN::Object("Cylinder"));
@@ -44,8 +42,7 @@ namespace Example
 
 		auto cylinderMaterial = new ColorMaterial(m_colorShader);
 		cylinderMaterial->SetDiffuseColor(glm::vec3(1.0f, 0.0f, 0.0f));
-		auto cylinderRenderer = m_cylinder->AddComponent<AN::Renderer>(cylinderMaterial);
-		cylinderRenderer->GetInput()->SetGeometry(m_cylinderVA);
+		m_cylinder->AddComponent<AN::Renderer>(m_cylinderVA, cylinderMaterial);
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));

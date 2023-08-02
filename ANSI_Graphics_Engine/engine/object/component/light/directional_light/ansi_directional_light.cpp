@@ -10,7 +10,7 @@ namespace AN
 
 	DirectionalLight::DirectionalLight(Object * object, const glm::vec3 & color) :
 		Component(object),
-		m_color(color * color)
+		m_color(glm::max(glm::vec3(0.0f), color * color))
 	{
 
 	}

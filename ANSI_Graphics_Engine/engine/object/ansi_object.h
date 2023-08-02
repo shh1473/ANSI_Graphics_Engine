@@ -1,4 +1,4 @@
-#pragma once
+	#pragma once
 
 #include "common/ansi_common.h"
 
@@ -51,9 +51,13 @@ namespace AN
 
 		void SetIsEnabled(bool isEnabled) { m_isEnabled = isEnabled; }
 		void SetIsDeleted(bool isDeleted) { m_isDeleted = isDeleted; }
+		void SetIsCastShadow(bool isCastShadow) { m_isCastShadow = isCastShadow; }
+		void SetIsReceiveShadow(bool isReceiveShadow) { m_isReceiveShadow = isReceiveShadow; }
 
 		bool GetIsEnabled() const { return m_isEnabled; }
 		bool GetIsDeleted() const { return m_isDeleted; }
+		bool GetIsCastShadow() const { return m_isCastShadow; }
+		bool GetIsReceiveShadow() const { return m_isReceiveShadow; }
 		const std::string & GetName() const { return m_name; }
 		const std::unordered_map<std::string, Object *> & GetChildren() const { return m_children; }
 		const std::unordered_map<std::type_index, Component *> & GetComponents() const { return m_components; }
@@ -63,6 +67,8 @@ namespace AN
 	private:
 		bool m_isEnabled;
 		bool m_isDeleted;
+		bool m_isCastShadow;
+		bool m_isReceiveShadow;
 		std::string m_name;
 		std::unordered_map<std::string, Object *> m_children;
 		std::unordered_map<std::type_index, Component *> m_components;

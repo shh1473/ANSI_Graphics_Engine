@@ -5,7 +5,7 @@
 namespace Example
 {
 
-	const std::string TextureScene::m_SceneName{ "02 - Texture" };
+	const std::string TextureScene::m_SceneName{ "Texture" };
 
 	TextureScene::TextureScene()
 	{
@@ -23,8 +23,7 @@ namespace Example
 
 		auto wallMaterial = new TextureMaterial(m_textureShader);
 		wallMaterial->SetDiffuseMap(m_wallTexture->GetId());
-		auto wallRenderer = m_wall->AddComponent<AN::Renderer>(wallMaterial);
-		wallRenderer->GetInput()->SetGeometry(m_wallVA);
+		m_wall->AddComponent<AN::Renderer>(m_wallVA, wallMaterial);
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));

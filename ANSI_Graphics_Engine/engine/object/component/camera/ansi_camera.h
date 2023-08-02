@@ -9,7 +9,10 @@
 namespace AN
 {
 
+	class OutputParam;
 	class GBufferOutput;
+	class Framebuffer;
+	class Texture;
 	class OrbitControls;
 
 	class Camera : public Component, public EventListener
@@ -23,6 +26,9 @@ namespace AN
 		bool InitializeGBuffer();
 		bool CheckFrustum(const glm::vec3 & worldPosition, float radius);
 
+		bool CreateFramebuffer();
+		bool CreateDepthTexture();
+
 		void SetIsEnableFrustumCulling(bool isEnable) { m_isEnableFrustumCulling = isEnable; }
 		void SetLookAt(const glm::vec3 & lookAt) { m_lookAt.Set(lookAt); }
 		void SetIsPerspective(bool isPerspective) { m_isPerspective.Set(isPerspective); }
@@ -30,9 +36,8 @@ namespace AN
 		void SetFov(float fov) { m_fov.Set(fov); }
 		void SetNear(float nearZ) { m_near.Set(nearZ); }
 		void SetFar(float farZ) { m_far.Set(farZ); }
-		void SetSize(float width, float height) { m_width.Set(width); m_height.Set(height); }
-		void AddWidth(float width) { m_width.Set(m_width.Get() + width); }
-		void AddHeight(float height) { m_height.Set(m_height.Get() + height); }
+		void SetSize(const glm::vec2 & size);
+		void SetOffset(const glm::ivec2 & offset);
 		void SetOrbitControls(OrbitControls * orbitControls) { m_orbitControls = orbitControls; }
 
 		bool GetIsEnableFrustumCulling() const { return m_isEnableFrustumCulling; }
@@ -48,8 +53,10 @@ namespace AN
 		float GetFar() const { return m_far.Get(); }
 		float GetWidth() const { return m_width.Get(); }
 		float GetHeight() const { return m_height.Get(); }
+		glm::vec2 GetSize() const { return glm::vec2(m_width.Get(), m_height.Get()); }
 		OutputParam * GetOutput() const { return m_outputParam; }
 		GBufferOutput * GetGBufferOutput() const { return m_gBufferOutput; }
+		Texture * GetDepthTexture() const { return m_depthTexture; }
 
 	private:
 		void UpdateViewMatrix();
@@ -67,6 +74,7 @@ namespace AN
 		bool m_isEnableFrustumCulling;
 		bool m_isUseClientSize;
 		CameraType m_type;
+		glm::ivec2 m_viewportOffset;
 		glm::vec3 m_direction;
 		glm::mat4 m_viewMatrix;
 		glm::mat4 m_projMatrix;
@@ -81,6 +89,8 @@ namespace AN
 		StateCheckerVec3 m_lookAt;
 		OutputParam * m_outputParam;
 		GBufferOutput * m_gBufferOutput;
+		Framebuffer * m_framebuffer;
+		Texture * m_depthTexture;
 		OrbitControls * m_orbitControls;
 
 	};

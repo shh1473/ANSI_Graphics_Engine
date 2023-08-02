@@ -11,6 +11,7 @@ namespace Example
 		explicit ExampleManager();
 
 		bool Initialize() override;
+		bool OnUpdate() override;
 		bool OnRenderGui() override;
 
 	private:

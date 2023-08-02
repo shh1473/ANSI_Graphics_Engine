@@ -13,6 +13,7 @@ namespace AN
 		m_clearStencil.Set(param->m_clearStencil);
 		m_clearDepth.Set(param->m_clearDepth);
 		m_clearColor.Set(param->m_clearColor);
+		m_viewport.Set(param->m_viewport);
 		m_msaa.Set(param->m_msaa);
 		m_frameBufferId.Set(param->m_frameBufferId);
 
@@ -32,6 +33,12 @@ namespace AN
 		{
 			m_clearColor.Reset();
 			GL_CHECK(glClearColor(m_clearColor.Get().r, m_clearColor.Get().g, m_clearColor.Get().b, m_clearColor.Get().a));
+		}
+
+		if (m_viewport.Check())
+		{
+			m_viewport.Reset();
+			GL_CHECK(glViewport(m_viewport.Get().x, m_viewport.Get().y, m_viewport.Get().z, m_viewport.Get().w));
 		}
 
 		if (m_msaa.Check())
@@ -54,8 +61,8 @@ namespace AN
 			GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferId.Get()));
 		}
 
-		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
-		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
+		GL_CHECK(glDepthMask(true));
+		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 		return true;
 	}
@@ -65,12 +72,14 @@ namespace AN
 		m_clearStencil.Set(OutputParam::m_DefaultClearStencil);
 		m_clearDepth.Set(OutputParam::m_DefaultClearDepth);
 		m_clearColor.Set(OutputParam::m_DefaultClearColor);
+		m_viewport.Set(glm::ivec4(0));
 		m_msaa.Set(MSAA::None);
 		m_frameBufferId.Set(0);
 
 		m_clearStencil.Reset();
 		m_clearDepth.Reset();
 		m_clearColor.Reset();
+		m_viewport.Reset();
 		m_msaa.Reset();
 		m_frameBufferId.Reset();
 	}

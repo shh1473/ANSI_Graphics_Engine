@@ -22,8 +22,9 @@ layout(location = 0) out vec4 FragColor;
 
 in vec2 o_texCoord;
 
-uniform sampler2D u_diffuseMap;
 uniform vec4 u_diffuseColor;
+
+uniform sampler2D u_diffuseMap;
 
 void main()
 {

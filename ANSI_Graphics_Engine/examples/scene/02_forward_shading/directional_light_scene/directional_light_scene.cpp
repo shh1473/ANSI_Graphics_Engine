@@ -5,13 +5,13 @@
 namespace Example
 {
 
-	const std::string DirectionalLightScene::m_SceneName{ "04 - Directional Light" };
+	const std::string DirectionalLightScene::m_SceneName{ "Directional Light" };
 
 	DirectionalLightScene::DirectionalLightScene() :
 		m_specularIntensity(2.0f),
 		m_specularPower(32.0f),
 		m_lightColor(0.75f, 0.75f, 0.75f),
-		m_lightRotation(90.0f, 0.0f)
+		m_lightRotation(150.0f, 45.0f)
 	{
 
 	}
@@ -21,10 +21,9 @@ namespace Example
 		/* === Gui === */
 		AN::Core::GetGui()->SetTitle(m_SceneName);
 
-		/* === Directional Light === */
+		/* === Directional Light Object === */
 		m_directionalLight = AddObject(new AN::Object("Directional Light"));
-		m_directionalLight->GetTransform()->SetRotationX(m_lightRotation.x);
-		m_directionalLight->GetTransform()->SetRotationY(m_lightRotation.y);
+		m_directionalLight->GetTransform()->SetRotation(m_lightRotation.x, m_lightRotation.y, 0.0f, EulerOrder::YXZ);
 
 		auto directionalLight = m_directionalLight->AddComponent<AN::DirectionalLight>();
 
@@ -34,8 +33,7 @@ namespace Example
 		auto rgratMaterial = new DirectionalLightMaterial(m_directionalLightShader, directionalLight);
 		rgratMaterial->SetSpecularIntensity(m_specularIntensity);
 		rgratMaterial->SetSpecularPower(m_specularPower);
-		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(rgratMaterial);
-		rgratRenderer->GetInput()->SetGeometry(m_rgratVA);
+		m_rgrat->AddComponent<AN::Renderer>(m_rgratVA, rgratMaterial);
 
 		/* === Plane Object === */
 		m_plane = AddObject(new AN::Object("Plane"));
@@ -43,8 +41,7 @@ namespace Example
 		m_plane->GetTransform()->SetRotationX(-90.0f);
 
 		auto planeMaterial = new DirectionalLightMaterial(m_directionalLightShader, directionalLight);
-		auto planeRenderer = m_plane->AddComponent<AN::Renderer>(planeMaterial);
-		planeRenderer->GetInput()->SetGeometry(m_planeVA);
+		m_plane->AddComponent<AN::Renderer>(m_planeVA, planeMaterial);
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
@@ -102,7 +99,7 @@ namespace Example
 		AN_CHECK(rgratGeometry->GenerateFromObj("assets/model/ptn_rgrat.obj"));
 		/* Plane */
 		auto planeGeometry{ GetResources()->CreateGeometry() };
-		AN_CHECK(planeGeometry->GeneratePlane(200.0f, 200.0f, 1, 1));
+		AN_CHECK(planeGeometry->GeneratePlane(200.0f, 200.0f));
 
 		/* RG Rat VA */
 		AN_CHECK(m_rgratVA = rgratGeometry->GenerateVertexArray(AN::NORMAL));

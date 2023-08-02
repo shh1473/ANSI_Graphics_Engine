@@ -29,7 +29,7 @@ namespace Example
 			lightHalfLengths[i] = m_lights[i]->GetHalfLength();
 			lightColors[i] = m_lights[i]->GetColor();
 			lightPositions[i] = m_lights[i]->GetObject()->GetTransform()->GetWorldPosition();
-			lightDirections[i] = glm::mat3(m_lights[i]->GetObject()->GetTransform()->GetWorldMatrix()) * glm::vec3(0.0f, 0.0f, 1.0f);
+			lightDirections[i] = m_lights[i]->GetObject()->GetTransform()->GetLookAt();
 		}
 
 		AN_CHECK(SetUniform3f("u_cameraPosition", AN::Core::GetRender()->GetCurrentCamera()->GetObject()->GetTransform()->GetWorldPosition()));

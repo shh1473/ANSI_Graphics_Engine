@@ -153,8 +153,8 @@ namespace AN
 			}
 			else
 			{
-				m_windowPosition.x = std::max(m_windowPosition.x, 50);
-				m_windowPosition.y = std::max(m_windowPosition.y, 50);
+				m_windowPosition.x = glm::max(m_windowPosition.x, 50);
+				m_windowPosition.y = glm::max(m_windowPosition.y, 50);
 				GLFW_CHECK(glfwSetWindowMonitor(m_window, nullptr, m_windowPosition.x, m_windowPosition.y,
 					static_cast<int>(m_clientSize.x), static_cast<int>(m_clientSize.y), mode->refreshRate));
 			}
@@ -182,7 +182,6 @@ namespace AN
 
 	void OnWindowResize(GLFWwindow * window, int width, int height)
 	{
-		GL_ERROR_LOG(glViewport(0, 0, width, height));
 		Core::GetWindow()->SetClientSize(static_cast<float>(width), static_cast<float>(height));
 		for (const auto & iter : Core::GetWindow()->GetEventListeners()) { iter->OnWindowResize(); }
 	}

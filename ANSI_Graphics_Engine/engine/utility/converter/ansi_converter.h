@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common/ansi_common.h"
+#include "common/ansi_common_type.h"
 
 namespace AN
 {
@@ -16,7 +17,7 @@ namespace AN
 
 		static std::wstring TinyXMLErrorToString(int error);
 
-		static glm::quat EulerXYZToQuat(const glm::vec3 & rotation);
+		static glm::quat EulerToQuat(const glm::vec3 & rotation, EulerOrder order);
 
 	private:
 		explicit Converter() = delete;

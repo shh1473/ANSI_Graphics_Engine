@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common/ansi_common_type.h"
 #include "object/component/ansi_component.h"
 #include "utility/state_checker/ansi_state_checker_math.h"
 
@@ -15,13 +16,16 @@ namespace AN
 
 		void Reset();
 
+		glm::vec3 GetLookAt(const glm::vec3 & direction = glm::vec3(0.0f, 0.0f, 1.0f)) const;
+
 		void SetPosition(const glm::vec3 & position) { m_position.Set(position); }
 		void SetPosition(float x, float y, float z) { m_position.Set(x, y, z); }
 		void SetPositionX(float x) { m_position.SetX(x); }
 		void SetPositionY(float y) { m_position.SetY(y); }
 		void SetPositionZ(float z) { m_position.SetZ(z); }
-		void SetRotation(const glm::vec3 & rotation) { m_rotation.Set(rotation); }
-		void SetRotation(float x, float y, float z) { m_rotation.Set(x, y, z); }
+		void SetEulerOrder(EulerOrder order) { m_eulerOrder = order; }
+		void SetRotation(const glm::vec3 & rotation, EulerOrder order = EulerOrder::XYZ) { m_rotation.Set(rotation); m_eulerOrder = order; }
+		void SetRotation(float x, float y, float z, EulerOrder order = EulerOrder::XYZ) { m_rotation.Set(x, y, z); m_eulerOrder = order; }
 		void SetRotationX(float x) { m_rotation.SetX(x); }
 		void SetRotationY(float y) { m_rotation.SetY(y); }
 		void SetRotationZ(float z) { m_rotation.SetZ(z); }
@@ -48,6 +52,7 @@ namespace AN
 		void AddScaleZ(float z) { m_scale.AddZ(z); }
 
 		bool GetIsChangedMatrix() const { return m_isChangedMatrix; }
+		EulerOrder GetEulerOrder() const { return m_eulerOrder; }
 		const glm::vec3 & GetPosition() const { return m_position.Get(); }
 		const glm::vec3 & GetRotation() const { return m_rotation.Get(); }
 		const glm::vec3 & GetScale() const { return m_scale.Get(); }
@@ -58,6 +63,7 @@ namespace AN
 	private:
 		bool m_isChangedTransform;
 		bool m_isChangedMatrix;
+		EulerOrder m_eulerOrder;
 		glm::vec3 m_worldPosition;
 		glm::mat4 m_localMatrix;
 		glm::mat4 m_worldMatrix;

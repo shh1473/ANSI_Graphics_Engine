@@ -18,6 +18,7 @@ namespace AN
 		StateChecker<int> m_clearStencil;
 		StateChecker<float> m_clearDepth;
 		StateChecker<glm::vec4> m_clearColor;
+		StateChecker<glm::ivec4> m_viewport;
 		StateChecker<MSAA> m_msaa;
 		StateChecker<unsigned> m_frameBufferId;
 

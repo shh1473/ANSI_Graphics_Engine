@@ -10,7 +10,7 @@ namespace AN
 	public:
 		explicit DirectionalLight(Object * object, const glm::vec3 & color = glm::vec3(1.0f));
 
-		void SetColor(const glm::vec3 & color) { m_color = color * color; }
+		void SetColor(const glm::vec3 & color) { m_color = glm::max(glm::vec3(0.0f), color * color); }
 
 		const glm::vec3 & GetColor() const { return m_color; }
 

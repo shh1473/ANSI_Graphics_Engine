@@ -4,12 +4,13 @@
 #include "core/render/input_executor/input_param/ansi_input_param.h"
 #include "core/render/input_executor/dispatch_param/ansi_dispatch_param.h"
 #include "core/render/shader_executor/material/ansi_material.h"
+#include "resource/vertex_array/ansi_vertex_array.h"
 #include "object/ansi_object.h"
 
 namespace AN
 {
 
-	Renderer::Renderer(Object * object, Material * material) :
+	Renderer::Renderer(Object * object, VertexArray * vertexArray, Material * material) :
 		Component(object),
 		m_isCastShadow(false),
 		m_isReceiveShadow(false),
@@ -23,6 +24,7 @@ namespace AN
 	{
 		Core::GetRender()->AddRenderer(this, m_material->m_renderType);
 
+		m_inputParam->SetVertexArray(vertexArray);
 		m_material->m_transform = object->GetTransform();
 	}
 

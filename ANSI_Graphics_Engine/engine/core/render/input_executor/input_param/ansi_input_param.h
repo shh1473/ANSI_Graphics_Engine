@@ -17,7 +17,7 @@ namespace AN
 
 		explicit InputParam();
 
-		void SetGeometry(VertexArray * vertexArray);
+		void SetVertexArray(VertexArray * vertexArray);
 		void SetPrimitiveTopology(PrimitiveTopology primitiveTopology) { m_primitiveTopology = primitiveTopology; }
 
 	private:

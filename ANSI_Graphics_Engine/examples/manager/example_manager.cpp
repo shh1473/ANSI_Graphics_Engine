@@ -8,6 +8,8 @@
 #include "../scene/02_forward_shading/directional_light_scene/directional_light_scene.h"
 #include "../scene/02_forward_shading/point_lights_scene/point_lights_scene.h"
 #include "../scene/02_forward_shading/capsule_lights_scene/capsule_lights_scene.h"
+#include "../scene/02_forward_shading/spot_lights_scene/spot_lights_scene.h"
+#include "../scene/02_forward_shading/spot_shadows_scene/spot_shadows_scene.h"
 
 namespace Example
 {
@@ -29,6 +31,8 @@ namespace Example
 		m_exampleScenes.push_back(std::make_pair(DirectionalLightScene::m_SceneName, []() { return new DirectionalLightScene(); }));
 		m_exampleScenes.push_back(std::make_pair(PointLightsScene::m_SceneName, []() { return new PointLightsScene(); }));
 		m_exampleScenes.push_back(std::make_pair(CapsuleLightsScene::m_SceneName, []() { return new CapsuleLightsScene(); }));
+		m_exampleScenes.push_back(std::make_pair(SpotLightsScene::m_SceneName, []() { return new SpotLightsScene(); }));
+		m_exampleScenes.push_back(std::make_pair(SpotShadowsScene::m_SceneName, []() { return new SpotShadowsScene(); }));
 
 		GL_CHECK(glClearDepth(1.0f));
 		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
@@ -36,12 +40,17 @@ namespace Example
 		return true;
 	}
 
+	bool ExampleManager::OnUpdate()
+	{
+		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
+		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
+
+		return true;
+	}
+
 	bool ExampleManager::OnRenderGui()
 	{
 		ImGui::Text(">---------- Example List -----------<");
-
-		GL_CHECK(glClear(GL_DEPTH_BUFFER_BIT));
-		GL_CHECK(glClear(GL_COLOR_BUFFER_BIT));
 
 		for (unsigned i{ 0 }; i < m_exampleScenes.size(); ++i)
 		{

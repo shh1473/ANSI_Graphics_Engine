@@ -5,10 +5,12 @@
 namespace AN
 {
 
-	class DepthMappingMaterial : public Material
+	class Shader;
+
+	class DepthMapMaterial : public Material
 	{
 	public:
-		explicit DepthMappingMaterial();
+		explicit DepthMapMaterial(Shader * shader);
 
 		bool OnUpdateUniforms() override;
 

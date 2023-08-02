@@ -5,7 +5,7 @@
 namespace Example
 {
 
-	const std::string PointLightsScene::m_SceneName{ "05 - Three Point Lights" };
+	const std::string PointLightsScene::m_SceneName{ "Three Point Lights" };
 
 	PointLightsScene::PointLightsScene() :
 		m_specularIntensity(1.0f),
@@ -26,14 +26,16 @@ namespace Example
 		/* === Light Group === */
 		m_lightGroup = AddObject(new AN::Object("Light Group"));
 
-		/* === Point Lights === */
+		/* === Point Light Objects === */
 		AN::PointLight * pointLights[3]{ nullptr, };
+
 		for (unsigned i{ 0 }; i < 3; ++i)
 		{
-			m_lightGroup->AddChild(m_pointLights[i] = new AN::Object(std::string("Point Light ") + std::to_string(i)));
+			m_lightGroup->AddChild(m_pointLights[i] = new AN::Object(std::string("Point Light ") + std::to_string(i + 1)));
 
 			pointLights[i] = m_pointLights[i]->AddComponent<AN::PointLight>(m_lightRadius);
 		}
+
 		pointLights[0]->SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
 		pointLights[1]->SetColor(glm::vec3(0.0f, 1.0f, 0.0f));
 		pointLights[2]->SetColor(glm::vec3(0.0f, 0.0f, 1.0f));
@@ -45,8 +47,7 @@ namespace Example
 		auto rgratMaterial = new PointLights3Material(m_pointLights3Shader, pointLights);
 		rgratMaterial->SetSpecularIntensity(m_specularIntensity);
 		rgratMaterial->SetSpecularPower(m_specularPower);
-		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(rgratMaterial);
-		rgratRenderer->GetInput()->SetGeometry(m_rgratVA);
+		auto rgratRenderer = m_rgrat->AddComponent<AN::Renderer>(m_rgratVA, rgratMaterial);
 
 		/* === Plane Object === */
 		m_plane = AddObject(new AN::Object("Plane"));
@@ -56,8 +57,7 @@ namespace Example
 		auto planeMaterial = new PointLights3Material(m_pointLights3Shader, pointLights);
 		planeMaterial->SetSpecularIntensity(m_specularIntensity);
 		planeMaterial->SetSpecularPower(m_specularPower);
-		auto planeRenderer = m_plane->AddComponent<AN::Renderer>(planeMaterial);
-		planeRenderer->GetInput()->SetGeometry(m_planeVA);
+		auto planeRenderer = m_plane->AddComponent<AN::Renderer>(m_planeVA, planeMaterial);
 
 		/* === Camera Object === */
 		m_camera = AddObject(new AN::Object("Camera"));
@@ -126,7 +126,7 @@ namespace Example
 		AN_CHECK(rgratGeometry->GenerateFromObj("assets/model/ptn_rgrat.obj"));
 		/* Plane */
 		auto planeGeometry{ GetResources()->CreateGeometry() };
-		AN_CHECK(planeGeometry->GeneratePlane(200.0f, 200.0f, 1, 1));
+		AN_CHECK(planeGeometry->GeneratePlane(200.0f, 200.0f));
 
 		/* RG Rat VA */
 		AN_CHECK(m_rgratVA = rgratGeometry->GenerateVertexArray(AN::NORMAL));
