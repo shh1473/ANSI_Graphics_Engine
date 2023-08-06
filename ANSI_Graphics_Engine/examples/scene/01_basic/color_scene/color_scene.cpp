@@ -15,9 +15,6 @@ namespace Example
 
 	bool ColorScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Box Object === */
 		m_box = AddObject(new AN::Object("Box"));
 		m_box->GetTransform()->SetScale(5.0f, 5.0f, 5.0f);

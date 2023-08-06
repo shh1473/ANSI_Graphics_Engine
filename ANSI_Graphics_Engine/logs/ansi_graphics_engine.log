@@ -1,3 +1,429 @@
 GLFW Version: 3.3.8 Win32 WGL EGL OSMesa VisualC
 GLEW Version: 2.1.0
-OpenGL Version: 4.6.0 - Build 30.0.101.2079
+OpenGL Version: 4.6.0 NVIDIA 536.23
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightRadiusRcps | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_cameraPosition | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightColors | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularIntensity | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_specularPower | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+Material file [ point_shadow_caster.mtl ] not found in a path : 
+Failed to load material file(s). Use default material.
+ | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\utility\obj_loader\ansi_obj_loader.cpp:23
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214
+u_lightCameraFars | D:\Programming\Engine\ANSI_Graphics_Engine\ANSI_Graphics_Engine\engine\core\render\shader_executor\material\ansi_material.cpp:214

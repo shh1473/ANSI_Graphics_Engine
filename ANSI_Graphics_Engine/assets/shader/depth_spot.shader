@@ -19,4 +19,6 @@ void main()
 
 in float o_depth;
 
-void main() { gl_FragDepth = o_depth; }
+void main() {
+	gl_FragDepth = o_depth;
+}

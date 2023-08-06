@@ -29,6 +29,7 @@ namespace AN
 		StateChecker<Material *> m_material;
 		StateChecker<unsigned> m_shaderId;
 		StateArrayChecker<unsigned, MaximumTextureCount> m_textureIds;
+		StateArrayChecker<unsigned, MaximumTextureCount> m_textureTypes;
 
 		/* === Alpha === */
 		StateChecker<bool> m_isEnableAlphaTest;
@@ -37,8 +38,8 @@ namespace AN
 		StateChecker<CompareFunc> m_alphaFunc;
 
 		/* === Depth === */
+		bool m_isEnableDepthWrite;
 		StateChecker<bool> m_isEnableDepthTest;
-		StateChecker<bool> m_isEnableDepthWrite;
 		StateChecker<CompareFunc> m_depthFunc;
 
 		/* === Stencil === */

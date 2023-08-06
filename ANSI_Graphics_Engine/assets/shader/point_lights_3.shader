@@ -44,7 +44,7 @@ uniform vec4 u_diffuseColor;
 void main()
 {
 	float distanceToLights;
-	float attenuation;
+	float sphereAtt;
 	float diffuse;
 	float specular;
 	vec3 dirToLights;
@@ -56,14 +56,18 @@ void main()
 		dirToLights = normalize(u_lightPositions[i] - o_worldPosition);
 		distanceToLights = length(u_lightPositions[i] - o_worldPosition);
 
-		attenuation = 1.0 - min(distanceToLights * u_lightRadiusRcps[i], 1.0);
-
+		/* Diffuse */
 		diffuse = max(dot(o_worldNormal, dirToLights), 0.0);
 
+		/* Specular */
 		halfWay = normalize(dirToLights + dirToCamera);
 		specular = pow(max(dot(halfWay, o_worldNormal), 0.0), u_specularPower) * u_specularIntensity;
 
-		totalLight += u_lightColors[i] * (diffuse + specular) * (attenuation * attenuation);
+		/* Sphere Attenuation */
+		sphereAtt = 1.0 - min(distanceToLights * u_lightRadiusRcps[i], 1.0);
+
+		/* Combine */
+		totalLight += u_lightColors[i] * (diffuse + specular) * (sphereAtt * sphereAtt);
 	}
 
 	FragColor = vec4(u_diffuseColor.rgb * totalLight, u_diffuseColor.a);

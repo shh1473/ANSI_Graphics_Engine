@@ -57,6 +57,7 @@ namespace AN
 		m_shaderId(shader->GetId()),
 		m_renderType(shader->GetType()),
 		m_textureIds(),
+		m_textureTypes(),
 		m_specularIntensity(m_DefaultSpecularIntensity),
 		m_specularPower(m_DefaultSpecularPower),
 		m_diffuseColor(m_DefaultDiffuseColor),
@@ -94,7 +95,7 @@ namespace AN
 		/* === Misc === */
 		m_isEnableDithering(m_DefaultIsEnableDithering)
 	{
-		
+		m_textureTypes.fill(TextureType::Two);
 	}
 
 	bool Material::SetUniform1i(const std::string & name, int value)

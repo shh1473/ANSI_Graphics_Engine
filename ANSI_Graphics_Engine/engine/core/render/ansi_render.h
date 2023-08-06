@@ -24,12 +24,12 @@ namespace AN
 
 		bool OnRender();
 
-		void AddCamera(Camera * camera, CameraType type) { m_cameras[static_cast<unsigned>(type)].push_back(camera); }
+		void AddCamera(Camera * camera, CameraType type) { m_cameras[glm::min(static_cast<unsigned>(type), 1u)].push_back(camera); }
 		void AddRenderer(Renderer * renderer, RenderType type) { m_renderers[static_cast<unsigned>(type)].push_back(renderer); }
 
 		void RemoveCamera(Camera * camera, CameraType type)
 		{
-			unsigned typeIndex{ static_cast<unsigned>(type) };
+			unsigned typeIndex{ glm::min(static_cast<unsigned>(type), 1u) };
 			m_cameras[typeIndex].erase(std::find(m_cameras[typeIndex].begin(), m_cameras[typeIndex].end(), camera));
 		}
 		void RemoveRenderer(Renderer * renderer, RenderType type)

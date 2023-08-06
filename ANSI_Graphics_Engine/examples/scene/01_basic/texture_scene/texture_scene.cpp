@@ -14,9 +14,6 @@ namespace Example
 
 	bool TextureScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Wall Object === */
 		m_wall = AddObject(new AN::Object("Wall"));
 		m_wall->GetTransform()->SetScale(8.0f, 8.0f, 8.0f);

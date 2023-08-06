@@ -23,17 +23,19 @@ namespace AN
 	const float Camera::m_DefaultHeight{ 1024.0f };
 	const glm::vec3 Camera::m_DefaultLookAt{ 0.0f };
 
-	Camera::Camera(Object * object, bool isUseClientSize, CameraType type, bool isEnableGBuffer) :
+	Camera::Camera(Object * object, CameraType type, bool isUseClientSize) :
 		Component(object),
 		m_isEnableFrustumCulling(true),
 		m_isUseClientSize(isUseClientSize),
+		m_isUpdateViewMatrix(true),
+		m_isUpdateProjMatrix(true),
 		m_type(type),
 		m_direction(0.0f, 0.0f, -1.0f),
 		m_viewMatrix(1.0f),
 		m_projMatrix(1.0f),
 		m_viewProjMatrix(1.0f),
 		m_outputParam(new OutputParam()),
-		m_gBufferOutput((isEnableGBuffer) ? new GBufferOutput() : nullptr),
+		m_gBufferOutput(nullptr),
 		m_orbitControls(nullptr)
 	{
 		Core::GetRender()->AddCamera(this, m_type);
@@ -56,7 +58,6 @@ namespace AN
 		Core::GetRender()->RemoveCamera(this, m_type);
 		AN_DELETE(m_outputParam);
 		AN_DELETE(m_framebuffer);
-		AN_DELETE(m_depthTexture);
 		AN_DELETE(m_orbitControls);
 	}
 
@@ -64,7 +65,8 @@ namespace AN
 	{
 		bool isMatrixChanged{ false };
 
-		if (GetObject()->GetTransform()->GetIsChangedMatrix() ||
+		if (m_isUpdateViewMatrix ||
+			GetObject()->GetTransform()->GetIsChangedMatrix() ||
 			m_lookAt.Check())
 		{
 			UpdateViewMatrix();
@@ -75,7 +77,8 @@ namespace AN
 			m_lookAt.Reset();
 		}
 
-		if (m_isPerspective.Check() ||
+		if (m_isUpdateProjMatrix ||
+			m_isPerspective.Check() ||
 			m_zoom.Check() ||
 			m_fov.Check() ||
 			m_near.Check() ||
@@ -131,34 +134,6 @@ namespace AN
 		m_framebuffer = new Framebuffer(framebufferId);
 
 		m_outputParam->m_frameBufferId = m_framebuffer->GetId();
-
-		return true;
-	}
-
-	bool Camera::CreateDepthTexture()
-	{
-		GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer->GetId()));
-
-		unsigned textureId{ 0 };
-		GL_CHECK(glGenTextures(1, &textureId));
-		GL_CHECK(glBindTexture(GL_TEXTURE_2D, textureId));
-		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, static_cast<int>(m_width.Get()), static_cast<int>(m_height.Get()), 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr));
-
-		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
-		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER));
-		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
-
-		m_depthTexture = new Texture(textureId, static_cast<unsigned>(m_width.Get()), static_cast<unsigned>(m_height.Get()));
-
-		GL_CHECK(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_depthTexture->GetId(), 0));
-
-		GL_CHECK(glDrawBuffer(GL_NONE));
-		GL_CHECK(glReadBuffer(GL_NONE));
-
-		GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
-
-		GL_CHECK(glBindFramebuffer(GL_FRAMEBUFFER, 0));
 
 		return true;
 	}

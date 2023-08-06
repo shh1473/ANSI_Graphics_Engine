@@ -7,6 +7,7 @@
 #include "../scene/02_forward_shading/hs_ambient_light_scene/hs_ambient_light_scene.h"
 #include "../scene/02_forward_shading/directional_light_scene/directional_light_scene.h"
 #include "../scene/02_forward_shading/point_lights_scene/point_lights_scene.h"
+#include "../scene/02_forward_shading/point_shadows_scene/point_shadows_scene.h"
 #include "../scene/02_forward_shading/capsule_lights_scene/capsule_lights_scene.h"
 #include "../scene/02_forward_shading/spot_lights_scene/spot_lights_scene.h"
 #include "../scene/02_forward_shading/spot_shadows_scene/spot_shadows_scene.h"
@@ -30,6 +31,7 @@ namespace Example
 		m_exampleScenes.push_back(std::make_pair(HSAmbientLightScene::m_SceneName, []() { return new HSAmbientLightScene(); }));
 		m_exampleScenes.push_back(std::make_pair(DirectionalLightScene::m_SceneName, []() { return new DirectionalLightScene(); }));
 		m_exampleScenes.push_back(std::make_pair(PointLightsScene::m_SceneName, []() { return new PointLightsScene(); }));
+		m_exampleScenes.push_back(std::make_pair(PointShadowsScene::m_SceneName, []() { return new PointShadowsScene(); }));
 		m_exampleScenes.push_back(std::make_pair(CapsuleLightsScene::m_SceneName, []() { return new CapsuleLightsScene(); }));
 		m_exampleScenes.push_back(std::make_pair(SpotLightsScene::m_SceneName, []() { return new SpotLightsScene(); }));
 		m_exampleScenes.push_back(std::make_pair(SpotShadowsScene::m_SceneName, []() { return new SpotShadowsScene(); }));
@@ -57,6 +59,7 @@ namespace Example
 			if (ImGui::Button(m_exampleScenes[i].first.c_str()))
 			{
 				AN::Core::GetWindow()->ChangeScene(m_exampleScenes[i].second());
+				AN::Core::GetGui()->SetTitle(m_exampleScenes[i].first);
 			}
 		}
 

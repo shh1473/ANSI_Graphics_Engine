@@ -21,9 +21,6 @@ namespace Example
 
 	bool CapsuleLightsScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Light Group === */
 		m_lightGroup = AddObject(new AN::Object("Light Group"));
 

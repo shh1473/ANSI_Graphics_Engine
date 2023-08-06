@@ -10,7 +10,8 @@
 #include "object/component/renderer/ansi_renderer.h"
 //#include "object/component/renderer/shader_param/depth_map_shader/ansi_depth_map_shader.h"
 
-#include "core/render/built_in/depth_map_material/ansi_depth_map_material.h"
+#include "core/render/built_in/depth_spot_material/ansi_depth_spot_material.h"
+#include "core/render/built_in/depth_point_material/ansi_depth_point_material.h"
 
 namespace AN
 {
@@ -50,10 +51,17 @@ namespace AN
 	bool Render::OnRender()
 	{
 		// Shadow Map
-		for (auto camera : m_cameras[static_cast<unsigned>(CameraType::Light)])
+		for (auto camera : m_cameras[1])
 		{
 			if (!camera->GetIsEnabled()) { continue; }
 			m_currentCamera = camera;
+			Material * material{ nullptr };
+
+			switch (m_currentCamera->GetType())
+			{
+				case CameraType::Light_Spot: { material = m_builtIn->GetDepthSpotMaterial(); } break;
+				case CameraType::Light_Point: { material = m_builtIn->GetDepthPointMaterial(); } break;
+			}
 
 			AN_CHECK(m_outputExecutor->Apply(camera->GetOutput()));
 
@@ -61,9 +69,10 @@ namespace AN
 			{
 				if (!renderer->GetObject()->GetIsEnabled() || !renderer->GetObject()->GetIsCastShadow()) { continue; }
 
+				material->SetTransform(renderer->GetObject()->GetTransform());
+
 				AN_CHECK(m_inputExecutor->Apply(renderer->GetInput()));
-				m_builtIn->GetDepthMapMaterial()->SetTransform(renderer->GetObject()->GetTransform());
-				AN_CHECK(m_shaderExecutor->Apply(m_builtIn->GetDepthMapMaterial()));
+				AN_CHECK(m_shaderExecutor->Apply(material));
 				AN_CHECK(Draw());
 			}
 
@@ -81,7 +90,7 @@ namespace AN
 		// Packing
 		if (m_renderers[static_cast<unsigned>(RenderType::Packing)].size() > 0)
 		{
-			for (const auto & camera : m_cameras[static_cast<unsigned>(CameraType::Camera)])
+			for (const auto & camera : m_cameras[0])
 			{
 				/*if (!camera->GetIsEnabled()) { continue; }
 				m_currentCamera = camera;
@@ -97,7 +106,7 @@ namespace AN
 		// Deferred
 		if (m_renderers[static_cast<unsigned>(RenderType::Deferred)].size() > 0)
 		{
-			for (const auto & camera : m_cameras[static_cast<unsigned>(CameraType::Camera)])
+			for (const auto & camera : m_cameras[0])
 			{
 				if (!camera->GetIsEnabled()) { continue; }
 				m_currentCamera = camera;
@@ -114,7 +123,7 @@ namespace AN
 		// Forward
 		if (m_renderers[static_cast<unsigned>(RenderType::Forward)].size() > 0)
 		{
-			for (const auto & camera : m_cameras[static_cast<unsigned>(CameraType::Camera)])
+			for (const auto & camera : m_cameras[0])
 			{
 				if (!camera->GetIsEnabled()) { continue; }
 				m_currentCamera = camera;

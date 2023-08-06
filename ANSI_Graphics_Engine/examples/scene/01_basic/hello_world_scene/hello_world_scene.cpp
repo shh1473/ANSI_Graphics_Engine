@@ -12,8 +12,6 @@ namespace Example
 
 	bool HelloWorldScene::Initialize()
 	{
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		GL_CHECK(glClearDepth(1.0f));
 		GL_CHECK(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
 

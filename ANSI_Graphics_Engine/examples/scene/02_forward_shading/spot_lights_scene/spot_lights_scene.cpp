@@ -10,21 +10,18 @@ namespace Example
 	SpotLightsScene::SpotLightsScene() :
 		m_specularIntensity(1.0f),
 		m_specularPower(32.0f),
-		m_lightRadius(200.0f),
-		m_lightAngle(90.0f),
-		m_lightSmoothRange(0.2f),
+		m_lightRadius(300.0f),
+		m_lightAngle(70.0f),
+		m_lightSmoothRange(0.5f),
 		m_lightRotation(0.0f),
-		m_lightDistance(60.0f),
-		m_lightRotationXs(20.0f)
+		m_lightDistance(30.0f),
+		m_lightRotationXs(60.0f)
 	{
 
 	}
 
 	bool SpotLightsScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Light Group === */
 		m_lightGroup = AddObject(new AN::Object("Light Group"));
 
@@ -39,13 +36,14 @@ namespace Example
 			spotLights[i] = m_spotLights[i]->AddComponent<AN::SpotLight>(m_lightRadius, m_lightAngle, m_lightSmoothRange);
 		}
 
+		m_lightGroup->GetTransform()->SetPositionY(50.0f);
 		spotLights[0]->SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
 		spotLights[1]->SetColor(glm::vec3(0.0f, 1.0f, 0.0f));
 		spotLights[2]->SetColor(glm::vec3(0.0f, 0.0f, 1.0f));
 		m_spotLights[0]->GetTransform()->SetRotation(m_lightRotationXs.x, 120.0f, 0.0f, EulerOrder::YXZ);
 		m_spotLights[1]->GetTransform()->SetRotation(m_lightRotationXs.y, -120.0f, 0.0f, EulerOrder::YXZ);
 		m_spotLights[2]->GetTransform()->SetRotation(m_lightRotationXs.z, 0.0f, 0.0f, EulerOrder::YXZ);
-		UpdateLightDistance(m_lightDistance);
+		UpdateLightDistance();
 
 		/* === RG Rat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
@@ -55,7 +53,7 @@ namespace Example
 		rgratMaterial->SetSpecularPower(m_specularPower);
 		m_rgrat->AddComponent<AN::Renderer>(m_rgratVA, rgratMaterial);
 
-		/* === Plane Object === */
+		/* === Plane Object === */ 
 		m_plane = AddObject(new AN::Object("Plane"));
 		m_plane->GetTransform()->SetPositionY(-15.0f);
 		m_plane->GetTransform()->SetRotationX(-90.0f);
@@ -119,7 +117,7 @@ namespace Example
 
 		if (ImGui::DragFloat("Light Distance", &m_lightDistance, 0.1f, 0.0f, 100.0f))
 		{
-			UpdateLightDistance(m_lightDistance);
+			UpdateLightDistance();
 		}
 
 		if (ImGui::Button("Reset camera"))
@@ -152,14 +150,14 @@ namespace Example
 		return true;
 	}
 
-	void SpotLightsScene::UpdateLightDistance(float distance)
+	void SpotLightsScene::UpdateLightDistance()
 	{
-		float cos{ std::cos(glm::radians(30.0f)) * distance };
-		float sin{ std::sin(glm::radians(30.0f)) * distance };
+		float cos{ std::cos(glm::radians(30.0f)) * m_lightDistance };
+		float sin{ std::sin(glm::radians(30.0f)) * m_lightDistance };
 
 		m_spotLights[0]->GetTransform()->SetPosition(-cos, 0.0f, sin);
 		m_spotLights[1]->GetTransform()->SetPosition(cos, 0.0f, sin);
-		m_spotLights[2]->GetTransform()->SetPosition(0.0f, 0.0f, -std::sin(PI * 0.5f) * distance);
+		m_spotLights[2]->GetTransform()->SetPosition(0.0f, 0.0f, -std::sin(PI * 0.5f) * m_lightDistance);
 	}
 
 }

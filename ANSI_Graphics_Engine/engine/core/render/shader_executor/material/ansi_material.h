@@ -51,6 +51,7 @@ namespace AN
 		/* === Shader === */
 		unsigned m_shaderId;
 		std::array<unsigned, MaximumTextureCount> m_textureIds;
+		std::array<TextureType, MaximumTextureCount> m_textureTypes;
 		RenderType m_renderType;
 		float m_specularIntensity;
 		float m_specularPower;

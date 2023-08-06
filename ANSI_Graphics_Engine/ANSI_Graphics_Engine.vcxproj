@@ -155,6 +155,7 @@
     <ClCompile Include="engine\core\gui\ansi_gui.cpp" />
     <ClCompile Include="engine\core\log\ansi_log.cpp" />
     <ClCompile Include="engine\core\render\built_in\ansi_built_in.cpp" />
+    <ClCompile Include="engine\core\render\built_in\depth_point_material\ansi_depth_point_material.cpp" />
     <ClCompile Include="engine\core\timer\ansi_timer.cpp" />
     <ClCompile Include="engine\core\window\ansi_window.cpp" />
     <ClCompile Include="engine\core\xml\ansi_xml.cpp" />
@@ -172,6 +173,8 @@
     <ClCompile Include="engine\object\component\ansi_component.cpp" />
     <ClCompile Include="engine\object\component\camera\ansi_camera.cpp" />
     <ClCompile Include="engine\core\render\built_in\g_buffer_output\ansi_g_buffer_output.cpp" />
+    <ClCompile Include="engine\object\component\camera\depth_point_camera\ansi_depth_point_camera.cpp" />
+    <ClCompile Include="engine\object\component\camera\depth_spot_camera\ansi_depth_spot_camera.cpp" />
     <ClCompile Include="engine\object\component\light\hs_ambient_light\ansi_hs_ambient_light.cpp" />
     <ClCompile Include="engine\object\component\light\capsule_light\ansi_capsule_light.cpp" />
     <ClCompile Include="engine\object\component\light\directional_light\ansi_directional_light.cpp" />
@@ -181,7 +184,7 @@
     <ClCompile Include="engine\core\render\input_executor\dispatch_param\ansi_dispatch_param.cpp" />
     <ClCompile Include="engine\core\render\input_executor\input_param\ansi_input_param.cpp" />
     <ClCompile Include="engine\core\render\output_executor\output_param\ansi_output_param.cpp" />
-    <ClCompile Include="engine\core\render\built_in\depth_map_material\ansi_depth_map_material.cpp" />
+    <ClCompile Include="engine\core\render\built_in\depth_spot_material\ansi_depth_spot_material.cpp" />
     <ClCompile Include="engine\object\component\transform\ansi_transform.cpp" />
     <ClCompile Include="engine\resource\framebuffer\ansi_framebuffer.cpp" />
     <ClCompile Include="engine\resource\geometry\ansi_geometry.cpp" />
@@ -216,6 +219,8 @@
     <ClCompile Include="examples\scene\02_forward_shading\directional_light_scene\directional_light_scene.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\point_lights_scene\point_lights_scene.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\capsule_lights_scene\capsule_lights_scene.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\point_shadows_scene\material\point_shadows_3\point_shadows_3_material.cpp" />
+    <ClCompile Include="examples\scene\02_forward_shading\point_shadows_scene\point_shadows_scene.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\spot_lights_scene\material\spot_lights_3\spot_lights_3_material.cpp" />
     <ClCompile Include="examples\scene\02_forward_shading\spot_lights_scene\spot_lights_scene.cpp" />
     <ClCompile Include="examples\scene\common_material\screen_plane\screen_plane_material.cpp" />
@@ -239,6 +244,7 @@
     <ClInclude Include="engine\core\gui\ansi_gui.h" />
     <ClInclude Include="engine\core\log\ansi_log.h" />
     <ClInclude Include="engine\core\render\built_in\ansi_built_in.h" />
+    <ClInclude Include="engine\core\render\built_in\depth_point_material\ansi_depth_point_material.h" />
     <ClInclude Include="engine\core\timer\ansi_timer.h" />
     <ClInclude Include="engine\core\window\ansi_window.h" />
     <ClInclude Include="engine\core\xml\ansi_xml.h" />
@@ -258,6 +264,8 @@
     <ClInclude Include="engine\object\component\ansi_component.h" />
     <ClInclude Include="engine\object\component\camera\ansi_camera.h" />
     <ClInclude Include="engine\core\render\built_in\g_buffer_output\ansi_g_buffer_output.h" />
+    <ClInclude Include="engine\object\component\camera\depth_point_camera\ansi_depth_point_camera.h" />
+    <ClInclude Include="engine\object\component\camera\depth_spot_camera\ansi_depth_spot_camera.h" />
     <ClInclude Include="engine\object\component\light\hs_ambient_light\ansi_hs_ambient_light.h" />
     <ClInclude Include="engine\object\component\light\capsule_light\ansi_capsule_light.h" />
     <ClInclude Include="engine\object\component\light\directional_light\ansi_directional_light.h" />
@@ -267,7 +275,7 @@
     <ClInclude Include="engine\core\render\input_executor\dispatch_param\ansi_dispatch_param.h" />
     <ClInclude Include="engine\core\render\input_executor\input_param\ansi_input_param.h" />
     <ClInclude Include="engine\core\render\output_executor\output_param\ansi_output_param.h" />
-    <ClInclude Include="engine\core\render\built_in\depth_map_material\ansi_depth_map_material.h" />
+    <ClInclude Include="engine\core\render\built_in\depth_spot_material\ansi_depth_spot_material.h" />
     <ClInclude Include="engine\object\component\transform\ansi_transform.h" />
     <ClInclude Include="engine\resource\framebuffer\ansi_framebuffer.h" />
     <ClInclude Include="engine\resource\geometry\ansi_geometry.h" />
@@ -304,6 +312,8 @@
     <ClInclude Include="examples\scene\02_forward_shading\directional_light_scene\directional_light_scene.h" />
     <ClInclude Include="examples\scene\02_forward_shading\point_lights_scene\point_lights_scene.h" />
     <ClInclude Include="examples\scene\02_forward_shading\capsule_lights_scene\capsule_lights_scene.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\point_shadows_scene\material\point_shadows_3\point_shadows_3_material.h" />
+    <ClInclude Include="examples\scene\02_forward_shading\point_shadows_scene\point_shadows_scene.h" />
     <ClInclude Include="examples\scene\02_forward_shading\spot_lights_scene\material\spot_lights_3\spot_lights_3_material.h" />
     <ClInclude Include="examples\scene\02_forward_shading\spot_lights_scene\spot_lights_scene.h" />
     <ClInclude Include="examples\scene\common_material\screen_plane\screen_plane_material.h" />
@@ -323,10 +333,12 @@
   <ItemGroup>
     <None Include="assets\shader\capsule_lights_3.shader" />
     <None Include="assets\shader\color.shader" />
-    <None Include="assets\shader\depth_map.shader" />
+    <None Include="assets\shader\depth_spot.shader" />
+    <None Include="assets\shader\depth_point.shader" />
     <None Include="assets\shader\directional_light.shader" />
     <None Include="assets\shader\hs_ambient_light.shader" />
     <None Include="assets\shader\point_lights_3.shader" />
+    <None Include="assets\shader\point_shadows_3.shader" />
     <None Include="assets\shader\screen_plane.shader" />
     <None Include="assets\shader\spot_lights_3.shader" />
     <None Include="assets\shader\spot_shadows_3.shader" />

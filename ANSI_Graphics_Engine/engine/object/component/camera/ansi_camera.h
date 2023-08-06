@@ -18,7 +18,7 @@ namespace AN
 	class Camera : public Component, public EventListener
 	{
 	public:
-		explicit Camera(Object * object, bool isUseClientSize = true, CameraType type = CameraType::Camera, bool isEnableGBuffers = false);
+		explicit Camera(Object * object, CameraType type = CameraType::Camera, bool isUseClientSize = true);
 		virtual ~Camera();
 
 		bool OnUpdate() override;
@@ -27,7 +27,6 @@ namespace AN
 		bool CheckFrustum(const glm::vec3 & worldPosition, float radius);
 
 		bool CreateFramebuffer();
-		bool CreateDepthTexture();
 
 		void SetIsEnableFrustumCulling(bool isEnable) { m_isEnableFrustumCulling = isEnable; }
 		void SetLookAt(const glm::vec3 & lookAt) { m_lookAt.Set(lookAt); }
@@ -41,6 +40,7 @@ namespace AN
 		void SetOrbitControls(OrbitControls * orbitControls) { m_orbitControls = orbitControls; }
 
 		bool GetIsEnableFrustumCulling() const { return m_isEnableFrustumCulling; }
+		CameraType GetType() const { return m_type; }
 		const glm::vec3 & GetLookAt() const { return m_lookAt.Get(); }
 		const glm::vec3 & GetDirection() const { return m_direction; }
 		const glm::mat4 & GetViewMatrix() const { return m_viewMatrix; }
@@ -56,23 +56,12 @@ namespace AN
 		glm::vec2 GetSize() const { return glm::vec2(m_width.Get(), m_height.Get()); }
 		OutputParam * GetOutput() const { return m_outputParam; }
 		GBufferOutput * GetGBufferOutput() const { return m_gBufferOutput; }
-		Texture * GetDepthTexture() const { return m_depthTexture; }
 
-	private:
-		void UpdateViewMatrix();
-		void UpdateProjMatrix();
-
-		static const bool m_DefaultIsPerspective;
-		static const float m_DefaultZoom;
-		static const float m_DefaultFov;
-		static const float m_DefaultNear;
-		static const float m_DefaultFar;
-		static const float m_DefaultWidth;
-		static const float m_DefaultHeight;
-		static const glm::vec3 m_DefaultLookAt;
-
+	protected:
 		bool m_isEnableFrustumCulling;
 		bool m_isUseClientSize;
+		bool m_isUpdateViewMatrix;
+		bool m_isUpdateProjMatrix;
 		CameraType m_type;
 		glm::ivec2 m_viewportOffset;
 		glm::vec3 m_direction;
@@ -90,8 +79,21 @@ namespace AN
 		OutputParam * m_outputParam;
 		GBufferOutput * m_gBufferOutput;
 		Framebuffer * m_framebuffer;
-		Texture * m_depthTexture;
 		OrbitControls * m_orbitControls;
+
+	private:
+		void UpdateViewMatrix();
+		void UpdateProjMatrix();
+
+	private:
+		static const bool m_DefaultIsPerspective;
+		static const float m_DefaultZoom;
+		static const float m_DefaultFov;
+		static const float m_DefaultNear;
+		static const float m_DefaultFar;
+		static const float m_DefaultWidth;
+		static const float m_DefaultHeight;
+		static const glm::vec3 m_DefaultLookAt;
 
 	};
 

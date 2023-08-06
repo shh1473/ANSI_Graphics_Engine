@@ -10,6 +10,14 @@ namespace AN
 
 	constexpr unsigned MaximumTextureCount{ 8 };
 
+	enum class TextureType
+	{
+		Two = GL_TEXTURE_2D,
+		Three = GL_TEXTURE_3D,
+		Cube = GL_TEXTURE_CUBE_MAP,
+		TwoArray = GL_TEXTURE_2D_ARRAY,
+	};
+
 	enum class MSAA
 	{
 		None,
@@ -102,7 +110,8 @@ namespace AN
 	enum class CameraType
 	{
 		Camera,
-		Light,
+		Light_Spot,
+		Light_Point,
 	};
 
 	const unsigned RenderTypeCount{ 4 };

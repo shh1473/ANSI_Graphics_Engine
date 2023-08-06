@@ -18,9 +18,6 @@ namespace Example
 
 	bool DirectionalLightScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Directional Light Object === */
 		m_directionalLight = AddObject(new AN::Object("Directional Light"));
 		m_directionalLight->GetTransform()->SetRotation(m_lightRotation.x, m_lightRotation.y, 0.0f, EulerOrder::YXZ);

@@ -16,9 +16,6 @@ namespace Example
 
 	bool HSAmbientLightScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Ambient Light Object === */
 		m_ambientLight = AddObject(new AN::Object("Ambient Light"));
 

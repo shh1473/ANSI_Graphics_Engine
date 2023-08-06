@@ -20,7 +20,7 @@ namespace Example
 		static const std::string m_SceneName;
 
 	private:
-		void UpdateLightDistance(float distance);
+		void UpdateLightDistance();
 
 	private: /* === Gui === */
 		float m_specularIntensity;

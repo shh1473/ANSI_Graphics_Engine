@@ -7,12 +7,13 @@
 namespace Example
 {
 
-	class SpotLightsScene : public ExampleScene
+	class PointShadowsScene : public ExampleScene
 	{
 	public:
-		explicit SpotLightsScene();
+		explicit PointShadowsScene();
 
 		bool Initialize() override;
+		bool OnUpdate() override;
 		bool OnRenderGui() override;
 		bool CreateResources() override;
 
@@ -20,32 +21,27 @@ namespace Example
 		static const std::string m_SceneName;
 
 	private:
-		void UpdateLightDistance();
+		void UpdateLightRotation();
 
 	private: /* === Gui === */
-		float m_specularIntensity;
-		float m_specularPower;
+		bool m_isAnimateRotation;
 		float m_lightRadius;
-		float m_lightAngle;
-		float m_lightSmoothRange;
 		float m_lightRotation;
-		float m_lightDistance;
-		glm::vec3 m_lightRotationXs;
 
 	private: /* === Object === */
 		AN::Object * m_rgrat{ nullptr };
-		AN::Object * m_plane{ nullptr };
-		AN::Object * m_lightGroup{ nullptr };
-		AN::Object * m_spotLights[3]{ nullptr, };
+		AN::Object * m_box{ nullptr };
+		AN::Object * m_pointLights[3]{ nullptr, };
 		AN::Object * m_camera{ nullptr };
 
 		AN::OrbitControls * m_orbitControls{ nullptr };
 
 	private: /* === Resource === */
-		AN::Shader * m_spotLights3Shader{ nullptr };
+		AN::Shader * m_pointShadows3Shader{ nullptr };
 
 		AN::VertexArray * m_rgratVA{ nullptr };
-		AN::VertexArray * m_planeVA{ nullptr };
+		AN::VertexArray * m_shadowCastSphereVA{ nullptr };
+		AN::VertexArray * m_boxVA{ nullptr };
 
 	};
 

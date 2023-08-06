@@ -14,7 +14,7 @@ namespace AN
 
 		bool Check()
 		{
-			if (!m_isAppliedInitialValue) { return m_isAppliedInitialValue = true; }
+			if (!m_isAppliedInitialValue) { return (m_isAppliedInitialValue = true); }
 			return (m_curValue != m_oldValue);
 		}
 
@@ -45,7 +45,7 @@ namespace AN
 
 		bool Check()
 		{
-			if (!m_isAppliedInitialValue) { return m_isAppliedInitialValue = true; }
+			if (!m_isAppliedInitialValue) { return (m_isAppliedInitialValue = true); }
 			for (int i{ m_start }; i <= m_end; ++i)
 			{
 				if (m_curValues[i] != m_oldValues[i]) { return true; }

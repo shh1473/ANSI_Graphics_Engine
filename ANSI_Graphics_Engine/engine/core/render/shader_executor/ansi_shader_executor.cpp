@@ -16,7 +16,10 @@ namespace AN
 	{
 		/* === Shader === */
 		m_shaderId.Set(material->m_shaderId);
-		for (unsigned i{ 0 }; i < MaximumTextureCount; ++i) { m_textureIds.Set(i, material->m_textureIds[i]); }
+		for (unsigned i{ 0 }; i < MaximumTextureCount; ++i) {
+			m_textureIds.Set(i, material->m_textureIds[i]);
+			m_textureTypes.Set(i, static_cast<unsigned>(material->m_textureTypes[i]));
+		}
 
 		/* === Alpha === */
 		m_isEnableAlphaTest.Set(material->m_isEnableAlphaTest);
@@ -25,8 +28,8 @@ namespace AN
 		m_alphaFunc.Set(material->m_alphaFunc);
 
 		/* === Depth === */
+		m_isEnableDepthWrite = material->m_isEnableDepthWrite;
 		m_isEnableDepthTest.Set(material->m_isEnableDepthTest);
-		m_isEnableDepthWrite.Set(material->m_isEnableDepthWrite);
 		m_depthFunc.Set(material->m_depthFunc);
 
 		/* === Stencil === */
@@ -77,8 +80,10 @@ namespace AN
 		/* === Shader === */
 		m_shaderId.Set(0);
 		m_textureIds.SetAll(0);
+		m_textureTypes.SetAll(static_cast<unsigned>(TextureType::Two));
 		m_shaderId.Reset();
 		m_textureIds.Reset();
+		m_textureTypes.Reset();
 
 		/* === Alpha === */
 		m_isEnableAlphaTest.Set(Material::m_DefaultIsEnableAlphaTest);
@@ -91,11 +96,10 @@ namespace AN
 		m_alphaFunc.Reset();
 
 		/* === Depth === */
+		m_isEnableDepthWrite = Material::m_DefaultIsEnableDepthWrite;
 		m_isEnableDepthTest.Set(Material::m_DefaultIsEnableDepthTest);
-		m_isEnableDepthWrite.Set(Material::m_DefaultIsEnableDepthWrite);
 		m_depthFunc.Set(Material::m_DefaultDepthFunc);
 		m_isEnableDepthTest.Reset();
-		m_isEnableDepthWrite.Reset();
 		m_depthFunc.Reset();
 
 		/* === Stencil === */
@@ -154,14 +158,15 @@ namespace AN
 			GL_CHECK(glUseProgram(m_shaderId.Get()));
 		}
 
-		if (m_textureIds.Check())
+		if (m_textureIds.Check() || m_textureTypes.Check())
 		{
 			for (int i{ m_textureIds.GetStart() }; i <= m_textureIds.GetEnd(); ++i)
 			{
 				GL_CHECK(glActiveTexture(GL_TEXTURE0 + i));
-				GL_CHECK(glBindTexture(GL_TEXTURE_2D, m_textureIds.Get(i)));
+				GL_CHECK(glBindTexture(m_textureTypes.Get(i), m_textureIds.Get(i)));
 			}
 			m_textureIds.Reset();
+			m_textureTypes.Reset();
 		}
 
 		return true;
@@ -195,17 +200,13 @@ namespace AN
 
 	bool ShaderExecutor::ApplyDepth()
 	{
+		GL_CHECK(glDepthMask(m_isEnableDepthWrite ? GL_TRUE : GL_FALSE));
+
 		if (m_isEnableDepthTest.Check())
 		{
 			m_isEnableDepthTest.Reset();
 			if (m_isEnableDepthTest.Get()) { GL_CHECK(glEnable(GL_DEPTH_TEST)); }
 			else { GL_CHECK(glDisable(GL_DEPTH_TEST)); }
-		}
-
-		if (m_isEnableDepthWrite.Check())
-		{
-			m_isEnableDepthWrite.Reset();
-			GL_CHECK(glDepthMask(m_isEnableDepthWrite.Get() ? GL_TRUE : GL_FALSE));
 		}
 
 		if (m_depthFunc.Check())

@@ -20,9 +20,6 @@ namespace Example
 
 	bool PointLightsScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Light Group === */
 		m_lightGroup = AddObject(new AN::Object("Light Group"));
 
@@ -39,7 +36,7 @@ namespace Example
 		pointLights[0]->SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
 		pointLights[1]->SetColor(glm::vec3(0.0f, 1.0f, 0.0f));
 		pointLights[2]->SetColor(glm::vec3(0.0f, 0.0f, 1.0f));
-		UpdateLightDistance(m_lightDistance);
+		UpdateLightDistance();
 
 		/* === RG Rat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
@@ -103,7 +100,7 @@ namespace Example
 
 		if (ImGui::DragFloat("Light Distance", &m_lightDistance, 0.1f, 0.0f, 50.0f))
 		{
-			UpdateLightDistance(m_lightDistance);
+			UpdateLightDistance();
 		}
 
 		if (ImGui::Button("Reset camera"))
@@ -136,14 +133,14 @@ namespace Example
 		return true;
 	}
 
-	void PointLightsScene::UpdateLightDistance(float distance)
+	void PointLightsScene::UpdateLightDistance()
 	{
-		float cos{ std::cos(glm::radians(30.0f)) * distance };
-		float sin{ std::sin(glm::radians(30.0f)) * distance };
+		float cos{ std::cos(glm::radians(30.0f)) * m_lightDistance };
+		float sin{ std::sin(glm::radians(30.0f)) * m_lightDistance };
 
 		m_pointLights[0]->GetTransform()->SetPosition(-cos, m_lightHeights[0], sin);
 		m_pointLights[1]->GetTransform()->SetPosition(cos, m_lightHeights[1], sin);
-		m_pointLights[2]->GetTransform()->SetPosition(0.0f, m_lightHeights[2], -std::sin(PI * 0.5f) * distance);
+		m_pointLights[2]->GetTransform()->SetPosition(0.0f, m_lightHeights[2], -std::sin(PI * 0.5f) * m_lightDistance);
 	}
 
 }

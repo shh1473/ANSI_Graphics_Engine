@@ -1,7 +1,8 @@
 #include "spot_shadows_scene.h"
 
-#include "../../common_material/screen_plane/screen_plane_material.h"
+#include "object/component/camera/depth_spot_camera/ansi_depth_spot_camera.h"
 
+#include "../../common_material/screen_plane/screen_plane_material.h"
 #include "material/spot_shadows_3/spot_shadows_3_material.h"
 
 namespace Example
@@ -23,9 +24,6 @@ namespace Example
 
 	bool SpotShadowsScene::Initialize()
 	{
-		/* === Gui === */
-		AN::Core::GetGui()->SetTitle(m_SceneName);
-
 		/* === Light Group === */
 		m_lightGroup = AddObject(new AN::Object("Light Group"));
 
@@ -47,7 +45,7 @@ namespace Example
 		m_spotLights[0]->GetTransform()->SetRotation(m_lightRotationXs.x, 120.0f, 0.0f, EulerOrder::YXZ);
 		m_spotLights[1]->GetTransform()->SetRotation(m_lightRotationXs.y, -120.0f, 0.0f, EulerOrder::YXZ);
 		m_spotLights[2]->GetTransform()->SetRotation(m_lightRotationXs.z, 0.0f, 0.0f, EulerOrder::YXZ);
-		UpdateLightDistance(m_lightDistance);
+		UpdateLightDistance();
 
 		/* === RG Rat Object === */
 		m_rgrat = AddObject(new AN::Object("RG Rat"));
@@ -70,7 +68,7 @@ namespace Example
 			m_shadowPlanes[i]->SetIsCastShadow(false);
 
 			auto shadowPlaneMaterial = new ScreenPlaneMaterial(m_screenPlaneShader,
-				m_spotLights[i]->FindComponent<AN::SpotLight>()->GetShadowMapCamera()->GetDepthTexture()->GetId(),
+				m_spotLights[i]->FindComponent<AN::SpotLight>()->GetShadowMapCamera()->GetDepthMap()->GetId(),
 				glm::vec4(i * 200.0f + (i + 1) * 10.0f, 10.0f, 200.0f, 200.0f));
 			m_shadowPlanes[i]->AddComponent<AN::Renderer>(m_shadowMapPlaneVA, shadowPlaneMaterial);
 		}
@@ -120,7 +118,7 @@ namespace Example
 
 		if (ImGui::DragFloat("Light Distance", &m_lightDistance, 0.1f, 0.0f, 100.0f))
 		{
-			UpdateLightDistance(m_lightDistance);
+			UpdateLightDistance();
 		}
 
 		if (ImGui::Checkbox("Show Shadow Maps", &m_isVisibleShadowMaps))
@@ -165,14 +163,14 @@ namespace Example
 		return true;
 	}
 
-	void SpotShadowsScene::UpdateLightDistance(float distance)
+	void SpotShadowsScene::UpdateLightDistance()
 	{
-		float cos{ std::cos(glm::radians(30.0f)) * distance };
-		float sin{ std::sin(glm::radians(30.0f)) * distance };
+		float cos{ std::cos(glm::radians(30.0f)) * m_lightDistance };
+		float sin{ std::sin(glm::radians(30.0f)) * m_lightDistance };
 
 		m_spotLights[0]->GetTransform()->SetPosition(-cos, 0.0f, sin);
 		m_spotLights[1]->GetTransform()->SetPosition(cos, 0.0f, sin);
-		m_spotLights[2]->GetTransform()->SetPosition(0.0f, 0.0f, -std::sin(PI * 0.5f) * distance);
+		m_spotLights[2]->GetTransform()->SetPosition(0.0f, 0.0f, -std::sin(PI * 0.5f) * m_lightDistance);
 	}
 
 }
