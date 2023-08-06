@@ -32,6 +32,7 @@
 * Capsule Lights Scene: 3개의 캡슐 라이트를 적용한 장면
 * Spot Lights Scene: 3개의 스포트 라이트를 적용한 장면
 * Spot Shadows Scene: 3개의 스포트 라이트에 그림자를 적용한 장면
+* Point Shadows Scene: 3개의 포인트 라이트에 그림자를 적용한 장면
 * [계속 추가됩니다...]
 
 ### 3장 - 디퍼드 렌더링
